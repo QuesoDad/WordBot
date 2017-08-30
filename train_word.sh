@@ -2,7 +2,7 @@
 
 th train.lua \
 	-gpuid -1 \
-	-data_dir dockerdata/trump/input_norm_caps  \
+	-data_dir dockerdata  \
 	-train_frac 0.96 \
 	-val_frac 0.04 \
 	-max_epochs 40 \

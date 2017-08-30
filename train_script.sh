@@ -2,7 +2,7 @@
 
 th train.lua \
 	-gpuid -1 \
-	-data_dir docekrdata/trump  \
+	-data_dir dockerdata  \
 	-train_frac 0.96 \
 	-val_frac 0.04 \
 	-max_epochs 50 \
@@ -18,7 +18,7 @@ th train.lua \
 
 th train.lua \
 	-gpuid -1 \
-	-data_dir dockerdata/trump  \
+	-data_dir dockerdata  \
 	-max_epochs 30 \
 	-print_every 10 \
 	-rnn_size 128 \

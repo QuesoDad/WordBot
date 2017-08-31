@@ -34,9 +34,11 @@ RUN luarocks install nn
 RUN luarocks install underscore.lua --from=http://marcusirven.s3.amazonaws.com/rocks/
 RUN luarocks install lrexlib-pcre PCRE_LIBDIR=/lib/x86_64-linux-gnu
 
+WORKDIR /root
 wget -P /tmp https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.1/nvidia-docker_1.0.1-1_amd64.deb
 sudo dpkg -i /tmp/nvidia-docker*.deb && rm /tmp/nvidia-docker*.deb
 
+WORKDIR /root
 RUN luarocks install cutorch
 RUN luarocks install cunn
 RUN luarocks install cltorch

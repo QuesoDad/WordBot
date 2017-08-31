@@ -34,8 +34,17 @@ RUN luarocks install nn
 RUN luarocks install underscore.lua --from=http://marcusirven.s3.amazonaws.com/rocks/
 RUN luarocks install lrexlib-pcre PCRE_LIBDIR=/lib/x86_64-linux-gnu
 
+wget -P /tmp https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.1/nvidia-docker_1.0.1-1_amd64.deb
+sudo dpkg -i /tmp/nvidia-docker*.deb && rm /tmp/nvidia-docker*.deb
+
+RUN luarocks install cutorch
+RUN luarocks install cunn
+RUN luarocks install cltorch
+RUN luarocks install clnn
+
 WORKDIR /root
 RUN git clone https://github.com/larspars/word-rnn.git
+RUN git clone https://github.com/kboruff/wordbot.git
 
 WORKDIR word-rnn
 RUN wget http://nlp.stanford.edu/data/glove.6B.zip

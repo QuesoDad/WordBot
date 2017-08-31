@@ -5,8 +5,21 @@ _Word bot_ simplifies training of corpus texts on Windows and other Docker frien
 ## Usage: training
 
 1. Install Docker Tools for Windows.
+2. Make dockerdata directory to use for holding the training files and corpus text files
+3. Open Oracle VirtualBox (Installed with Docker Toolbox)
+4. Make sure the "default" Virtual machine Docker installs is turned off
+5. Go to the "default" machines Settings | Shared Folders
+6. Add the dockerdata directory as a shared named dockerdata. Set to automount and Full access.
 
-* Pull docker image: `docker pull rtlee/t-bot:train`
+Run commands from Docker Quick Start Terminal:
+docker-machine ssh default
+sudo mkdir /dockerdata
+sudo mount -t vboxsf /dockerdata /dockerdata
+
+docker run -v '/dockerdata/:/root/Trump-bot/dockerdata' --rm -ti wordbot bash
+
+
+* Pull docker image: `docker pull rtlee/t-bot:sample`
 * Run docker container: `docker run -t -i rtlee/t-bot:train /bin/bash`
 * Update the git repo: `git pull origin master`
 * Train models

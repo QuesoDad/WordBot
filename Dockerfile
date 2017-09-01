@@ -35,8 +35,10 @@ RUN luarocks install underscore.lua --from=http://marcusirven.s3.amazonaws.com/r
 RUN luarocks install lrexlib-pcre PCRE_LIBDIR=/lib/x86_64-linux-gnu
 
 WORKDIR /root
+RUN mkdir tmp
 RUN wget -P /tmp https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.1/nvidia-docker_1.0.1-1_amd64.deb
-RUN sudo dpkg -i /tmp/nvidia-docker*.deb && rm /tmp/nvidia-docker*.deb
+RUN sudo dpkg -i /tmp/nvidia-docker*.deb
+RUN rm /tmp/nvidia-docker*.deb
 
 WORKDIR /root
 RUN luarocks install cutorch

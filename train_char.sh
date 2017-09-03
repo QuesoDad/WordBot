@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! -e ~/dockerdata/glove/glove.840B.300d.txt ];
+if [ ! -e ~/dockerdata/glove/vectors.840B.300d.txt ];
 then
     echo "GloVe vector file not found in Dockerdata/glove/"
 	wget http://nlp.stanford.edu/data/glove.840B.300d.zip

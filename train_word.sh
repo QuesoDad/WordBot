@@ -1,10 +1,10 @@
 #!/bin/bash
 
-if [ ! -e ~/dockerdata/glove/vectors.840B.300d.txt ];
+if [ ! -e ~/wordbot/dockerdata/glove/vectors.840B.300d.txt ];
 then
     echo "GloVe vector file not found in Dockerdata/glove/"
 	wget http://nlp.stanford.edu/data/glove.840B.300d.zip
-	cd ~/dockerdata
+	cd ~/wordbot/dockerdata
 	mkdir glove
 	fastjar xvf glove.840B.300d.zip
 	mv glove.840B.300d.txt glove/vectors.840B.300d.txt

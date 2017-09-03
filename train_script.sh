@@ -14,7 +14,7 @@ th train.lua \
 	-num_layers 2 \
 	-dropout 0.4 \
 	-eval_val_every 500 \
-	-checkpoint_dir cv_word
+	-checkpoint_dir cv_word_caps_256_2 \
 
 th train.lua \
 	-gpuid -1 \
@@ -25,4 +25,4 @@ th train.lua \
 	-num_layers 2 \
 	-dropout 0.4 \
 	-eval_val_every 1000 \
-	-checkpoint_dir cv_char
+	-checkpoint_dir cv_char_caps_256_2 \

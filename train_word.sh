@@ -1,12 +1,16 @@
 #!/bin/bash
 
-if [ ! -f /dockerdata/glove/glove.840B.300d.txt ]; then
-    echo "File not found!"
+if [ ! -e ~/dockerdata/glove/glove.840B.300d.txt ];
+then
+    echo "GloVe vector file not found in Dockerdata/glove/"
 	wget http://nlp.stanford.edu/data/glove.840B.300d.zip
+	cd ~/dockerdata
 	mkdir glove
 	fastjar xvf glove.840B.300d.zip
 	mv glove.840B.300d.txt glove/vectors.840B.300d.txt
 	rm glove*
+else
+	echo "GloVe vectors file exist."
 fi
 
 th train.lua \

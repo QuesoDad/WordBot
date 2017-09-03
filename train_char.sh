@@ -1,5 +1,14 @@
 #!/bin/bash
 
+if [ ! -f /dockerdata/glove/glove.840B.300d.txt ]; then
+    echo "File not found!"
+	wget http://nlp.stanford.edu/data/glove.840B.300d.zip
+	mkdir glove
+	fastjar xvf glove.840B.300d.zip
+	mv glove.840B.300d.txt glove/vectors.840B.300d.txt
+	rm glove*
+fi
+
 th train.lua \
 	-data_dir dockerdata  \
 	-rnn_size 256 \

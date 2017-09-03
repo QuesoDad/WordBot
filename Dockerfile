@@ -50,12 +50,12 @@ RUN luarocks install lrexlib-pcre PCRE_LIBDIR=/lib/x86_64-linux-gnu
 # RUN luarocks install clnn
 
 WORKDIR /root
-RUN git clone https://github.com/larspars/word-rnn.git
+# RUN git clone https://github.com/larspars/word-rnn.git
 RUN git clone https://github.com/kboruff/wordbot.git
 
 WORKDIR word-rnn
-RUN wget http://nlp.stanford.edu/data/glove.840B.300d.zip
-RUN mkdir util/glove
-RUN fastjar xvf glove.840B.300d.zip
-RUN mv glove.840B.300d.txt util/glove/vectors.840B.300d.txt
-RUN rm glove*
+# RUN wget http://nlp.stanford.edu/data/glove.840B.300d.zip
+# RUN mkdir util/glove
+# RUN fastjar xvf glove.840B.300d.zip
+# RUN mv glove.840B.300d.txt glove/vectors.840B.300d.txt
+# RUN rm glove*

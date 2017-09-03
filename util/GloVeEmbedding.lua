@@ -20,9 +20,9 @@ end
 local GloVeEmbedding, parent = torch.class('GloVeEmbedding', 'nn.LookupTable')
 
 function GloVeEmbedding:__init(word2idx, embedding_size, data_dir)
-    -- you need glove embeddings in the directory ./util/glove/
+    -- you need glove embeddings in ~/dockerdata/glove/
     -- download them from http://nlp.stanford.edu/projects/glove/
-    local embedding_file = 'util/glove/vectors.6B.200d.txt' 
+    local embedding_file = 'dockerdata/glove/vectors.840B.300d.txt' 
     local file_embedding_size = 200
     self.vocab_size = numkeys(word2idx)
     self.word2idx = word2idx

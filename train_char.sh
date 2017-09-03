@@ -3,9 +3,9 @@
 if [ ! -e ~/wordbot/dockerdata/glove/vectors.840B.300d.txt ];
 then
     echo "GloVe vector file not found in Dockerdata/glove/"
-	wget http://nlp.stanford.edu/data/glove.840B.300d.zip
 	cd ~/wordbot/dockerdata
 	mkdir glove
+	wget http://nlp.stanford.edu/data/glove.840B.300d.zip
 	fastjar xvf glove.840B.300d.zip
 	mv glove.840B.300d.txt glove/vectors.840B.300d.txt
 	rm glove*
@@ -17,7 +17,7 @@ th train.lua \
 	-data_dir dockerdata  \
 	-rnn_size 256 \
 	-num_layers 2 \
-	-model gru \
+	-model lstm \
 	-learning_rate 2e-3 \
 	-learning_rate_decay .97 \
 	-learning_rate_decay_after 10 \

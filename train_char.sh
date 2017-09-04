@@ -25,14 +25,14 @@ th train.lua \
 	-dropout 0.4 \
 	-recurrent_dropout 0 \
 	-seq_length 200 \
-	-batch_size 50 \
+	-batch_size 20 \
 	-max_epochs 60 \
 	-grad_clip 5 \
 	-train_frac 0.96 \
 	-val_frac 0.04 \
 	-print_every 5 \
 	-eval_val_every 500 \
-	-checkpoint_dir cv_char_caps_256_2 \
+	-checkpoint_dir dockerdata/cv_char_caps_256_2 \
 	-savefile autosave \
 	-accurate_gpu_timing 0 \
 	-gpuid -1 \

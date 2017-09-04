@@ -32,7 +32,7 @@ th train.lua \
 	-val_frac 0.04 \
 	-print_every 5 \
 	-eval_val_every 500 \
-	-checkpoint_dir cv_word_caps_256_2 \
+	-checkpoint_dir dockerdata/cv_word_caps_256_2 \
 	-savefile autosave \
 	-accurate_gpu_timing 0 \
 	-gpuid -1 \

@@ -2,7 +2,7 @@
 _Word bot_ simplifies training of corpus texts on Windows and keeps most database files in an easy to access shared folders. This is primarily based off all the hard work of rtlee9 using [word-level RNN](https://github.com/larspars/word-rnn) and [pre-trained](http://nlp.stanford.edu/projects/glove/) GloVe  word vectors. For more information see the original project this is forked from. For additional insight into what is occuring in this program, please see [this](https://eightportions.com/2016-11-03-Trump-bot/) Eight Portions blog post.
 
 
-## Usage: training
+## Installation
 
 1. Install Docker Tools for Windows.
 2. Make a "/dockerdata" directory to use for holding the training files and corpus text files
@@ -35,22 +35,19 @@ If everything went correctly, you should be in the /root/wordbot folder and a /d
 
 13. On the host system, go to the Dockerdata folder you made and you should see the input.txt file in it.
 
+## Training
+
 14. From Docker, run ./train_char.sh or ./train_word.sh
 
 These will check if the GloVe pre-trained vector file have been downloaded already. If not, it downloads them into the /dockerdata folder /glove
 
-* Identify the best word and character level models and move to `/cv/`, replacing the existing files corresponding to the appropriate model type
+15. Let it run until it is finished.
 
-* Sample from models: `python sample.py "I will build a"`
-
+16. Identify the best word and character level models in the `/cv_char_caps_256_2/` and move them to to `/dockerdata/`. Rename the files to word-rnn-trained.t7 and char-rnn-trained.t7, respectively.
 
 ## Usage: sampling
 
-
-* Pull docker image: `docker pull rtlee/t-bot:sample`
-* Run docker container: `docker run -t -i rtlee/t-bot:sample /bin/bash`
-* Update the git repo: `git pull origin master`
-* Sample from models: `python sample.py "I will build a"`
+17. To sample from models, run `python sample.py "I will build a"`
 
 
 

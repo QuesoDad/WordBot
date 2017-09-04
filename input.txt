@@ -1,0 +1,76 @@
+This is a placeholder file. During installation and setup this file should be moved to /Dockerdata folder.
+
+Replace this file's contents with the corpus text you want to train on.
+
+As a suggestion, I've found using Regular Expressions to clean text in Notepad++ works well.
+
+You can use Regular Expressions (REGEX) in Notepad++ by bringing up the Find window, going to the Search Mode options on the bottom-left, and selecting Regular Expression.
+
+The training system doesn't support special characters well, so it's a good idea to clean them out.
+
+Find non-asscii characters
+[^\x00-\x7F]
+
+To take out these characters:
+
+1. Go to the Replace tab in the Notepad++ window.
+2. Enter the expression and leave the replace with section blank.
+3. Go to the top of the file.
+4. Click "Find" once.
+5. Click Replace All.
+
+Use these steps to clean up your corpus. Keep in mind long sentences and prose are harder to pattern match for training on basic grammar. Consider putting a gap between sentences and selecting to remote sentences over a certain length. For example, Twitter likes 140 characters, so setting Sequence to 160 give enough space that the training can pick up on ending sentences with punctuation.
+
+There are additional Regular Expression commands that I've used below.
+
+Find capitalized words (The 5 is how many capped letter recurrences are allowed
+([A-Z][a-zA-Z0-9-]*[\w]{0,1}){5,}
+
+Select any line with the words “Project Gutenberg” in it.
+^(.*?)Project Gutenberg(.*?)$
+
+Find incorrect capitalization
+[a-z][A-Z]\s
+
+Find all Capped letters and put a space in front of it
+([A-Z])
+Replace with:
+ \1
+
+Find all numbers (With match case turned off)
+(?![a-z])\w+
+
+Select anything between quotes
+("([^"]|"")*")
+
+(^|\.)[^"]*\K"(?=[^"]*(\.|$))
+
+Select from “}” to “{footnote”
+(\{footnote).+?(?=\})
+
+Select Text in Brackets
+\[(.*?)\]
+
+Find non-asscii characters
+[^\x00-\x7F]
+
+Find every @twitter name in a document
+
+([@])\w
+
+Find URL
+
+(http|ftp|https):\/\/{1}(\S*)
+
+Find all duplicated lines
+
+^(.*)(\r?\n\1)+$
+
+Match any text blocks over 140 characters
+.{140,}
+
+Match all RT
+RT (.*)
+
+Match all #Harmonblock2017
+(.*) #harmonblock2017

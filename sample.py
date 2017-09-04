@@ -26,9 +26,9 @@ class Sampler():
 
         # Get model name
         if model_type == 'word':
-            model_name = 'dockerdata/word-rnn-trained.t7'
+            model_name = '~/wordbot/dockerdata/word-rnn-trained.t7'
         elif model_type == 'char':
-            model_name = 'dockerdata/char-rnn-trained.t7'
+            model_name = '~/wordbot/dockerdata/char-rnn-trained.t7'
         else:
             raise ValueError('Model type {} not supported'.format(model_type))
 

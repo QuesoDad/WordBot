@@ -15,11 +15,9 @@ RUN apt-get update && apt-get install -y \
 	wget
 # Torch and luarocks
 WORKDIR /root
-#RUN git clone git://github.com/luarocks/luarocks.git
 RUN git clone --recursive https://github.com/torch/distro.git ~/torch 
 RUN cd ~
 RUN cd torch
-RUN ~/torch/clean.sh
 RUN bash ~/torch/install-deps && cd ~/torch && ./install.sh
 
 ENV LUA_PATH='/root/.luarocks/share/lua/5.1/?.lua;/root/.luarocks/share/lua/5.1/?/init.lua;/root/torch/install/share/lua/5.1/?.lua;/root/torch/install/share/lua/5.1/?/init.lua;./?.lua;/root/torch/install/share/luajit-2.1.0-beta1/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua'
@@ -37,6 +35,11 @@ RUN luarocks install nn
 RUN luarocks install underscore.lua --from=http://marcusirven.s3.amazonaws.com/rocks/
 RUN luarocks install lrexlib-pcre PCRE_LIBDIR=/lib/x86_64-linux-gnu
 
+WORKDIR /root
+RUN git clone https://github.com/kboruff/wordbot.git
+WORKDIR /root/wordbot
+
+# Nvidia-Docker WIP section
 # WORKDIR /root
 # RUN sudo apt-get -f install
 # RUN wget -P /tmp https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.1/nvidia-docker_1.0.1_amd64.tar.xz
@@ -49,6 +52,3 @@ RUN luarocks install lrexlib-pcre PCRE_LIBDIR=/lib/x86_64-linux-gnu
 # RUN luarocks install cltorch
 # RUN luarocks install clnn
 
-WORKDIR /root
-RUN git clone https://github.com/kboruff/wordbot.git
-WORKDIR /root/wordbot

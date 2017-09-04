@@ -37,7 +37,7 @@ If everything went correctly, you should be in the /root/wordbot folder and a /d
 
 14. From Docker, run ./train_char.sh or ./train_word.sh
 
-These will check if the GloVe pre-trained files have been downloaded already. If not, it downloads them into the /dockerdata folder /glove
+These will check if the GloVe pre-trained vector file have been downloaded already. If not, it downloads them into the /dockerdata folder /glove
 
 * Identify the best word and character level models and move to `/cv/`, replacing the existing files corresponding to the appropriate model type
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! -e ~/wordbot/dockerdata/glove/vectors.840B.300d.txt ];
+if [ ! -e ~/wordbot/dockerdata/glove/vectors.6B.200d.txt ];
 then
     echo "GloVe vector file not found in Dockerdata/glove/"
 	cd ~/wordbot/dockerdata

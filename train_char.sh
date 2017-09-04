@@ -5,9 +5,9 @@ then
     echo "GloVe vector file not found in Dockerdata/glove/"
 	cd ~/wordbot/dockerdata
 	mkdir glove
-	wget http://nlp.stanford.edu/data/glove.840B.300d.zip
-	fastjar xvf glove.840B.300d.zip
-	mv glove.840B.300d.txt glove/vectors.840B.300d.txt
+	wget https://nlp.stanford.edu/data/glove.6B.zip
+	fastjar xvf glove.6B.zip
+	mv glove.6B.200d.txt glove/vectors.6B.200d.txt
 	rm glove*
 else
 	echo "GloVe vectors file exist."

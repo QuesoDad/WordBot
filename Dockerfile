@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER Ryan Lee <ryantlee9@gmail.com>
+MAINTAINER Kristian Boruff <kboruff@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true

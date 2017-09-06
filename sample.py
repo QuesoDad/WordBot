@@ -26,9 +26,9 @@ class Sampler():
 
         # Get model name
         if model_type == 'word':
-            model_name = '~/wordbot/dockerdata/word-rnn-trained.t7'
+            model_name = 'dockerdata/word-rnn-trained.t7'
         elif model_type == 'char':
-            model_name = '~/wordbot/dockerdata/char-rnn-trained.t7'
+            model_name = 'dockerdata/char-rnn-trained.t7'
         else:
             raise ValueError('Model type {} not supported'.format(model_type))
 
@@ -94,7 +94,7 @@ class Sampler():
 
         # Sample from the word-level model
         word_sample = self.get_sample_raw(
-            'word', sample_starter, self.word_temperature, self.length)
+            'word', sample_starter, self.word_temperature, 500)
 
         # Join char-level sample with word-level sample
         sample_clean = sample_starter + ' ' + word_sample

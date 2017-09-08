@@ -9,16 +9,23 @@ class Sampler():
     def __init__(self, seed_text=None,
                  char_temperature=.4, word_temperature=.75):
         # Generate random character for the seed if none provided
-        if seed_text is None:
-            seed_text = random.choice(string.letters).upper()
-        if seed_text[-1:] == ' ':
-            seed_text_trimmed = seed_text.strip() + ' '
+        if seed_text is None: #If no text is given and the answer is the overloaded one
+            seed_text = random.choice(string.ascii_uppercase) #returns the ascii uppercase result. Better than .uppercase() because of locale issues
+        if seed_text[-1:] == ' ': #[-1:] is to make sure it doesn't get an index error from an empty string
+            seed_text_trimmed = seed_text.strip() + ' ' #makes sure that if the last character is a space, that it's only one space
         else:
             seed_text_trimmed = seed_text.strip()
         self.seed = seed_text_trimmed
         self.char_temperature = char_temperature
         self.word_temperature = word_temperature
+''' Sample from Character RNN:
 
+th sample.lua dockerdata/ForFiles_char_256/lm_lstm_autosave__epoch619.57_5.0280.t7 -seed 123 -sample 1 -primetext "Community is " -length 150 -temperature 1 -gpuid -1 -opencl 0 -verbose 1 -skip_unk 0 -input_loop 0 -word_level 0 
+
+Sample from Word RNN:
+
+th sample.lua dockerdata/ForFiles_word_256/lm_autosave__epoch92.70_4.5315.t7 -seed 123 -sample 1 -primetext "Community is " -length 150 -temperature 1 -gpuid -1 -opencl 0 -verbose 1 -skip_unk 0 -input_loop 0 -word_level 1
+'''		
     def get_sample_raw(self, model_type, seed, temperature, length):
         # Generate random character if none provided
         if seed is None:
@@ -32,8 +39,8 @@ class Sampler():
         else:
             raise ValueError('Model type {} not supported'.format(model_type))
 
-        # Sample from the model using provided seed
         sample = subprocess.check_output([
+        # Sample from the model using provided seed
             'th', 'sample.lua',
             model_name,
             '-temperature', str(temperature),
@@ -42,6 +49,14 @@ class Sampler():
             '-primetext', seed
         ])
 
+'''Sample from Character RNN:
+
+th sample.lua dockerdata/ForFiles_char_256/lm_lstm_autosave__epoch619.57_5.0280.t7 -seed 123 -sample 1 -primetext "Community is " -length 150 -temperature 1 -gpuid -1 -opencl 0 -verbose 1 -skip_unk 0 -input_loop 0 -word_level 0 
+
+Sample from Word RNN:
+
+th sample.lua dockerdata/ForFiles_word_256/lm_autosave__epoch92.70_4.5315.t7 -seed 123 -sample 1 -primetext "Community is " -length 150 -temperature 1 -gpuid -1 -opencl 0 -verbose 1 -skip_unk 0 -input_loop 0 -word_level 1
+'''
         # Return cleaned sampled text
         return self.denormalize(sample)
 

@@ -6,36 +6,38 @@ import string
 
 class Sampler():
 
-    def __init__(self, seed_text=None,
+    def __init__(self, model_type, maxSample, primeText, length, temperature, gpuid, opencl, verbose, skipUnk, inputLoop, wordLevel, primeText=None,
                  char_temperature=.4, word_temperature=.75):
         # Generate random character for the seed if none provided
-        if seed_text is None: #If no text is given and the answer is the overloaded one
-            seed_text = random.choice(string.ascii_uppercase) #returns the ascii uppercase result. Better than .uppercase() because of locale issues
-        if seed_text[-1:] == ' ': #[-1:] is to make sure it doesn't get an index error from an empty string
-            seed_text_trimmed = seed_text.strip() + ' ' #makes sure that if the last character is a space, that it's only one space
+        if primeText is None: #If no text is given and the answer is the overloaded one
+            primeText = random.choice(string.ascii_uppercase) #returns the ascii uppercase result. Better than .uppercase() because of locale issues
+        if primeText[-1:] == ' ': #[-1:] is to make sure it doesn't get an index error from an empty string
+            primeTextTrimmed = primeText.strip() + ' ' #makes sure that if the last character is a space, that it's only one space
         else:
-            seed_text_trimmed = seed_text.strip()
-        self.seed = seed_text_trimmed
+            primeTextTrimmed = primeText.strip()
+        self.primeText = primeTextTrimmed
         self.char_temperature = char_temperature
         self.word_temperature = word_temperature
 ''' Sample from Character RNN:
 
-th sample.lua dockerdata/ForFiles_char_256/lm_lstm_autosave__epoch619.57_5.0280.t7 -seed 123 -sample 1 -primetext "Community is " -length 150 -temperature 1 -gpuid -1 -opencl 0 -verbose 1 -skip_unk 0 -input_loop 0 -word_level 0 
+th sample.lua -primetext "Community is " -length 150 -temperature 1 -gpuid -1 -opencl 0 -verbose 1 -skip_unk 0 -input_loop 0 -word_level 0 
 
 Sample from Word RNN:
 
-th sample.lua dockerdata/ForFiles_word_256/lm_autosave__epoch92.70_4.5315.t7 -seed 123 -sample 1 -primetext "Community is " -length 150 -temperature 1 -gpuid -1 -opencl 0 -verbose 1 -skip_unk 0 -input_loop 0 -word_level 1
+th sample.lua -primetext "Community is " -length 150 -temperature 1 -gpuid -1 -opencl 0 -verbose 1 -skip_unk 0 -input_loop 0 -word_level 1
 '''		
-    def get_sample_raw(self, model_type, seed, temperature, length):
+    def get_sample_raw(self, model_type, maxSample, primeText, length, temperature, gpuid, opencl, verbose, skipUnk, inputLoop, wordLevel):
         # Generate random character if none provided
-        if seed is None:
-            seed = random.choice(string.letters).upper()
+        if primeText is None:
+            primeText = random.choice(string.letters).upper()
 
         # Get model name
         if model_type == 'word':
             model_name = 'dockerdata/word-rnn-trained.t7'
+			wordLevel = 1
         elif model_type == 'char':
             model_name = 'dockerdata/char-rnn-trained.t7'
+			wordLevel = 0
         else:
             raise ValueError('Model type {} not supported'.format(model_type))
 
@@ -43,20 +45,18 @@ th sample.lua dockerdata/ForFiles_word_256/lm_autosave__epoch92.70_4.5315.t7 -se
         # Sample from the model using provided seed
             'th', 'sample.lua',
             model_name,
-            '-temperature', str(temperature),
-            '-length', str(length),
-            '-gpuid', '-1',
-            '-primetext', seed
+			'-sample', str(maxSample),
+			'-primetext ', str(primeText),
+			'-length ', str(length), 
+            '-temperature ', str(temperature),
+            '-gpuid ', str(gpuid),
+			'-opencl ', str(opencl,
+			'-verbose ', str(verbose),
+			'-skip_unk ', str(skipUnk),
+			'-input_loop ', str(inputLoop),
+			'-word_level ', str(wordLevel)
         ])
 
-'''Sample from Character RNN:
-
-th sample.lua dockerdata/ForFiles_char_256/lm_lstm_autosave__epoch619.57_5.0280.t7 -seed 123 -sample 1 -primetext "Community is " -length 150 -temperature 1 -gpuid -1 -opencl 0 -verbose 1 -skip_unk 0 -input_loop 0 -word_level 0 
-
-Sample from Word RNN:
-
-th sample.lua dockerdata/ForFiles_word_256/lm_autosave__epoch92.70_4.5315.t7 -seed 123 -sample 1 -primetext "Community is " -length 150 -temperature 1 -gpuid -1 -opencl 0 -verbose 1 -skip_unk 0 -input_loop 0 -word_level 1
-'''
         # Return cleaned sampled text
         return self.denormalize(sample)
 

@@ -12,7 +12,17 @@ RUN apt-get update && apt-get install -y \
 	libpcre3-dev \
 	fastjar \
 	software-properties-common \
-	wget
+	wget \
+	python3-pip \
+	build-essential \
+	libssl-dev \
+	libffi-dev \
+	python3-dev
+
+WORKDIR /dockerdata
+RUN pip3 install --upgrade pip
+RUN pip3 install twython
+
 # Torch and luarocks
 WORKDIR /root
 RUN git clone --recursive https://github.com/torch/distro.git ~/torch 

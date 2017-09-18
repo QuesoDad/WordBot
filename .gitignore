@@ -94,3 +94,5 @@ ENV/
 
 # Ignore VIM swp files
 *.swp
+tweetFile.txt
+sync.ffs_db

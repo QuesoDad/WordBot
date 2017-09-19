@@ -3,44 +3,37 @@ import subprocess
 import random
 import string
 
-#Tuples containing unchanging setting names
+#Tuples containing setting names
 training_arguments = ('model', 'seed', 'sample', 'prime_text', 'length', 'temperature', 'gpu', 'opencl', 'verbose', 'skip_unk', 'input_loop', 'word_level')
-sample_options = (' -seed ', ' -sample ', '-primetext ', ' -length ', ' -temperature ', ' -gpuid', ' -opencl ', ' -verbose ', ' -skip_unk ', ' -input_loop ', ' -word_level ')
-args = len(sys.argv) - 1
+sample_options = ('', ' -seed ', ' -sample ', '-primetext ', ' -length ', ' -temperature ', ' -gpuid', ' -opencl ', ' -verbose ', ' -skip_unk ', ' -input_loop ', ' -word_level ')
 
-if args >= 1:
-	print('%s sys args detected'%args)
+args = len(sys.argv)
 
-if args > len(training_arguments):
-	print('Actually, too many arguments detected. Truncating to 12.')
-	args = 12
+def parseArguments (args):
+	arguments = []
+	print(args)
+	if args >= 1:
+		print('%s sys args detected'%args)
+	if args >= 12:
+		'''Truncates args to the maximum arguments possible in sampling'''
+		print('Actually, too many arguments detected. Truncating to 12.')
+		args = 12
+	if args == 0:
+		print('No arguments detected')
+	''' Enters commandline arguments into a list'''
+	for i in range(args):
+		arguments.append(sys.argv[i])
+	#arguments.remove(sys.argv[0])
 
-if args == 0:
-	print('No arguments detected')
+	'''Prints out a sample command line'''
+	sample_command = 'th sample.lua '
+	for i in range(args):
+		sample_command = sample_command + " " + str(arguments[i]) + str(sample_options[i])
+	return sample_command
 
-x = -1
-y = 1
-for i in range(args):
-	arguments = {training_arguments[i] : sys.argv[y]}
-	if x > 1:
-		options = {sample_options[x] : sys.argv[y]}
-	x += 1
-	y += 1
+print(str(parseArguments(args)))
 
-	
-
-
-x = 0
-y = 1
-for i in range(args):
-	if i < 1:
-		print('th sample.lua ')
-	else:
-		print(options[sample_options[x]] + " " + arguments[training_arguments[i]])
-	x += 1
-
-
-
+'''
 def sampler(primetext, length, model = 'word', seed = '123', sample = 1, temperature = 1, gpu = -1, opencl = 0, verbose = 1, skip_unk = 0, input_loop = 0, word_level = 1):
 	print(primetext, length, model, seed, sample, temperature, gpu, opencl, verbose, skip_unk, input_loop, word_level)
 	
@@ -49,6 +42,8 @@ def sampler(primetext, length, model = 'word', seed = '123', sample = 1, tempera
 		print(primetext)
 	
 	return None
+'''
+
 '''
 if __name__ == '__main__':
 	if len(sys.argv) > 1:

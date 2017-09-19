@@ -2,92 +2,80 @@ import os
 import sys
 import subprocess
 import textwrap
-import sample # BRING IN SAMPLE AND MAKE IT SO YOU CAN GET THE LAST THREE WORDS IN A LOOP
+from common import fileCheck, denormalize
+import sample
+import string
+import random
 
-tweetFile = sys.argv[1]
+print(random.choice(string.ascii_uppercase))
 
-def fileCheck(self):
-	statinfo = os.stat(tweetFile)
-	tweet = ""
-	if statinfo.st_size == 0:
-		print('tweetFile is empty.')
-		tweet = 'File empty, please try again.'
-	else:
-		tweet = ""
-		#Open the file, grab the first tweet, put it into a variable, remove it from the file, and close the file.
-		try:
-			tweet_File = open(tweetFile, 'r', encoding='UTF-8')
-			while tweet == "": #Do this until the Tweet variable isn't a blank '\n' line or None
-				with open(tweetFile, 'r') as fin:
-					data = fin.read().splitlines(True) #open the file and stick it in a list
-				with open(tweetFile, 'w') as fout: #reopen the file for writing
-					i = 0
-					for x in data:
-						if (i > 0): #If the tweet isn't the first one, write it back to the file
-							i =+ 1
-							fout.write(x)
-						else:
-							tweet = x.strip() #If the tweet is the first one, stick it in the tweet variable
-							i =+ 1
-				fin.close()
-				fout.close()
-		except IOError:
-			tweet_File = open(tweetFile, 'w', encoding='UTF-8')
-			tweet = 'tweetFile.txt Created, please place tweets in it separated by \n newlines.'
-		tweet_File.close()
-	return tweet
+sampler = sample.Sampler()
+tweet_file = sys.argv[1]
 
-def denormalize (tweet):
-	tweet_clean = tweet.replace(" . ", ". ").\
-						replace(" . . . ", "... ").\
-						replace(" \ ? ", "? ").\
-						replace(" ! ", "! ").\
-						replace(" ' ", "'").\
-						replace(" , ", ", ").\
-						replace("- -", "--").\
-						replace(" ; ", "; ").\
-						replace(" # ", " #").\
-						replace(" n't", "n't")
-	return tweet_clean
-	
-tweet = fileCheck(tweetFile)
+tweet = fileCheck(tweet_file)
 tweet_clean = denormalize(tweet)
 print('Normalized tweet: %s'%(tweet_clean))
 
-if len(tweet_clean) > 140: #Saves the parts of tweets over the 140 character limit at the end of the tweetFile for the next batch
-	with open(tweetFile, 'a+') as tweetFile:
-			cutLines = textwrap.wrap(tweet_clean, 100, break_long_words=False)
-			print('The following are the separate tokens')
-			print(cutLines)
-			y = 0
-			for i in cutLines:
-				if (y == 0):
-					tweet_clean = cutLines[0]
-					y =+ 1
-				else:
-					tweetFile.write(i+ '\n \n')
-	tweetFile.close()
+print(((tweet_clean[-1:]).isalpha() == True))
+print((tweet_clean[-1:]))
+print(len(tweet_clean))
 
-finalCharacter = len(tweet_clean) - 1 #Finds final character
-finalChar = tweet_clean[finalCharacter]
+def fitTweet(tweet_clean, tweet_file):
+	i=0
+	while len(tweet_clean) > 140 or ((tweet_clean[-1:]).isalpha()) == True:
+		if len(tweet_clean) > 140:
+		#Saves the parts of tweets over 100 characters at the end of the tweet_file
+			original_tweet = 0
+			if original_tweet == 1:
+				with open(tweet_file, 'a+') as record_file:
+					cut_Lines = textwrap.wrap(tweet_clean, 100, break_long_words=False)
+					# print('The following are the separate tokens')
+					# print(cut_Lines)
+					y = 0
+					for i in cut_Lines:
+						if (y == 0):
+							tweet_clean = cut_Lines[0]
+							y =+ 1
+						else:
+							record_file.write(i+ '\n \n')
+				record_file.close()
+			cut_Lines = textwrap.wrap(tweet_clean, 100, break_long_words=False)
+			tweet_clean = cut_Lines[0]
+			original_tweet =+1
+		
+		if str((tweet_clean[-1:])).isalpha() == False and ((tweet_clean[-1:]) != ","):
+			print('The tweet ends with punctuation. \n'.upper())
+			return tweet_clean
+			
+		if tweet_clean != "":#If the file isn't empty, get the last three words
+			tweetList = tweet_clean.split()
+			last3 = str((tweetList[-3] + " " + tweetList[-2] + " " + tweetList[-1]))
+			print('The last three words are %s.'%last3)
 
-if finalChar.isalpha() == False and len(tweet_clean) <= 140 and finalChar != ",":
-	print('The tweet is less than or equalt to 140 characters and ends with punctuation.'.upper())
-	print(tweet_clean)
+		if (tweet_clean[-1:]).isalpha() == True or ((tweet_clean[-1:]) == ","):
+			print('Tweet doesn\'t end with punctuation'.upper())
+			tweet_clean = tweet_clean + last3Sample(last3)
+		print(tweet_clean)
+		
+		tweet_clean = tweet_clean + last3Sample(last3)
+	return tweet_clean
 
-print(tweet_clean[-1])
+def last3Sample(last3):
+	''' samples from the last three words of the text until it gets a punctuation mark '''
+	y = 0
+	while (last3[-1:]).isalpha() == True:
+		y = y + 1
+		print('test here')
+		#print('last three are: ' + last3)
+		print(sampler.get_sample(last3, y))
+		print('the value of y is: ' + str(y))
+		#last3 = sampler.get_sample_raw('char', last3, y, 3)
+		#print(last3)
+		#if (last3[-1:]).isalpha() == True:
+		#	last3 = str((tweetList[-3] + " " + tweetList[-2] + " " + tweetList[-1]))
+	return last3
 
-tweetList = tweet_clean.split()
-print('The last three words are %s %s %s'%(tweetList[-3], tweetList[-2], tweetList[-1]))
-last3 = str((tweetList[-3] + tweetList[-2] + tweetList[-1]))
+	#subprocess.check_output(['ls','-l']) #all that is technically needed...
 
-# sample.Sampler('E:\Github\Trump-bot\cv\char-rnn-trained.t7', 1, last3, 15, -1, -1, 1, 1, 0, 0, 0)
 
-if finalChar.isalpha() == True or finalChar == ",":
-	print('Tweet doesn\'t end with punctuation'.upper())
-
-#subprocess.check_output(['ls','-l']) #all that is technically needed...
-#subprocess.check_output(['python3','tweetReince.py', tweet_clean])
-
-print(tweet_clean)
-print(tweet_clean[finalCharacter]) #prints 140 character in string
+print(fitTweet(tweet_clean, tweet_file))

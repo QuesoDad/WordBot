@@ -3,51 +3,76 @@ import subprocess
 import random
 import string
 
+'''
+	model = sys.argv[1]
+	seed = sys.argv[2]
+	sample = sys.argv[3]
+	prime_text = sys.argv[4]
+	length = sys.argv[5]
+	temperature = sys.argv[6]
+	gpu = sys.argv[7]
+	opencl = sys.argv[8]
+	verbose = sys.argv[9]
+	skip_unk = sys.argv[10]
+	input_loop = sys.argv[11]
+	word_level = sys.argv[12]
+'''
+
+def sampler(primetext, length, model = 'word', seed = '123', sample = 1, temperature = 1, gpu = -1, opencl = 0, verbose = 1, skip_unk = 0, input_loop = 0, word_level = 1):
+	print(primetext, length, model, seed, sample, temperature, gpu, opencl, verbose, skip_unk, input_loop, word_level)
+	
+	if primetext == "":
+		primetext = random.choice(string.ascii_uppercase)
+		print(primetext)
+	
+	return None
+
+	
+sampler()
+
+
+'''
 class Sampler():
 
-	def __init__(self, model_type, maxSample, primeText, length, temperature, gpuid, opencl, verbose, skipUnk, inputLoop, wordLevel, char_temperature=.4, word_temperature=.75):# Generate random character for the seed if none provided
-		if primeText is None: #If no text is given and the answer is the overloaded one
-			primeText = random.choice(string.upper()) #returns the ascii uppercase result. Better than .uppercase() because of locale issues
-			print('The prime text is :%s'%(primeText))
-		if primeText[-1:] == ' ': #[-1:] is to make sure it doesn't get an index error from an empty string
-			primeTextTrimmed = primeText.strip() + ' ' #makes sure that if the last character is a space, that it's only one space
+	def __init__(self, seed_text=None, char_temperature=.4, word_temperature=.75):
+		# Generate random character for the seed if none provided
+		if seed_text is None:
+			seed_text = random.choice(string.ascii_uppercase)
+		if seed_text[-1:] == ' ':
+			seed_text_trimmed = seed_text.strip() + ' '
 		else:
-			primeTextTrimmed = primeText.strip()
-		self.primeText = primeTextTrimmed
+			seed_text_trimmed = seed_text.strip()
+		self.seed = seed_text_trimmed
 		self.char_temperature = char_temperature
 		self.word_temperature = word_temperature
-	def get_sample_raw(self, model_type, maxSample, primeText, length, temperature, gpuid, opencl, verbose, skipUnk, inputLoop, wordLevel):
-		if primeText is None:
-			primeText = random.choice(string.letters).upper()
-			print(primeText)
+
+	def get_sample_raw(self, model_type, seed, temperature, length):
+		# Generate random character if none provided
+		if seed is None:
+			seed = random.choice(string.ascii_uppercase)
+
 		# Get model name
 		if model_type == 'word':
-			model_name = 'dockerdata/word-rnn-trained.t7'
-			wordLevel = 1
+			model_name = 'lm_lstm_autosave__epoch167.86_3.4929.t7'
 		elif model_type == 'char':
-			model_name = 'dockerdata/char-rnn-trained.t7'
-			wordLevel = 0
+			model_name = 'lm_lstm_autosave__epoch167.86_3.4929.t7'
 		else:
 			raise ValueError('Model type {} not supported'.format(model_type))
-		sample = subprocess.check_output([
+
 		# Sample from the model using provided seed
+		sample = subprocess.check_output([
 			'th', 'sample.lua',
 			model_name,
-			'-sample', maxSample,
-			'-primetext ', primeText,
-			'-length ', strlength,
-			'-temperature ', temperature,
-			'-gpuid ', gpuid,
-			'-opencl ', opencl,
-			'-verbose ', verbose,
-			'-skip_unk ', skipUnk,
-			'-input_loop ', inputLoop,
-			'-word_level ', wordLevel
-			])
+			'-temperature', str(temperature),
+			'-length', str(length),
+			'-gpuid', '-1',
+			'-primetext', seed
+		])
+
 		# Return cleaned sampled text
 		return self.denormalize(sample)
 
-		# Denormalize sampled text
+	# Denormalize sampled text
 	def denormalize(self, sample):
 		sample_clean = str(sample).split("--------------------------")[1]
 		sample_clean = sample_clean.replace(" . . . ", "... ")
@@ -58,15 +83,19 @@ class Sampler():
 			replace(" ' ", "'").\
 			replace(" , ", ", ").\
 			replace("- -", "--").\
-			replace(" ; ", "; ").\
-			replace(" n't", "n't")
+			replace(" ; ", "; ")
+		sample_clean = sample_clean.replace(" n't", "n't")
 		return sample_clean
-# Sample text from model
+
+	# Sample text from model
 	def get_sample(self):
+
 		if self.seed.strip()[-1:] != '.':
 			# If seed is not a full sentence
+
 			# Sample from character model
-			char_sample = self.get_sample_raw('char', self.seed, self.char_temperature, 300)
+			char_sample = self.get_sample_raw(
+				'char', self.seed, self.char_temperature, 300)
 
 			# Remove start and end newlines
 			char_sample = char_sample.split('\n')[1]
@@ -91,7 +120,8 @@ class Sampler():
 			sample_starter = self.seed
 
 		# Sample from the word-level model
-		word_sample = self.get_sample_raw('word', sample_starter, self.word_temperature, 500)
+		word_sample = self.get_sample_raw(
+			'word', sample_starter, self.word_temperature, 500)
 
 		# Join char-level sample with word-level sample
 		sample_clean = sample_starter + ' ' + word_sample
@@ -103,4 +133,5 @@ if __name__ == '__main__':
 		sampler = Sampler(sys.argv[1])
 	else:
 		sampler = Sampler()
-	print(sampler.get_sample())
+	#print sampler.get_sample()
+'''

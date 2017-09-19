@@ -3,20 +3,43 @@ import subprocess
 import random
 import string
 
-'''
-	model = sys.argv[1]
-	seed = sys.argv[2]
-	sample = sys.argv[3]
-	prime_text = sys.argv[4]
-	length = sys.argv[5]
-	temperature = sys.argv[6]
-	gpu = sys.argv[7]
-	opencl = sys.argv[8]
-	verbose = sys.argv[9]
-	skip_unk = sys.argv[10]
-	input_loop = sys.argv[11]
-	word_level = sys.argv[12]
-'''
+#Tuples containing unchanging setting names
+training_arguments = ('model', 'seed', 'sample', 'prime_text', 'length', 'temperature', 'gpu', 'opencl', 'verbose', 'skip_unk', 'input_loop', 'word_level')
+sample_options = (' -seed ', ' -sample ', '-primetext ', ' -length ', ' -temperature ', ' -gpuid', ' -opencl ', ' -verbose ', ' -skip_unk ', ' -input_loop ', ' -word_level ')
+args = len(sys.argv) - 1
+
+if args >= 1:
+	print('%s sys args detected'%args)
+
+if args > len(training_arguments):
+	print('Actually, too many arguments detected. Truncating to 12.')
+	args = 12
+
+if args == 0:
+	print('No arguments detected')
+
+x = -1
+y = 1
+for i in range(args):
+	arguments = {training_arguments[i] : sys.argv[y]}
+	if x > 1:
+		options = {sample_options[x] : sys.argv[y]}
+	x += 1
+	y += 1
+
+	
+
+
+x = 0
+y = 1
+for i in range(args):
+	if i < 1:
+		print('th sample.lua ')
+	else:
+		print(options[sample_options[x]] + " " + arguments[training_arguments[i]])
+	x += 1
+
+
 
 def sampler(primetext, length, model = 'word', seed = '123', sample = 1, temperature = 1, gpu = -1, opencl = 0, verbose = 1, skip_unk = 0, input_loop = 0, word_level = 1):
 	print(primetext, length, model, seed, sample, temperature, gpu, opencl, verbose, skip_unk, input_loop, word_level)
@@ -26,11 +49,14 @@ def sampler(primetext, length, model = 'word', seed = '123', sample = 1, tempera
 		print(primetext)
 	
 	return None
-
-	
-sampler()
-
-
+'''
+if __name__ == '__main__':
+	if len(sys.argv) > 1:
+		print('sys args detected')
+		sampler = sampler(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])
+	else:
+		sampler = sampler()
+'''
 '''
 class Sampler():
 
@@ -128,10 +154,6 @@ class Sampler():
 
 		return ' '.join(sample_clean.split())
 
-if __name__ == '__main__':
-	if len(sys.argv) > 1:
-		sampler = Sampler(sys.argv[1])
-	else:
-		sampler = Sampler()
+
 	#print sampler.get_sample()
 '''

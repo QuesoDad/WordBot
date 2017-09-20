@@ -3,35 +3,42 @@ import subprocess
 import random
 import string
 
-#Tuples containing setting names
-training_arguments = ('model', 'seed', 'sample', 'prime_text', 'length', 'temperature', 'gpu', 'opencl', 'verbose', 'skip_unk', 'input_loop', 'word_level')
-sample_options = ('', ' -seed ', ' -sample ', '-primetext ', ' -length ', ' -temperature ', ' -gpuid', ' -opencl ', ' -verbose ', ' -skip_unk ', ' -input_loop ', ' -word_level ')
+#docker run -v '/dockerdata/:/root/wordbot/dockerdata' -ti kboruff/wordbot bash
+#cd dockerdata/wordbot_testing
 
+#Tuples containing setting names, note that additional variables can be added into the training arguments and sample options list and it will update the rest automatically
+training_arguments = ('model', 'seed', 'sample', 'prime_text', 'length', 'temperature', 'gpu', 'opencl', 'verbose', 'skip_unk', 'input_loop', 'word_level')
+sample_options = (' -seed ', ' -sample ', '-primetext ', ' -length ', ' -temperature ', ' -gpuid', ' -opencl ', ' -verbose ', ' -skip_unk ', ' -input_loop ', ' -word_level ')
+max_args = 13
 args = len(sys.argv)
 
 def parseArguments (args):
 	arguments = []
-	print(args)
 	if args >= 1:
 		print('%s sys args detected'%args)
-	if args >= 12:
+	if args > max_args:
 		'''Truncates args to the maximum arguments possible in sampling'''
 		print('Actually, too many arguments detected. Truncating to 12.')
-		args = 12
+		args = max_args
 	if args == 0:
 		print('No arguments detected')
 	''' Enters commandline arguments into a list'''
 	for i in range(args):
 		arguments.append(sys.argv[i])
-	#arguments.remove(sys.argv[0])
-
+	arguments.remove(sys.argv[0])
+	args = len(arguments)
 	'''Prints out a sample command line'''
 	sample_command = 'th sample.lua '
 	for i in range(args):
-		sample_command = sample_command + " " + str(arguments[i]) + str(sample_options[i])
+		if i <= 0 and i < len(sample_options):
+			sample_command = sample_command + " " + str(arguments[i])
+		elif i >= 1 and i <= len(sample_options):
+			sample_command = sample_command + " " + sample_options[i-1] + " " + arguments[i]
+		else:
+			sample_command = sample_command + " " + str(arguments[i])
 	return sample_command
-
 print(str(parseArguments(args)))
+
 
 '''
 def sampler(primetext, length, model = 'word', seed = '123', sample = 1, temperature = 1, gpu = -1, opencl = 0, verbose = 1, skip_unk = 0, input_loop = 0, word_level = 1):

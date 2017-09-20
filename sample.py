@@ -27,7 +27,12 @@ def parseArguments (args):
 		arguments.append(sys.argv[i])
 	arguments.remove(sys.argv[0])
 	args = len(arguments)
-	'''Prints out a sample command line'''
+	return args, arguments
+	
+print(str(parseArguments(args,arguments)))
+'''
+def commandLine(args)
+Prints out a sample command line
 	sample_command = 'th sample.lua '
 	for i in range(args):
 		if i <= 0 and i < len(sample_options):
@@ -37,9 +42,7 @@ def parseArguments (args):
 		else:
 			sample_command = sample_command + " " + str(arguments[i])
 	return sample_command
-print(str(parseArguments(args)))
-
-
+'''
 '''
 def sampler(primetext, length, model = 'word', seed = '123', sample = 1, temperature = 1, gpu = -1, opencl = 0, verbose = 1, skip_unk = 0, input_loop = 0, word_level = 1):
 	print(primetext, length, model, seed, sample, temperature, gpu, opencl, verbose, skip_unk, input_loop, word_level)

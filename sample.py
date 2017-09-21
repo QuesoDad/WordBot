@@ -7,44 +7,57 @@ import string
 #cd dockerdata/wordbot_testing
 
 #Tuples containing setting names, note that additional variables can be added into the training arguments and sample options list and it will update the rest automatically
-training_arguments = ('model', 'seed', 'sample', 'prime_text', 'length', 'temperature', 'gpu', 'opencl', 'verbose', 'skip_unk', 'input_loop', 'word_level')
-sample_options = (' -seed ', ' -sample ', '-primetext ', ' -length ', ' -temperature ', ' -gpuid', ' -opencl ', ' -verbose ', ' -skip_unk ', ' -input_loop ', ' -word_level ')
-max_args = 13
+training_arguments = {'prime_text' : "" , 'model': 0, 'seed' : 0, 'sample': 0, 'length': 0, 'temperature': 0, 'gpu': 0, 'opencl': 0, 'verbose': 0, 'skip_unk': 0, 'input_loop' : 0, 'word_level' : 0}
+sample_options = (' -primetext', ' -model', ' -seed', ' -sample', ' -length', ' -temperature', ' -gpuid', ' -opencl', ' -verbose', ' -skip_unk', ' -input_loop', ' -word_level')
+max_args = len(sample_options)
 args = len(sys.argv)
+arguments = []
+sample_commandline = []
 
-def parseArguments (args):
-	arguments = []
+
+def parseArguments (args, arguments):
 	if args >= 1:
 		print('%s sys args detected'%args)
 	if args > max_args:
 		'''Truncates args to the maximum arguments possible in sampling'''
-		print('Actually, too many arguments detected. Truncating to 12.')
-		args = max_args
+		print('Actually, too many arguments detected. Truncating to %s.'%max_args)
+		args = max_args + 1
 	if args == 0:
-		print('No arguments detected')
+		print('No arguments detected. Defaults chosen')
 	''' Enters commandline arguments into a list'''
 	for i in range(args):
 		arguments.append(sys.argv[i])
-	arguments.remove(sys.argv[0])
+	arguments.remove('sample.py')
 	args = len(arguments)
-	return args, arguments
-	
-print(str(parseArguments(args,arguments)))
-'''
-def commandLine(args)
-Prints out a sample command line
-	sample_command = 'th sample.lua '
+	if args > 0:
+		for i in range(args):
+			currentOpt = sample_options[i].replace(' -', "")
+			training_arguments[str(currentOpt) = arguments[i]]
+	return args, arguments, training_arguments
+
+def commandLine(args, sample_commandline):
+	'''Creates a sample.lua ready command line'''
+	sample_commandline= 'th sample.lua '
 	for i in range(args):
-		if i <= 0 and i < len(sample_options):
-			sample_command = sample_command + " " + str(arguments[i])
-		elif i >= 1 and i <= len(sample_options):
-			sample_command = sample_command + " " + sample_options[i-1] + " " + arguments[i]
-		else:
-			sample_command = sample_command + " " + str(arguments[i])
-	return sample_command
+		sample_commandline= sample_commandline+ " " + sample_options[i] + " " + arguments[i]
+	print(sample_commandline)
+	return sample_commandline
+
+print(training_arguments.items)
+
+
+args, arguments, training_arguments = (parseArguments(args, arguments))
+print('Current length is %s'%len(arguments))
+print(args)
+print(commandLine(args,arguments))
+
+''' create an iteration that will fill detected arguments into the default dictionary '''
+
+print(training_arguments.items())
+
+
 '''
-'''
-def sampler(primetext, length, model = 'word', seed = '123', sample = 1, temperature = 1, gpu = -1, opencl = 0, verbose = 1, skip_unk = 0, input_loop = 0, word_level = 1):
+def sample(primetext, length, model = 'word', seed = '123', sample = 1, temperature = 1, gpu = -1, opencl = 0, verbose = 1, skip_unk = 0, input_loop = 0, word_level = 1):
 	print(primetext, length, model, seed, sample, temperature, gpu, opencl, verbose, skip_unk, input_loop, word_level)
 	
 	if primetext == "":
@@ -62,6 +75,7 @@ if __name__ == '__main__':
 	else:
 		sampler = sampler()
 '''
+
 '''
 class Sampler():
 

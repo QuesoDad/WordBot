@@ -88,7 +88,7 @@ def commandLine():
 	for i in range(max_args): # go through the proper commandline order and pull the appropriate value from the dictionary
 		if sample_options[i].replace(' -', '') == 'model' :
 			i += 2
-			print('skip')
+			#print('skip')
 			pass
 		else:
 			sample_commandline = sample_commandline + sample_options[i] + " " + str(training_arguments[sample_options[i].replace(' -', '')])
@@ -96,18 +96,21 @@ def commandLine():
 	return sample_commandline
 
 def sample(training_arguments):
-	#runstring = sample_commandline.split()
-	#print(runstring)
-	sample = subprocess.call(sample_commandline,shell=True, stdout=subprocess.PIPE)
-	for i in range(2000):
-		output = sample.stdout.readline()
+	print(type(sample_commandline))
+	sample = subprocess.call(sample_commandline, shell=True)
+	#sample = subprocess.check_output([runstring])
+	print(sample)
+	
+	'''for i in range(2000):
+		output = proc.stdout.readline()
 		print(output)
 		break
+	'''
 	return sample
 
 # Denormalize sampled text
 def denormalize(sample):
-	sample_clean = str(sample).split("--------------------------")[1]
+	sample_clean = str(sample).replace('creating an lstm...', '')
 	sample_clean = sample_clean.replace(" . . . ", "... ")
 	sample_clean = sample_clean.\
 		replace(" . ", ". ").\
@@ -125,15 +128,13 @@ def denormalize(sample):
 if __name__ == '__main__':
 	if len(sys.argv) > 1:
 		print('sys args detected')
-	
-	args, training_arguments = (parseArguments(args, arguments))
-	sample_commandline = commandLine()
-	print(sample_commandline)
-	print(denormalize(sample(training_arguments)))
-	
+		args, training_arguments = (parseArguments(args, arguments))
+		sample_commandline = commandLine()
+		print(sample_commandline)
+		sample(training_arguments)
 		
-	#else:
-	#	sample = sample(training_arguments)
+	else:
+		sample = sample(training_arguments)
 
 
 '''

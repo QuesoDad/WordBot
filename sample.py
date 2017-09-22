@@ -7,84 +7,113 @@ import string
 #cd dockerdata/wordbot_testing
 
 #Tuples containing setting names, note that additional variables can be added into the training arguments and sample options list and it will update the rest automatically
-training_arguments = {'primetext' : "" , 'model': 0, 'seed' : 0, 'sample': 0, 'length': 0, 'temperature': 0, 'gpu': 0, 'opencl': 0, 'verbose': 0, 'skip_unk': 0, 'input_loop' : 0, 'wordlevel' : 0}
-sample_options = (' -primetext', ' -model', ' -seed', ' -sample', ' -length', ' -temperature', ' -gpuid', ' -opencl', ' -verbose', ' -skip_unk', ' -input_loop', ' -wordlevel')
+training_arguments = {'primetext' : "" , 'model': 'word', 'seed' : 123, 'sample': 1, 'length': 150, 'temperature': 1, 'gpuid': -1, 'opencl': 0, 'verbose': 1, 'skip_unk': 0, 'input_loop' : 0, 'word_level' : 0}
+sample_options = (' -primetext', ' -model', ' -seed', ' -sample', ' -length', ' -temperature', ' -gpuid', ' -opencl', ' -verbose', ' -skip_unk', ' -input_loop', ' -word_level')
 max_args = len(sample_options)
 args = len(sys.argv)
 arguments = []
 sample_commandline = []
 
 def parseArguments (args, arguments):
-
-	'''add a step to match -names in the commandline for explicitly given variables here'''
+	'''Parses all arguments entered taking into consideration "-" prefixes and enters all variables into the training_arguments dictionary overwriting defaults'''
 	if args == 1:
 		print('No arguments detected. Defaults chosen')
 	if args >= 2:
 		print('1 or more sys args detected')
-	''' Enters commandline arguments into a list'''
-	for i in range(args):
-		arguments.append(sys.argv[i])
-	arguments.remove('sample.py')				
-	print(arguments)
-	args = len(arguments)
-	
-	''' loop through every argument, see if it is in the default argument list, then enter it into the correct option in the dictionary, so people have individual non-sequence locked variable flexibility'''
-	
-	for i in range(len(arguments)): #for every argument entered
-		for z in range(max_args):
-			for y in range(max_args): # for every element in the sample options list
-				if len(arguments) > 0:
-					print(str(len(arguments)) + ' remaining.')
-					currentOpt = sample_options[y].replace(' -', "")
-					if str(arguments[i].replace('-', "")) == currentOpt:
-						training_arguments[currentOpt] = arguments[i+1]
-						del arguments[i]
-						del arguments[i]
+		''' Enters commandline arguments into a list'''
+		for i in range(args):
+			arguments.append(sys.argv[i])
+		arguments.remove('sample.py')				
+		args = len(arguments)
+		''' Take variables if they are given out of order or if only one variable in the defaults is supposed to be changed'''
+		
+		valid_argument_counter = 0
+		for i in range(args): #for every argument entered
+			valid_argument_counter += 1
+			if valid_argument_counter < max_args:
+				#print('valid_argument_counter is at %s'%valid_argument_counter)
+				#print('checking %s'%arguments[i].replace('-', ""))
+				for y in range(max_args): # for every element in the sample options list
+					if len(arguments) > 0:
+						#print('len(arguments) is now %s'%len(arguments))
+						#print('check if ' + arguments[i].replace('-', "") + ' is equal to ' + sample_options[y].replace(' -', ""))
+						if arguments[i].replace('-', "") == sample_options[y].replace(' -', ""):
+							#print('Match found!')
+							currentDictKey = sample_options[y].replace(' -', "")
+							try:
+								finalword = arguments[i+1]
+								print('entering %s'%arguments[i+1] + ' into ' + currentDictKey)
+								isfinalword = False
+								#print('Not the last word')
+							except: 
+								isfinalword = True
+								print('the last word')
+								break
+							if isfinalword != True:
+								training_arguments[currentDictKey] = arguments[i+1] #take the next word in the sequence and add it to the training arguments dictionary as the currently option being checked
+							#print('i is' + str(i))
+							i += 1
+							#print('i is' + str(i))
+						#elif arguments[i].replace('-', "") != sample_options[y].replace(' -', ""):
+							#print(arguments[i].replace('-', "") + ' is not accompanied by a proper argument. Proper arguments are \n')
+							#for z in range(len(sample_options)):
+							#	print('\r ' + sample_options[z])
+							#currentDictKey = sample_options[y].replace(' -', "")
+							#training_arguments[currentDictKey] = arguments[i]					
 					else:
-						training_arguments[currentOpt] = arguments[i]
-						del arguments[i]
+						print('Too many arguments. Skipping %s'%arguments[i])
+			else:
+				print('No more arguments')
+	return args, training_arguments
 
-	
-	''' correct problem where entering variables like wordlevel first means a bad index range is returned. '''
-	
-	args = len(arguments)
-	
-	if args > max_args:
-		'''Truncates args to the maximum arguments possible in sampling'''
-		print('Actually, too many arguments detected. Truncating to %s.'%max_args)
-		args = max_args + 1			
-	
-	return args, arguments, training_arguments
-
-def commandLine(args, sample_commandline):
+def commandLine():
 	'''Creates a sample.lua ready command line'''
-	sample_commandline= 'th sample.lua '
-	for i in range(args):
-		sample_commandline= sample_commandline+ " " + sample_options[i] + " " + arguments[i]
+	if training_arguments['primetext'] == "":
+		training_arguments['primetext'] = random.choice(string.ascii_uppercase)
+		print(training_arguments['primetext'] + ' is the primetext since one was not provided.')
+	if training_arguments['model'] == 'word':
+		training_arguments['model'] = 'lm_lstm_autosave__epoch167.86_3.4929.t7'
+		print(training_arguments['model'] + ' is the selected model.')
+		
+	sample_commandline= 'th sample.lua ' + training_arguments['model']
+	#print(training_arguments)
+	for i in range(max_args): # go through the proper commandline order and pull the appropriate value from the dictionary
+		if sample_options[i].replace(' -', '') == 'model' :
+			i += 2
+			print('skip')
+			pass
+		else:
+			sample_commandline = sample_commandline + sample_options[i] + " " + str(training_arguments[sample_options[i].replace(' -', '')])
+	
 	return sample_commandline
 
-print(training_arguments.items)
+def sample(training_arguments):
+	sample = subprocess.check_output(str(sample_commandline),shell=True)
+	return sample
 
-args, arguments, training_arguments = (parseArguments(args, arguments))
-print('Current length is %s'%len(arguments))
-print(args)
-print(commandLine(args,arguments))
+args, training_arguments = (parseArguments(args, arguments))
+sample_commandline = commandLine()
+print(sample_commandline)
 
-''' create an iteration that will fill detected arguments into the default dictionary '''
+# Denormalize sampled text
+def denormalize(sample):
+	sample_clean = str(sample).split("--------------------------")[1]
+	sample_clean = sample_clean.replace(" . . . ", "... ")
+	sample_clean = sample_clean.\
+		replace(" . ", ". ").\
+		replace(" \ ? ", "? ").\
+		replace(" ! ", "! ").\
+		replace(" ' ", "'").\
+		replace(" , ", ", ").\
+		replace("- -", "--").\
+		replace(" ; ", "; ").\
+		replace(" \n ", "")
+	sample_clean = sample_clean.replace(" n't", "n't")
+	return sample
 
-print(training_arguments.items())
-
-
-'''
-def sample(primetext, length, model = 'word', seed = '123', sample = 1, temperature = 1, gpu = -1, opencl = 0, verbose = 1, skip_unk = 0, input_loop = 0, wordlevel = 1):
-	print(primetext, length, model, seed, sample, temperature, gpu, opencl, verbose, skip_unk, input_loop, wordlevel)
-	
-	if primetext == "":
-		primetext = random.choice(string.ascii_uppercase)
-		print(primetext)
-	
-	return None
-'''
+print(denormalize(sample(training_arguments)))
+''' 
+create an iteration that will fill detected arguments into the default dictionary '''
 
 '''
 if __name__ == '__main__':
@@ -136,20 +165,6 @@ class Sampler():
 		# Return cleaned sampled text
 		return self.denormalize(sample)
 
-	# Denormalize sampled text
-	def denormalize(self, sample):
-		sample_clean = str(sample).split("--------------------------")[1]
-		sample_clean = sample_clean.replace(" . . . ", "... ")
-		sample_clean = sample_clean.\
-			replace(" . ", ". ").\
-			replace(" \ ? ", "? ").\
-			replace(" ! ", "! ").\
-			replace(" ' ", "'").\
-			replace(" , ", ", ").\
-			replace("- -", "--").\
-			replace(" ; ", "; ")
-		sample_clean = sample_clean.replace(" n't", "n't")
-		return sample_clean
 
 	# Sample text from model
 	def get_sample(self):

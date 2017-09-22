@@ -7,7 +7,7 @@ import string
 #cd dockerdata/wordbot_testing
 
 #Tuples containing setting names, note that additional variables can be added into the training arguments and sample options list and it will update the rest automatically
-training_arguments = {'primetext' : "" , 'model': 'word', 'seed' : 123, 'sample': 1, 'length': 150, 'temperature': 1, 'gpuid': -1, 'opencl': 0, 'verbose': 1, 'skip_unk': 0, 'input_loop' : 0, 'word_level' : 0}
+training_arguments = {'primetext' : "" , 'model': 'char', 'seed' : 123, 'sample': 1, 'length': 150, 'temperature': .4, 'gpuid': -1, 'opencl': 0, 'verbose': 1, 'skip_unk': 0, 'input_loop' : 0, 'word_level' : 0}
 sample_options = (' -primetext', ' -model', ' -seed', ' -sample', ' -length', ' -temperature', ' -gpuid', ' -opencl', ' -verbose', ' -skip_unk', ' -input_loop', ' -word_level')
 max_args = len(sample_options)
 args = len(sys.argv)
@@ -72,7 +72,15 @@ def commandLine():
 		training_arguments['primetext'] = random.choice(string.ascii_uppercase)
 		print(training_arguments['primetext'] + ' is the primetext since one was not provided.')
 	if training_arguments['model'] == 'word':
-		training_arguments['model'] = 'lm_lstm_autosave__epoch167.86_3.4929.t7'
+		training_arguments['model'] = 'word-rnn-trained.t7'
+		training_arguments['word_level'] = 1
+		training_arguments['temperature'] = .75
+		print(training_arguments['model'] + ' is the selected model. Word_level is set to ' + str(training_arguments['word_level']) + ".")
+		
+	elif training_arguments['model'] == 'char':
+		training_arguments['model'] = 'char-rnn-trained.t7'
+		print(training_arguments['model'] + ' is the selected model.')
+	else: # allows for people to submit any model and give it custom options
 		print(training_arguments['model'] + ' is the selected model.')
 		
 	sample_commandline= 'th sample.lua ' + training_arguments['model']
@@ -88,12 +96,14 @@ def commandLine():
 	return sample_commandline
 
 def sample(training_arguments):
-	sample = subprocess.check_output(str(sample_commandline),shell=True)
+	#runstring = sample_commandline.split()
+	#print(runstring)
+	sample = subprocess.call(sample_commandline,shell=True, stdout=subprocess.PIPE)
+	for i in range(2000):
+		output = sample.stdout.readline()
+		print(output)
+		break
 	return sample
-
-args, training_arguments = (parseArguments(args, arguments))
-sample_commandline = commandLine()
-print(sample_commandline)
 
 # Denormalize sampled text
 def denormalize(sample):
@@ -111,59 +121,28 @@ def denormalize(sample):
 	sample_clean = sample_clean.replace(" n't", "n't")
 	return sample
 
-print(denormalize(sample(training_arguments)))
-''' 
-create an iteration that will fill detected arguments into the default dictionary '''
 
-'''
 if __name__ == '__main__':
 	if len(sys.argv) > 1:
 		print('sys args detected')
-		sampler = sampler(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])
-	else:
-		sampler = sampler()
-'''
+	
+	args, training_arguments = (parseArguments(args, arguments))
+	sample_commandline = commandLine()
+	print(sample_commandline)
+	print(denormalize(sample(training_arguments)))
+	
+		
+	#else:
+	#	sample = sample(training_arguments)
+
 
 '''
 class Sampler():
 
-	def __init__(self, seed_text=None, char_temperature=.4, word_temperature=.75):
-		# Generate random character for the seed if none provided
-		if seed_text is None:
-			seed_text = random.choice(string.ascii_uppercase)
-		if seed_text[-1:] == ' ':
-			seed_text_trimmed = seed_text.strip() + ' '
-		else:
-			seed_text_trimmed = seed_text.strip()
-		self.seed = seed_text_trimmed
-		self.char_temperature = char_temperature
-		self.word_temperature = word_temperature
-
-	def get_sample_raw(self, model_type, seed, temperature, length):
-		# Generate random character if none provided
-		if seed is None:
-			seed = random.choice(string.ascii_uppercase)
-
-		# Get model name
-		if model_type == 'word':
-			model_name = 'lm_lstm_autosave__epoch167.86_3.4929.t7'
-		elif model_type == 'char':
-			model_name = 'lm_lstm_autosave__epoch167.86_3.4929.t7'
-		else:
-			raise ValueError('Model type {} not supported'.format(model_type))
-
-		# Sample from the model using provided seed
-		sample = subprocess.check_output([
-			'th', 'sample.lua',
-			model_name,
-			'-temperature', str(temperature),
-			'-length', str(length),
-			'-gpuid', '-1',
-			'-primetext', seed
-		])
-
+		Sample from the model using provided seed
+		sample = subprocess.check_output(['th', 'sample.lua',model_name,'-temperature', str(temperature),'-length', str(length),'-gpuid', '-1','-primetext', seed])
 		# Return cleaned sampled text
-		return self.denormalize(sample)
+		denormalize(sample)
 
 
 	# Sample text from model

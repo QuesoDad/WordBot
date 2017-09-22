@@ -96,3 +96,5 @@ ENV/
 *.swp
 tweetFile.txt
 sync.ffs_db
+char-rnn-trained.t7
+word-rnn-trained.t7

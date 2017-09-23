@@ -1,0 +1,57 @@
+sys args detected
+1 or more sys args detected
+entering of into primetext
+entering word into model
+word-rnn-trained.t7 is the selected model. Word_level is set to 1.
+['th', 'sample.lua', 'word-rnn-trained.t7', '-primetext', 'of', '-seed', '123', '-sample', '1', '-length', '150', '-temperature', '0.75', '-gpuid', '-1', '-opencl', '0', '-verbose', '1', '-skip_unk', '0', '-input_loop', '0', '-word_level', '1']
+th sample.lua word-rnn-trained.t7 -primetext of -seed 123 -sample 1 -length 150 -temperature 0.75 -gpuid -1 -opencl 0 -verbose 1 -skip_unk 0 -input_loop 0 -word_level 1
+	
+rank flog truth. 
+
+you unbuttoned me ? 
+
+for... 
+
+little farting bum. 
+
+on my @ HillaryClinton 
+
+I go back. 
+
+for u u 
+
+No letter! 
+
+for your # GOPDebate 
+
+my naked flesh. 
+
+to is # StopHillary 
+
+to Hillary Clinton. 
+
+I shall be! 
+
+in a's 2 the ) 
+
+to be'? 
+
+your lazy lover. 
+
+and mad eyes. 
+
+I Obama here : 
+
+flog me even. 
+
+in the #. m the'@ GovWalker. " 
+
+to be together 
+
+with your tongue. 
+
+in - to me 
+
+the kitchen table. 
+
+

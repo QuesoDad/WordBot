@@ -2,6 +2,7 @@ import sys
 import subprocess
 import random
 import string
+import re
 
 #docker run -v '/dockerdata/:/root/wordbot/dockerdata' -ti kboruff/wordbot bash
 #cd dockerdata/wordbot_testing
@@ -19,14 +20,13 @@ def parseArguments (args, arguments):
 	if args == 1:
 		print('No arguments detected. Defaults chosen')
 	if args >= 2:
-		print('1 or more sys args detected')
+		print('1 or more arguments detected')
 		''' Enters commandline arguments into a list'''
 		for i in range(args):
 			arguments.append(sys.argv[i])
 		arguments.remove('sample.py')				
 		args = len(arguments)
 		''' Take variables if they are given out of order or if only one variable in the defaults is supposed to be changed'''
-		
 		valid_argument_counter = 0
 		for i in range(args): #for every argument entered
 			valid_argument_counter += 1
@@ -42,12 +42,12 @@ def parseArguments (args, arguments):
 							currentDictKey = sample_options[y].replace(' -', "")
 							try:
 								finalword = arguments[i+1]
-								print('entering %s'%arguments[i+1] + ' into ' + currentDictKey)
+								# print('entering %s'%arguments[i+1] + ' into ' + currentDictKey)
 								isfinalword = False
 								#print('Not the last word')
 							except: 
 								isfinalword = True
-								print('the last word')
+								# print('the last word')
 								break
 							if isfinalword != True:
 								training_arguments[currentDictKey] = arguments[i+1] #take the next word in the sequence and add it to the training arguments dictionary as the currently option being checked
@@ -70,18 +70,18 @@ def commandLine():
 	'''Creates a sample.lua ready command line'''
 	if training_arguments['primetext'] == "":
 		training_arguments['primetext'] = random.choice(string.ascii_uppercase)
-		print(training_arguments['primetext'] + ' is the primetext since one was not provided.')
+		#print(training_arguments['primetext'] + ' is the primetext since one was not provided.')
 	if training_arguments['model'] == 'word':
 		training_arguments['model'] = 'word-rnn-trained.t7'
 		training_arguments['word_level'] = 1
 		training_arguments['temperature'] = .75
-		print(training_arguments['model'] + ' is the selected model. Word_level is set to ' + str(training_arguments['word_level']) + ".")
-		
+		#print(training_arguments['model'] + ' is the selected model. Word_level is set to ' + str(training_arguments['word_level']) + ".")
 	elif training_arguments['model'] == 'char':
 		training_arguments['model'] = 'char-rnn-trained.t7'
-		print(training_arguments['model'] + ' is the selected model.')
+		#print(training_arguments['model'] + ' is the selected model.')
 	else: # allows for people to submit any model and give it custom options
-		print(training_arguments['model'] + ' is the selected model.')
+		#print(training_arguments['model'] + ' is the selected model.')
+		pass
 		
 	sample_commandline= 'th sample.lua ' + training_arguments['model']
 	#print(training_arguments)
@@ -92,25 +92,31 @@ def commandLine():
 			pass
 		else:
 			sample_commandline = sample_commandline + sample_options[i] + " " + str(training_arguments[sample_options[i].replace(' -', '')])
-	
-	return sample_commandline
+	commandlist = sample_commandline.split()
+	#print(commandlist)
+	return sample_commandline, commandlist
 
 def sample(training_arguments):
-	print(type(sample_commandline))
-	sample = subprocess.call(sample_commandline, shell=True)
-	#sample = subprocess.check_output([runstring])
-	print(sample)
-	
-	'''for i in range(2000):
-		output = proc.stdout.readline()
-		print(output)
-		break
-	'''
-	return sample
+	#print('Submitting command')
+	result = subprocess.Popen([(commandlist[0]), commandlist[1], commandlist[2], commandlist[3],commandlist[4], commandlist[5], commandlist[6], commandlist[7], commandlist[8], commandlist[9], commandlist[10], commandlist[11], commandlist[12], commandlist[13], commandlist[14], commandlist[15], commandlist[16], commandlist[17], commandlist[18], commandlist[19], commandlist[20], commandlist[21], commandlist[22], commandlist[23], commandlist[24]], stdout=subprocess.PIPE)
+	#print('requesting result')
+	sample = result.communicate()
+	#sample = result.stdout.readline()
+	#print('Printing out result:')
+	result = str(sample[0].decode('utf-8'))
+	result = denormalize(result)
+	print(result)
+	return result
 
 # Denormalize sampled text
 def denormalize(sample):
-	sample_clean = str(sample).replace('creating an lstm...', '')
+	sample_clean = sample
+	if training_arguments['model'] == 'char-rnn-trained.t7':
+		# Remove extra spacing
+		sample_clean = ' '.join([
+			word.replace(' ', '')
+			for word in sample.split('   ')]).strip()
+	sample_clean = sample_clean.split("--------------------------")[1]
 	sample_clean = sample_clean.replace(" . . . ", "... ")
 	sample_clean = sample_clean.\
 		replace(" . ", ". ").\
@@ -120,21 +126,28 @@ def denormalize(sample):
 		replace(" , ", ", ").\
 		replace("- -", "--").\
 		replace(" ; ", "; ").\
-		replace(" \n ", "")
+		replace('\n\n', '\n').\
+		replace('\n \n ', "\n")
 	sample_clean = sample_clean.replace(" n't", "n't")
-	return sample
+	samplelist = sample_clean.split('\n').decode('utf-8')
+	print('Sample list is ' + str(samplelist))
+	return sample_clean, samplelist
 
 
 if __name__ == '__main__':
 	if len(sys.argv) > 1:
-		print('sys args detected')
+		#print('sys args detected')
+		#print(commandlist)
+		#print(sample_commandline)
 		args, training_arguments = (parseArguments(args, arguments))
-		sample_commandline = commandLine()
-		print(sample_commandline)
+		sample_commandline, commandlist = commandLine()
 		sample(training_arguments)
 		
 	else:
-		sample = sample(training_arguments)
+		args, training_arguments = (parseArguments(args, arguments))
+		sample_commandline, commandlist = commandLine()
+		sample(training_arguments)
+
 
 
 '''
@@ -156,13 +169,9 @@ class Sampler():
 			char_sample = self.get_sample_raw(
 				'char', self.seed, self.char_temperature, 300)
 
-			# Remove start and end newlines
-			char_sample = char_sample.split('\n')[1]
+			
 
-			# Remove extra spacing
-			char_sample_clean = ' '.join([
-				word.replace(' ', '')
-				for word in char_sample.split('   ')]).strip()
+			
 
 			# Preserve initial spacing if relevant
 			if char_sample[0] != char_sample_clean[0]:

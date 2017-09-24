@@ -15,19 +15,6 @@ args = len(sys.argv)
 arguments = []
 sample_commandline = []
 
-
-def optionTest (currentToken):
-	''' Checks the given variable to find if it is any of the options in the sample_options list'''
-	print('option test underway!')
-	for option in range(len(sample_options)):
-		if str(currentToken) == sample_options[option].replace(' -', ""):
-			print('It appears %s is a sample option.'%currentToken)
-			found = True
-			break
-		else:
-			found = False
-	return found
-
 def parseArguments (args, arguments):
 	'''Parses all arguments entered taking into consideration "-" prefixes and enters all variables into the training_arguments dictionary overwriting defaults'''
 	if args == 1:
@@ -49,65 +36,23 @@ def parseArguments (args, arguments):
 				for y in range(max_args): # for every element in the sample options list
 					if len(arguments) > 0:
 						#print('len(arguments) is now %s'%len(arguments))
-						# print('check if ' + arguments[i].replace('-', "") + ' is equal to ' + sample_options[y].replace(' -', ""))
-						
-						#correct commonly forgotten underscores
-						if arguments[i] == 'wordlevel':
-							arguments[i] = 'word_level'
-						if arguments[i] == 'inputloop':
-							arguments[i] = 'input_loop'
-						if arguments[i] == 'skipunk':
-							arguments[i] = 'skip_unk'
-																
+						#print('check if ' + arguments[i].replace('-', "") + ' is equal to ' + sample_options[y].replace(' -', ""))
 						if arguments[i].replace('-', "") == sample_options[y].replace(' -', ""):
-							print('Match found!')
+							#print('Match found!')
 							currentDictKey = sample_options[y].replace(' -', "")
-							
 							try:
-								testword = arguments[i+1]
-								print('Trying to enter %s'%arguments[i+1] + ' into ' + currentDictKey)
+								finalword = arguments[i+1]
+								# print('entering %s'%arguments[i+1] + ' into ' + currentDictKey)
 								isfinalword = False
 								#print('Not the last word')
-							except:
+							except: 
 								isfinalword = True
-								print(str('-----------------Last argument is empty, skipping \'%s\'. ----------------'%arguments[i]).upper())	
+								# print('the last word')
 								break
-												
-							while isfinalword == False:						
-									print('I is currently ' + str(i))
-									currentToken = arguments[i+1].replace('-', "")
-									print('Current token is: %s'%currentToken)
-									
-									
-									if currentDictKey == 'primetext':
-										primesequence = "" #String for holding all of the primetext entries
-										
-										print('Prime text detected!')
-										# SET A LOOP SO THAT WHEN THE CURRENT TOKEN IS ANOTHER SAMPLE_OPTION it stops, but to not keep going when it's the last word
-										print('Working on token : %s'%currentToken)													
-										isOption = optionTest(currentToken)
-										while isOption == False:
-											print(currentToken + ' is not an argument.')
-											print('Primesequence is currently: %s'%primesequence)
-											primesequence = primesequence + currentToken
-											i += 1
-											currentToken = arguments[i+1].replace('-', "") #Grab next token
-											print('Primesequence is currently: %s'%primesequence)
-											isOption = optionTest(currentToken)												
-										
-										training_arguments['primetext'] = primesequence
-									else: #Current token is NOT primetext
-										print(arguments[i+1] + ' is not primetext.')
-										training_arguments[currentDictKey] = arguments[i+1]
-								 #Reached last argument and can't add another, set it as the current training argument dictionary entry
-									print(currentToken + ' is the last character of the sequence.')
-									training_arguments[currentDictKey] = currentToken
-									isfinalword = True
-							#i +=1	
-										 #take the next word in the sequence and add it to the training arguments dictionary as the currently option being checked
+							if isfinalword != True:
+								training_arguments[currentDictKey] = arguments[i+1] #take the next word in the sequence and add it to the training arguments dictionary as the currently option being checked
 							#print('i is' + str(i))
-							
-						
+							i += 1
 							#print('i is' + str(i))
 						#elif arguments[i].replace('-', "") != sample_options[y].replace(' -', ""):
 							#print(arguments[i].replace('-', "") + ' is not accompanied by a proper argument. Proper arguments are \n')
@@ -122,7 +67,7 @@ def parseArguments (args, arguments):
 	return args, training_arguments
 
 def commandLine():
-	#Creates a sample.lua ready command line
+	'''Creates a sample.lua ready command line'''
 	if training_arguments['primetext'] == "":
 		training_arguments['primetext'] = random.choice(string.ascii_uppercase)
 		#print(training_arguments['primetext'] + ' is the primetext since one was not provided.')
@@ -137,9 +82,7 @@ def commandLine():
 	else: # allows for people to submit any model and give it custom options
 		#print(training_arguments['model'] + ' is the selected model.')
 		pass
-	
-	training_arguments['primetext'] = '\'' + training_arguments['primetext'] + '\''
-	
+		
 	sample_commandline= 'th sample.lua ' + training_arguments['model']
 	#print(training_arguments)
 	for i in range(max_args): # go through the proper commandline order and pull the appropriate value from the dictionary
@@ -151,7 +94,6 @@ def commandLine():
 			sample_commandline = sample_commandline + sample_options[i] + " " + str(training_arguments[sample_options[i].replace(' -', '')])
 	commandlist = sample_commandline.split()
 	#print(commandlist)
-	print(sample_commandline)
 	return sample_commandline, commandlist
 
 def sample(training_arguments):
@@ -169,13 +111,11 @@ def sample(training_arguments):
 # Denormalize sampled text
 def denormalize(sample):
 	sample_clean = sample
-	print(sample_clean)
 	if training_arguments['model'] == 'char-rnn-trained.t7':
 		# Remove extra spacing
 		sample_clean = ' '.join([
 			word.replace(' ', '')
-			for word in sample.split('   ')]).strip()	
-#Make conditional to catch "invalid argument:" or /root/torch/install/bin/luajit: sample.lua:165: attempt to index global 'prediction' (a nil value) stack traceback:
+			for word in sample.split('   ')]).strip()
 	sample_clean = sample_clean.split("--------------------------")[1]
 	sample_clean = sample_clean.replace(" . . . ", "... ")
 	sample_clean = sample_clean.\
@@ -189,7 +129,7 @@ def denormalize(sample):
 		replace('\n\n', '\n').\
 		replace('\n \n ', "\n")
 	sample_clean = sample_clean.replace(" n't", "n't")
-	samplelist = sample_clean.split('\n')
+	samplelist = sample_clean.split('\n').decode('utf-8')
 	print('Sample list is ' + str(samplelist))
 	return sample_clean, samplelist
 
@@ -203,12 +143,10 @@ if __name__ == '__main__':
 		sample_commandline, commandlist = commandLine()
 		sample(training_arguments)
 		
-		
 	else:
 		args, training_arguments = (parseArguments(args, arguments))
 		sample_commandline, commandlist = commandLine()
 		sample(training_arguments)
-
 
 
 

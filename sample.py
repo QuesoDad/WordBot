@@ -68,11 +68,25 @@ def parseArguments (args, arguments):
 						print('Parsing primetext!')
 						primesequence = primesequence + nextArg
 						#increment to the next argument, grabbing all prime text until the next word is a default argument
-						for prime in range(args):
+						remainingArgs = args - i
+						print('There are ' + str(remainingArgs) + ' remaining arguments.')
+						for t in range(remainingArgs):
+							print('Working on ' + str(t) + ' argument.')
 							for z in range(max_args):
-												
-								training_arguments[currentDictKey] = nextArg
-								i += 1
+								try:
+									nextArg = arguments[i+t].replace('-', "")
+									if nextArg == sample_options[z].replace(' -', ""):
+										print('It looks like ' + nextArg + ' is a default parameter.')
+										print('Prime text is set to ' + primesequence)
+										training_arguments['primetext'] = primesequence
+									else:
+										primesequence = primesequence + nextArg
+										#i += 1
+								except:
+									#print(str('-----------------Last argument is empty, skipping \'%s\'. ----------------'%arguments[i]).upper())
+									break
+						#		training_arguments[currentDictKey] = nextArg
+						i += 1
 					
 					'''
 					

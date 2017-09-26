@@ -1,3 +1,4 @@
+
 import sys
 import subprocess
 import random
@@ -37,9 +38,13 @@ def parseArguments (args, arguments):
 				#print('valid_argument_counter is at %s'%valid_argument_counter)
 				#print('checking %s'%arguments[i].replace('-', ""))
 				for y in range(max_args): # for every element in the sample options list
-					currentDictKey = sample_options[y].replace(' -', "")
-					currentArg = arguments[i].replace(' -', "")
 					
+					currentDictKey = sample_options[y].replace(' -', "")
+					try:
+						currentArg = arguments[i].replace(' -', "")
+					except:
+						break
+											
 					#correct commonly forgotten underscores
 					if currentArg == 'wordlevel':
 						currentArg = 'word_level'
@@ -48,8 +53,8 @@ def parseArguments (args, arguments):
 					if currentArg == 'skipunk':
 						currentArg = 'skip_unk'
 					
-					print('Currently working on ' + currentDictKey)
-					print('Does ' + currentArg + ' match ' + currentDictKey + '?')
+					#print('Currently working on ' + currentDictKey)
+					#print('Does ' + currentArg + ' match ' + currentDictKey + '?')
 
 					#Catch any variable argument names left empty at the end of the string
 					if currentArg == currentDictKey:
@@ -61,54 +66,66 @@ def parseArguments (args, arguments):
 							print(str('-----------------Last argument is empty, skipping \'%s\'. ----------------'%arguments[i]).upper())
 							break
 					
+					
 					if currentArg != 'primetext' and currentArg == currentDictKey : #Run everything not primetext as a normal command
 						print('Entering ' + nextArg + ' into ' + currentDictKey)
 						training_arguments[currentDictKey] = nextArg
-					elif currentArg == 'primetext':
-						print('Parsing primetext!')
-						primesequence = primesequence + nextArg
+						
+					elif currentArg == 'primetext':					
 						#increment to the next argument, grabbing all prime text until the next word is a default argument
 						remainingArgs = args - i
-						print('There are ' + str(remainingArgs) + ' remaining arguments.')
-						for t in range(remainingArgs):
-							print('Working on ' + str(t) + ' argument.')
-							for z in range(max_args):
-								try:
-									nextArg = arguments[i+t].replace('-', "")
-									if nextArg == sample_options[z].replace(' -', ""):
-										print('It looks like ' + nextArg + ' is a default parameter.')
+						print('There are ' + str(remainingArgs) + ' remaining arguments after Prime text.')
+						print('Parsing primetext!')
+						for t in range(remainingArgs): #t starts at current range of selections after the current selection
+							
+							if t > 0 and (i+t) <= args:
+								afterPrime = arguments[i+t].replace('-', "")
+								print('Working on ' + str(t+1) + ' argument past primetext, ' + afterPrime + '.')										
+								
+								for z in range(max_args):
+									#print(sample_options[z].replace(' -', ""))
+									
+									#correct commonly forgotten underscores
+									if afterPrime	 == 'wordlevel':
+										afterPrime = 'word_level'
+									if afterPrime == 'inputloop':
+										afterPrime = 'input_loop'
+									if afterPrime == 'skipunk':
+										afterPrime = 'skip_unk'
+									
+									testOption = sample_options[z].replace(' -', "")
+									
+									print('PRIME TEXT CHECK: is ' + afterPrime + " = " + testOption)
+									if afterPrime == testOption:
+										print('It looks like ' + afterPrime + ' is the next default parameter.')
 										print('Prime text is set to ' + primesequence)
 										training_arguments['primetext'] = primesequence
+										i += t
+										currentArg = arguments[i].replace(' -', "")
+										break
 									else:
-										primesequence = primesequence + nextArg
-										#i += 1
-								except:
-									#print(str('-----------------Last argument is empty, skipping \'%s\'. ----------------'%arguments[i]).upper())
-									break
+										print(afterPrime + ' doesn\'t match ' + testOption)
+									
+									print('z loop: Does ' + str(z) + ' equal ' + str(max_args) + ' and is primesequence empty?')
+									
+									if z >= max_args -1 and primesequence == "":
+										primesequence = afterPrime
+										print(afterPrime + ' is not a default option and being adding to primesequence ' + primesequence)
+									elif z >= max_args -1 and primesequence != "":
+										print(str(z) + ' is equal to ' + str(max_args) + ' and the primesequence is not empty.')
+										primesequence = primesequence + " " + afterPrime
+										print('Afterprime is not a default option and being adding to primesequence ' + primesequence)
+								
+								print('Prime sequences is now ' + primesequence)
+								
 						#		training_arguments[currentDictKey] = nextArg
-						i += 1
-					
-					'''
-					
-					
+						i += t
+						
+						training_arguments['primetext'] = '\"' + str(training_arguments['primetext']) + '\"' #Put quotations around the primetext
 					# print('len(arguments) is now %s'%len(arguments))
 					# print('check if ' + arguments[i].replace('-', "") + ' is equal to ' + sample_options[y].replace(' -', ""))
-					print('Max_args is currently at :' + y)
+					# print('Max_args is currently at :' + y)
 					
-																
-					if :
-						
-						
-						
-						if currentDictKey == 'primetext':
-							while i < range(args): #while it's not the last argument in the list and it is working ont he primetext
-								primesequence = arguments[i+1]
-								
-						else:
-							print('Trying to enter %s'%arguments[i+1] + ' into ' + currentDictKey)
-							
-						#print('Not the last word')
-			'''						
 						
 			else:
 				print('Too many arguments. Skipping everything after %s'%arguments[i])
@@ -124,13 +141,9 @@ def parseArguments (args, arguments):
 							#currentDictKey = sample_options[y].replace(' -', "")
 							#training_arguments[currentDictKey] = arguments[i]					
 		# print('No more arguments')
-		training_arguments['primetext'] = '\"' + training_arguments['primetext'] + '\"' #Put quotations around the primetext
+		
 	return args, training_arguments
 
-	
-	
-	
-	
 	
 def commandLine():
 	#Creates a sample.lua ready command line
@@ -159,21 +172,28 @@ def commandLine():
 			sample_commandline = sample_commandline + sample_options[i] + " " + str(training_arguments[sample_options[i].replace(' -', '')])
 	commandlist = sample_commandline.split()
 	print(commandlist)
+	
 	print(sample_commandline)
 	return sample_commandline, commandlist
 
+
 def sample(training_arguments):
 	#print('Submitting command')
-	print(len(commandlist))
-	result = subprocess.Popen([(commandlist[0]), commandlist[1], commandlist[2], commandlist[3],commandlist[4], commandlist[5], commandlist[6], commandlist[7], commandlist[8], commandlist[9], commandlist[10], commandlist[11], commandlist[12], commandlist[13], commandlist[14], commandlist[15], commandlist[16], commandlist[17], commandlist[18], commandlist[19], commandlist[20], commandlist[21], commandlist[22], commandlist[23], commandlist[24]], stdout=subprocess.PIPE)
+			
+	sample = subprocess.check_output([str(sample_options[0]), str(sample_options[1]), str(training_arguments['model']), str(sample_options[2]), str(training_arguments['seed']), str(sample_options[3]), str(training_arguments['sample']), str(sample_options[4]), str(training_arguments['length']), str(sample_options[5]), str(training_arguments['temperature']), str(sample_options[6]), str(training_arguments['gpuid']), str(sample_options[7]), str(training_arguments['opencl']), str(sample_options[8]), str(training_arguments['verbose']), str(sample_options[9]), str(training_arguments['skip_unk']), str(sample_options[10]), str(training_arguments['input_loop']), str(sample_options[11]), str(training_arguments['word_level'])])
+		
+	#result = subprocess.check_output(['th'], [str(sample_commandline)] )
+	print('Result appears as : ' + str(result))
 	#print('requesting result')
-	sample = result.communicate()
+	#sample = result#.communicate()
 	#sample = result.stdout.readline()
 	#print('Printing out result:')
+	
 	result = str(sample[0].decode('utf-8'))
 	result = denormalize(result)
 	print(result)
 	return result
+
 
 # Denormalize sampled text
 def denormalize(sample):
@@ -205,7 +225,7 @@ def denormalize(sample):
 
 if __name__ == '__main__':
 	if len(sys.argv) > 1:
-		#print('sys args detected')
+		print('sys args detected')
 		#print(commandlist)
 		#print(sample_commandline)
 		args, training_arguments = (parseArguments(args, arguments))

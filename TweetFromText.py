@@ -7,22 +7,15 @@ import sample
 import string
 import random
 
-print(random.choice(string.ascii_uppercase))
-
-sampler = sample.Sampler()
 tweet_file = sys.argv[1]
-
 tweet = fileCheck(tweet_file)
 tweet_clean = denormalize(tweet)
 print('Normalized tweet: %s'%(tweet_clean))
 
-print(((tweet_clean[-1:]).isalpha() == True))
-print((tweet_clean[-1:]))
-print(len(tweet_clean))
-
 def fitTweet(tweet_clean, tweet_file):
 	i=0
 	while len(tweet_clean) > 140 or ((tweet_clean[-1:]).isalpha()) == True:
+		print('Tweet is currently ' + str(len(tweet_clean)) + ' characters long.')
 		if len(tweet_clean) > 140:
 		#Saves the parts of tweets over 100 characters at the end of the tweet_file
 			original_tweet = 0
@@ -32,7 +25,7 @@ def fitTweet(tweet_clean, tweet_file):
 					# print('The following are the separate tokens')
 					# print(cut_Lines)
 					y = 0
-					for i in cut_Lines:
+					for i in cut_Lines: #grabs the first line, returns everything else to file
 						if (y == 0):
 							tweet_clean = cut_Lines[0]
 							y =+ 1
@@ -64,18 +57,31 @@ def last3Sample(last3):
 	''' samples from the last three words of the text until it gets a punctuation mark '''
 	y = 0
 	while (last3[-1:]).isalpha() == True:
-		y = y + 1
-		print('test here')
-		#print('last three are: ' + last3)
-		print(sampler.get_sample(last3, y))
+		y = y + 10
+		arguments = []
+		seed = ' -seed ' + y
+		primetext = ' -primetext ' + last3
+		length = ' -length ' + 3
+		model = ' -model word'
+		temperature = ' -temperature .1'
+		arglength = len((seed + primetext + length + model + temperature).split()
+		arguments.append(seed, primetext, length, model, temperature)
+		newending = sample.parseArguments(10, arguments)
+		newtweet = tweet_clean + newending
+		
+		
+		print('last three are: ' + last3)
+		#print(sampler.get_sample(last3, y))
 		print('the value of y is: ' + str(y))
-		#last3 = sampler.get_sample_raw('char', last3, y, 3)
+		
+		
+		
+		
+		last3 = sample.parseArguments(3, )
 		#print(last3)
 		#if (last3[-1:]).isalpha() == True:
 		#	last3 = str((tweetList[-3] + " " + tweetList[-2] + " " + tweetList[-1]))
 	return last3
-
-	#subprocess.check_output(['ls','-l']) #all that is technically needed...
 
 
 print(fitTweet(tweet_clean, tweet_file))

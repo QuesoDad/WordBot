@@ -1,0 +1,37 @@
+Sampler - produces denormalized text based off given model
+
+tweetfile maker - picks model and produces a text file for it
+	-trims tweets to proper length
+	-enters proper length tweets into file
+	-produces text endings from sampler until the tweet is a complete sentence
+	-leaves a specific 6 character number next to each tweet for reference
+
+tweet image scrapper
+	-optionally take two words given or use a tweetfile
+	-checks tweetfile to see if a file already exists for the given tweet
+	-randomly picks a word from the tweet or given text and uses that to search on Google Images Search API
+	-saves file named after the tweet's 6 character number to folder named after the tweetfile
+
+tweetimage prepare
+	-takes a tweetfile's 6 character code
+	-finds associated image
+	-adjusts photo to be labelled in whatever way
+	-saves photo
+	
+tweet - picks the first available tweet from specificed tweetfile
+	-double checks it is 140 characters
+	-picks image if prompted from image directory associated with tweetfile
+
+compound tweet system
+	-takes tweets from different files and combines them
+	-checks for proper length, and trims end if it's too long
+	-performs basic three word ending task from tweetfile maker to make sure each file ends
+	-posts to Istagram and facebook
+
+Training Text Parser:
+	-Takes a text file
+	-Replaces all common mistakes, i.e. replace \r with \n, delete all \n\n
+	-Puts list into a list broken on \n
+	-trims list to remove empty list items
+	-finds and adds \n for all dialog lines
+	-Saves to a new file

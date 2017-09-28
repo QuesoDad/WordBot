@@ -1,4 +1,7 @@
+
 Sampler - produces denormalized text based off given model
+
+trainer - trains a model off a given text corpus, making suggested changes to train.lua commands based off file data and recommendations from char-rnn
 
 tweetfile maker - picks model and produces a text file for it
 	-trims tweets to proper length
@@ -35,3 +38,26 @@ Training Text Parser:
 	-trims list to remove empty list items
 	-finds and adds \n for all dialog lines
 	-Saves to a new file
+
+	
+	Twitter bot design
+1. Take basis corpus
+2. strip first three words and put them into a list
+3. strip last three words and put them into a list
+4. Train character models on these two
+5. Train word model on long form.
+
+6. Render out a large source text from long form model and the first characters from the first three words
+
+7. Spilt resulting text into 140 character strings that start at the nearest previous whitespace.
+
+8. Start ending loop for character:
+	If the final character is a puncuation and it's within the character limit, stop.
+	
+	If it doesn't end with a punctuation, grab last word and use it as a seed for the ending generation. Adjust the seed number and check for punctation endings and length of 140 characters 5 times.
+	
+	If the tweet still doesn't end with punctuation, cut back to the previous 2 words, grab last word and use it as a seed for the ending generation, attempt adjusting the seed number again and check for punctation endings and length of 140 characters 15 more times.
+	
+	If the sentence still doesn't end with a punctuation, check length is under 139 characters and then end with a punctiation.
+		If the file is still too long, hard truncate a word and add a punctation.
+

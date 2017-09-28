@@ -1,6 +1,6 @@
 import sample
 
-test = '"test me out"'
+test = 'primetext \"test me out\" model word'
 
 args, arguments = sample.rawParse(test)
 args, training_arguments = sample.parseArguments(args, arguments)

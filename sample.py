@@ -40,7 +40,10 @@ def parseArguments (args, arguments):
 		primesequence = ''
 		for i in range(args): #for every argument entered
 			valid_argument_counter += 1
-			if valid_argument_counter < max_args:
+			if valid_argument_counter <= max_args:
+				if args == 2 and arguments[0].replace(' -', "") == 'primetext':
+					training_arguments['primetext'] = arguments[1].replace(' -', "")
+				
 				for y in range(max_args): # for every element in the sample options list
 					currentDictKey = sample_options[y].replace(' -', "")
 					try:
@@ -94,7 +97,9 @@ def parseArguments (args, arguments):
 										i += t
 										currentArg = arguments[i].replace(' -', "")
 										endofprimetext = True
+									
 										break
+									
 									if z >= max_args -1 and primesequence == "":
 										primesequence = afterPrime
 									elif z >= max_args -1 and primesequence != "":
@@ -127,7 +132,8 @@ def sample_commandline():
 			i += 2
 			pass
 		else:
-			delim_sample_commandline = delim_sample_commandline + '$$$$####' + sample_options[i].replace(' ', '') + '$$$$####' + str(training_arguments[sample_options[i].replace(' -', '')])	
+			delim_sample_commandline = delim_sample_commandline + '$$$$####' + sample_options[i].replace(' ', '') + '$$$$####' + str(training_arguments[sample_options[i].replace(' -', '')])
+		#print(sample_commandline)
 	return sample_commandline, delim_sample_commandline
 
 			
@@ -135,39 +141,24 @@ def commandLine():
 	#Creates a sample.lua ready command line
 	if training_arguments['primetext'] == "":
 		training_arguments['primetext'] = random.choice(string.ascii_uppercase)
-		#print(training_arguments['primetext'] + ' is the primetext since one was not provided.')
+		print(training_arguments['primetext'] + ' is the primetext since one was not provided.')
 	if training_arguments['model'] == 'word':
 		training_arguments['model'] = 'word-rnn-trained.t7'
-		training_arguments['word_level'] = 1
-		training_arguments['temperature'] = .75
+		#training_arguments['word_level'] = 1
+		#training_arguments['temperature'] = .75
 	elif training_arguments['model'] == 'char':
 		training_arguments['model'] = 'char-rnn-trained.t7'
 	else: # allows for people to submit any model and give it custom options
 		pass
 	commandstring, delimsample = sample_commandline()
-	
 	commandlist = delimsample.split('$$$$####') #make this split everything but the primetext
 	return commandstring, commandlist
 
 
 def sample(training_arguments, commandlist):
 	result = ''
-	randseed = 1
-	while result == '':
-		randseed = randseed + 1
-		try : #Make failing over work so the robot will always return something. Possibly loop with system creating next word until it can complete a word model version.
-			result = subprocess.check_output(commandlist, stderr=None)
-		except:
-			training_arguments['seed'] = randseed
-			training_arguments['word_level'] = 0
-			commandstring, commandlist = commandLine()
-			if randseed > 5:
-				training_arguments['model'] = 'char'
-			if randseed > 10:
-				result = "Word not found in corpus."
-				break
-			pass
-			
+	result = subprocess.check_output(commandlist, stderr=None)
+	
 	samplestring = result.decode('UTF-8')
 	result = denormalize(samplestring)
 	return result
@@ -215,7 +206,7 @@ if __name__ == '__main__':
 		args, training_arguments = (parseArguments(args, arguments))
 		commandstring, commandlist = commandLine()
 		sample(training_arguments, commandlist)
-		
+		print(commandstring)
 		
 		
 		

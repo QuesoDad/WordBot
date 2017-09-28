@@ -151,10 +151,23 @@ def commandLine():
 
 
 def sample(training_arguments, commandlist):
-	try :
-		result = subprocess.check_output(commandlist, stderr=None)
-	except:
-		result = ''
+	result = ''
+	randseed = 1
+	while result == '':
+		randseed = randseed + 1
+		try : #Make failing over work so the robot will always return something. Possibly loop with system creating next word until it can complete a word model version.
+			result = subprocess.check_output(commandlist, stderr=None)
+		except:
+			training_arguments['seed'] = randseed
+			training_arguments['word_level'] = 0
+			commandstring, commandlist = commandLine()
+			if randseed > 5:
+				training_arguments['model'] = 'char'
+			if randseed > 10:
+				result = "Word not found in corpus."
+				break
+			pass
+			
 	samplestring = result.decode('UTF-8')
 	result = denormalize(samplestring)
 	return result
@@ -196,7 +209,7 @@ if __name__ == '__main__':
 		args, training_arguments = (parseArguments(args, arguments))
 		commandstring, commandlist = commandLine()
 		sample(training_arguments, commandlist)
-		
+		print(commandstring)
 		
 	else:
 		args, training_arguments = (parseArguments(args, arguments))

@@ -1,6 +1,14 @@
-#testlist = (' -primetext', ' -model', ' -seed', ' -sample', ' -length', ' -temperature', ' -gpuid', ' -opencl', ' -verbose', ' -skip_unk', ' -input_loop', ' -word_level')
+import sample
 
-#for i in range(len(testlist)):
-#	print(i)
+test = 'primetext this is a test of the sampling system. model word seed 123'
+arguments = []
 
-print(string.punctuation)
+arguments = test.split()
+args = len(arguments)
+
+args, trainingArguments = parseArguments(args, arguments)
+sample_commandline, commandlist = commandLine()
+sample(training_arguments)
+
+for i in commandlist:
+	print(commandlist[i])

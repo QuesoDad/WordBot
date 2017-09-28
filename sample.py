@@ -15,15 +15,25 @@ args = len(sys.argv)
 arguments = []
 sample_commandline = []
 
+def rawParse (rawinput):
+	args = len(rawinput.split())
+	tempSplit = rawinput.split()
+	for i in range(args):
+		arguments.append(tempSplit[i])
+	return args, arguments
+
 def parseArguments (args, arguments):
 	'''Parses all arguments entered, no matter the argument order, with or without a - delimiter prefixe, and enters all variables into the training_arguments dictionary'''
 	if args == 1:
 		print('No arguments detected. Defaults chosen')
 	if args >= 2:
 		''' Enters commandline arguments into a list'''
-		for i in range(args):
-			arguments.append(sys.argv[i])
-		arguments.remove('sample.py')				
+		try:
+			for i in range(args):
+				arguments.append(sys.argv[i])
+			arguments.remove('sample.py')				
+		except:
+			pass
 		args = len(arguments)
 		#print(str(args) + ' arguments detected')		
 		valid_argument_counter = 0
@@ -140,19 +150,13 @@ def commandLine():
 	return commandstring, commandlist
 
 
-def sample(training_arguments):
-	result = subprocess.check_output(commandlist)
-	samplestring = result.decode('utf-8')
-	
-	# checks if the given primetext ends with a letter of punctuation to decide if it's a full sentence
-	#if (str(training_arguments['primetext']).strip('"')[-1:].isalpha()) != True:
-		#print('Primetext appears to be a full sentence. Using word model')
-		#training_arguments['model'] = 'word-rnn-trained.t7'
-	#else: 
-		#print('Primetext appears to not be a full sentence. Using char model')
-		#training_arguments['model'] = 'char-rnn-trained.t7'
-		
-	denormalize(samplestring)
+def sample(training_arguments, commandlist):
+	try :
+		result = subprocess.check_output(commandlist, stderr=None)
+	except:
+		result = ''
+	samplestring = result.decode('UTF-8')
+	result = denormalize(samplestring)
 	return result
 
 # Denormalize sampled text
@@ -191,13 +195,13 @@ if __name__ == '__main__':
 		#print(sample_commandline)
 		args, training_arguments = (parseArguments(args, arguments))
 		commandstring, commandlist = commandLine()
-		sample(training_arguments)
+		sample(training_arguments, commandlist)
 		
 		
 	else:
 		args, training_arguments = (parseArguments(args, arguments))
-		sample_commandline, commandlist = commandLine()
-		sample(training_arguments)
+		commandstring, commandlist = commandLine()
+		sample(training_arguments, commandlist)
 		
 		
 		

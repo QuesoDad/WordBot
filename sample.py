@@ -16,28 +16,42 @@ arguments = []
 sample_commandline = []
 
 def rawParse (rawinput):
-	args = len(rawinput.split())
 	tempSplit = rawinput.split()
+	args = len(tempSplit)
 	for i in range(args):
 		arguments.append(tempSplit[i].replace('-', ""))
+		#print(arguments[i] + 'now in list')
+	
+	#print(args)
+	#print(type(arguments))
+	#print('rawparse' + str(arguments))
 	return args, arguments
 
 def parseArguments (args, arguments):
+	#print(args)
+	#print(type(arguments))
+	#print('parseArguments ' + str(arguments))
 	'''Parses all arguments entered, no matter the argument order, with or without a - delimiter prefixe, and enters all variables into the training_arguments dictionary'''
-	print()
+	
 	if args == 1 and __name__ == '__main__':
 		print('No arguments detected. Defaults chosen')
 	
 	if args >= 2:
 		''' Enters commandline arguments into a list'''
 		try:
-			for i in range(args):
-				arguments.append(sys.argv[i].replace('-', ""))
-				#print(('Parsed argument appears as ' + sys.argv[i].replace('-', '')))
+			if __name__ == '__main__':
+				for i in range(args):
+					arguments.append(sys.argv[i].replace('-', ""))
+					#print(('Parsed argument appears as ' + sys.argv[i].replace('-', '')))
+				arguments.remove('sample.py')
 		except:
 			pass
-		arguments.remove('sample.py')
+
 		args = len(arguments)
+		
+		#print(args)
+		#print(type(arguments))
+		print('parseArguments ' + str(arguments))
 		#print(str(args) + ' arguments detected')		
 		valid_argument_counter = 0
 		primesequence = ''
@@ -220,13 +234,13 @@ if __name__ == '__main__':
 		args, training_arguments = (parseArguments(args, arguments))
 		commandstring, commandlist = commandLine()
 		sample(training_arguments, commandlist)
-		print(commandstring)
+		#print(commandstring)
 		
-else:
+#else:
 	#print('Not main')
-	args, training_arguments = (parseArguments(args, arguments))
-	commandstring, commandlist = commandLine()
-	sample(training_arguments, commandlist)
+#	args, training_arguments = (parseArguments(args, arguments))
+#	commandstring, commandlist = commandLine()
+#	sample(training_arguments, commandlist)
 	#print(commandstring)
 		
 		

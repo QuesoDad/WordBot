@@ -67,16 +67,10 @@ def last3Sample(last3):
 		arglength = len((seed + primetext + length + model + temperature).split()
 		arguments.append(seed, primetext, length, model, temperature)
 		newending = sample.parseArguments(10, arguments)
-		newtweet = tweet_clean + newending
-		
-		
+		newtweet = tweet_clean + newending				
 		print('last three are: ' + last3)
 		#print(sampler.get_sample(last3, y))
 		print('the value of y is: ' + str(y))
-		
-		
-		
-		
 		last3 = sample.parseArguments(3, )
 		#print(last3)
 		#if (last3[-1:]).isalpha() == True:

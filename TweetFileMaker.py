@@ -39,10 +39,10 @@ def fileCheck(fileName):
 
 def fitTweet(tweet):
 	#reduces the current tweet to less than 140 characters, generates new words from last3 sampling until the tweet is a complete sentence.
-	print('Currently tweet is ' + tweet)
+	#print('Currently tweet is ' + tweet)
 	i=0
 	while len(tweet) > 140 or ((tweet[-1:]).isalpha()) == True:
-		print('Tweet is currently ' + str(len(tweet)) + ' characters long.')
+		#print('Tweet is currently ' + str(len(tweet)) + ' characters long.')
 		if len(tweet) > 140:
 		#Saves the parts of tweets over 100 characters at the end of the tweet_file
 			with open(tweet_file, 'a+') as record_file:
@@ -59,8 +59,8 @@ def fitTweet(tweet):
 				record_file.close()
 			cut_Lines = textwrap.wrap(tweet, 100, break_long_words=False)
 			tweet = cut_Lines[0]
-			print('Tweet is currently ' + str(len(tweet)) + ' characters long.')
-			print('Tweet is currently : ' + tweet)
+			#print('Tweet is currently ' + str(len(tweet)) + ' characters long.')
+			#print('Tweet is currently : ' + tweet)
 
 		if str((tweet[-1:])).isalpha() == False and ((tweet[-1:]) != ","):
 			print('The tweet ends with punctuation. \n'.upper())
@@ -69,7 +69,7 @@ def fitTweet(tweet):
 		if tweet != "":#If the file isn't empty, get the last three words
 			tweetList = tweet.split()
 			last3 = str((tweetList[-3] + " " + tweetList[-2] + " " + tweetList[-1]))
-			print('The last three words are %s'%last3)
+			#print('The last three words are %s'%last3)
 
 		if (tweet[-1:]).isalpha() == True or ((tweet[-1:]) == ","):
 			print('Tweet doesn\'t end with punctuation, creating new ending'.upper())
@@ -82,32 +82,47 @@ def fitTweet(tweet):
 def last3Sample(last3):
 	''' samples from the last three words of the text until it gets a punctuation mark '''
 	y = 0
-	print('Does last3args end with a punctuation?')
+	arguments = []
+	#print('Does last3args end with a punctuation?')
+	primetext = ' -primetext ' + str(last3)
+	length = ' -length 3'
+	model = ' -model char'
+	temperature = ' -temperature 2'
+	
 	while (last3[-1:]).isalpha() == True:
-		print('last3 doesn\'t end with a punctuation')
+		#print('last3 doesn\'t end with a punctuation')
 		y = y + 10
-		print(str(y))
-		arguments = []
-		seed = ' seed ' + str(y)
-		primetext = ' primetext "' + str(last3) + '\"'
-		length = ' length 3'
-		model = ' model word'
-		temperature = ' temperature 2'
-		wordlevel = ' wordlevel turcky'
-		last3args = primetext + length + model + seed + temperature + wordlevel
-		print('Last three args = ' + type(last3args) + last3args)
-		args, arguments = sample.rawParse(last3args)
+		#print(str(y))	
+		seed = ' -seed ' + str(y)
+		
+		commandpass = primetext + length + model + seed + temperature
+		commandpass = str(commandpass)
+		#print('Last three args = ' + str(type(last3args)) + str(last3args))
+		
+		#LOOP AND MAKE SURE IT DOESN"T KEEP SENDING THE SAME COMMAND EVERYTIME OR KEEP ADDING ARGUMENTS TO THE SYSTEM
+		
+		args, arguments = sample.rawParse(commandpass)
+		
+		print('commandpass is ' + commandpass + ' and the type is ' + str(type(commandpass)))
+		
 		args, training_arguments = sample.parseArguments(args, arguments)
 		commandstring, commandlist = sample.commandLine()
-		print(str(commandstring))
-		newending = str(sample.sample(training_arguments, commandlist))
-		newtweet = tweet + newending
-		print('The new tweet is ' + str(newtweet))
-		print('last three are now: ' + last3)
+		newending = sample.sample(training_arguments, commandlist)
+		#print(str(commandstring))
+		#print(str(tweet))
+		#print(str(newending))
+		#print(str(type(tweet)))
+		#print(str(type(newending)))
+		newtweet = tweet + str(newending)
+		#print('The new tweet is ' + str(newtweet))
+		#print('last three are now: ' + last3)
 		#print(sampler.get_sample(last3, y))
 		#print('the value of y is: ' + str(y))
 		if (newtweet[-1:]).isalpha() == True:
 			last3 = newtweet
+		if y > 30:
+			last3
+	
 	return last3
 
 
@@ -119,7 +134,8 @@ if __name__ == '__main__':
 		tweet_file = sys.argv[1]
 		tweet = fileCheck(tweet_file)
 		tweet = fitTweet(tweet)
-		print(tweet)
+		
+		print(str(tweet))
 else:
 	print('I\'m NOT MAIN')
 	if len(sys.argv) >= 1:

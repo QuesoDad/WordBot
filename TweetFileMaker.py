@@ -6,6 +6,7 @@ import sample
 import string
 import random
 
+tweet = ''
 
 def fileCheck(fileName):
 	# Checks if a file exists and creates it, if it doesn't
@@ -38,6 +39,7 @@ def fileCheck(fileName):
 
 def fitTweet(tweet):
 	#reduces the current tweet to less than 140 characters, generates new words from last3 sampling until the tweet is a complete sentence.
+	print('Currently tweet is ' + tweet)
 	i=0
 	while len(tweet) > 140 or ((tweet[-1:]).isalpha()) == True:
 		print('Tweet is currently ' + str(len(tweet)) + ' characters long.')
@@ -91,9 +93,9 @@ def last3Sample(last3):
 		length = ' length 3'
 		model = ' model word'
 		temperature = ' temperature 2'
-		wordlevel = 'wordlevel turcky butt'
+		wordlevel = ' wordlevel turcky'
 		last3args = primetext + length + model + seed + temperature + wordlevel
-		print('Last three args = ' + last3args)
+		print('Last three args = ' + type(last3args) + last3args)
 		args, arguments = sample.rawParse(last3args)
 		args, training_arguments = sample.parseArguments(args, arguments)
 		commandstring, commandlist = sample.commandLine()
@@ -112,13 +114,16 @@ def last3Sample(last3):
 
 
 if __name__ == '__main__':
+	#main is imported by another file
 	if len(sys.argv) >= 1:
 		tweet_file = sys.argv[1]
 		tweet = fileCheck(tweet_file)
 		tweet = fitTweet(tweet)
-		#print(tweet)
+		print(tweet)
 else:
+	print('I\'m NOT MAIN')
 	if len(sys.argv) >= 1:
 		tweet_file = sys.argv[1]
 		tweet = fileCheck(tweet_file)
+		
 		

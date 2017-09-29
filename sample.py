@@ -19,52 +19,63 @@ def rawParse (rawinput):
 	args = len(rawinput.split())
 	tempSplit = rawinput.split()
 	for i in range(args):
-		arguments.append(tempSplit[i])
+		arguments.append(tempSplit[i].replace('-', ""))
 	return args, arguments
 
 def parseArguments (args, arguments):
 	'''Parses all arguments entered, no matter the argument order, with or without a - delimiter prefixe, and enters all variables into the training_arguments dictionary'''
-	if args == 1:
+	print()
+	if args == 1 and __name__ == '__main__':
 		print('No arguments detected. Defaults chosen')
+	
 	if args >= 2:
 		''' Enters commandline arguments into a list'''
 		try:
 			for i in range(args):
-				arguments.append(sys.argv[i])
-			arguments.remove('sample.py')				
+				arguments.append(sys.argv[i].replace('-', ""))
+				#print(('Parsed argument appears as ' + sys.argv[i].replace('-', '')))
 		except:
 			pass
+		arguments.remove('sample.py')
 		args = len(arguments)
 		#print(str(args) + ' arguments detected')		
 		valid_argument_counter = 0
 		primesequence = ''
+		print('Arguments are right now :' + str(arguments))
 		for i in range(args): #for every argument entered
 			valid_argument_counter += 1
 			if valid_argument_counter <= max_args:
 				if args == 2 and arguments[0].replace(' -', "") == 'primetext':
+					#print('Only prime text submitted.')
 					training_arguments['primetext'] = arguments[1].replace(' -', "")
 				
 				for y in range(max_args): # for every element in the sample options list
 					currentDictKey = sample_options[y].replace(' -', "")
 					try:
 						currentArg = arguments[i].replace(' -', "")
+						#print(arguments[i].replace(' -', "" + ' is now currentArg.'))
 					except:
-						break
+						pass
 
 					#correct commonly forgotten underscores
 					if currentArg == 'wordlevel':
 						currentArg = 'word_level'
+						#print('Word_level correction')
 					if currentArg == 'inputloop':
 						currentArg = 'input_loop'
+						#print('input_loop correction')
 					if currentArg == 'skipunk':
 						currentArg = 'skip_unk'
+						#print('skip_unk correction')
 					
 					#Catch any variable argument names left empty at the end of the string
 					if currentArg == currentDictKey:
 						try:
 							nextArg = arguments[i+1].replace('-', "")
 						except:
-							print(str('-----------------Last argument is empty, skipping \'%s\'. ----------------'%arguments[i]).upper())
+							#if  __name__ == '__main__':
+							#print(str('-----------------Last argument is empty, skipping \'%s\'. ----------------'%arguments[valid_argument_counter]).upper())
+							#	break
 							break
 					
 					endofprimetext = False
@@ -75,19 +86,24 @@ def parseArguments (args, arguments):
 						
 					elif currentArg == 'primetext':					
 						#increment to the next argument, grabbing all prime text until the next word is a default argument
+						#print('primetext detected!')
 						remainingArgs = args - i
 						for t in range(remainingArgs): #t starts at current range of selections after the current selection
 							if t > 0 and (i+t) <= args and endofprimetext == False:
 								afterPrime = arguments[i+t].replace('-', "")
 								#print('Working on ' + str(t+1) + ' argument past primetext, ' + afterPrime + '.')											
 								for z in range(max_args):	
+									
 									#correct commonly forgotten underscores
 									if afterPrime	 == 'wordlevel':
 										afterPrime = 'word_level'
+										#print('after prime Word_level correction')
 									if afterPrime == 'inputloop':
 										afterPrime = 'input_loop'
+										#print('after prime input_loop correction')
 									if afterPrime == 'skipunk':
 										afterPrime = 'skip_unk'
+										#print('after prime skip_unk correction')
 									
 									testOption = sample_options[z].replace(' -', "")
 									if afterPrime == testOption:
@@ -96,6 +112,7 @@ def parseArguments (args, arguments):
 										training_arguments['primetext'] = primesequence
 										i += t
 										currentArg = arguments[i].replace(' -', "")
+										#print('currentArg is set to ' + currentArg)
 										endofprimetext = True
 									
 										break
@@ -109,8 +126,11 @@ def parseArguments (args, arguments):
 						i += t
 						
 						training_arguments['primetext'] = '\"' + str(training_arguments['primetext']) + '\"' #Put quotations around the primetext
-			else:
-				print('Too many arguments. Skipping everything after %s Remember to put \"\" around your primetext'%arguments[i])
+						#print('Prime sequences is now ' + primesequence)
+			elif __name__ != '__main__':
+				pass
+			else:	
+				print('Too many arguments. Skipping everything after %s Remember to put \"\" around your primetext'%arguments[valid_argument_counter-1])
 				break		
 	return args, training_arguments
 
@@ -202,11 +222,12 @@ if __name__ == '__main__':
 		sample(training_arguments, commandlist)
 		print(commandstring)
 		
-	else:
-		args, training_arguments = (parseArguments(args, arguments))
-		commandstring, commandlist = commandLine()
-		sample(training_arguments, commandlist)
-		print(commandstring)
+else:
+	#print('Not main')
+	args, training_arguments = (parseArguments(args, arguments))
+	commandstring, commandlist = commandLine()
+	sample(training_arguments, commandlist)
+	#print(commandstring)
 		
 		
 		

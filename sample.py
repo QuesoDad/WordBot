@@ -3,6 +3,7 @@ import sys
 import subprocess
 import random
 import string
+import re
 
 #docker run -v '/dockerdata/:/root/wordbot/dockerdata' -ti kboruff/wordbot bash
 #cd dockerdata/wordbot_testing
@@ -16,15 +17,16 @@ arguments = []
 sample_commandline = []
 
 def rawParse (rawinput):
+	#Parses a string into a list of arguments, used when program is imported
 	tempSplit = rawinput.split()
 	args = len(tempSplit)
+	arguments = []
 	for i in range(args):
 		arguments.append(tempSplit[i].replace('-', ""))
-		#print(arguments[i] + 'now in list')
-	
+		#print(arguments[i] + 'now in list')	
 	#print(args)
 	#print(type(arguments))
-	#print('rawparse' + str(arguments))
+	#print('rawparse is ' + str(arguments))
 	return args, arguments
 
 def parseArguments (args, arguments):
@@ -51,11 +53,11 @@ def parseArguments (args, arguments):
 		
 		#print(args)
 		#print(type(arguments))
-		print('parseArguments ' + str(arguments))
+		#print('parseArguments ' + str(arguments))
 		#print(str(args) + ' arguments detected')		
 		valid_argument_counter = 0
 		primesequence = ''
-		print('Arguments are right now :' + str(arguments))
+		#print('Arguments are right now :' + str(arguments))
 		for i in range(args): #for every argument entered
 			valid_argument_counter += 1
 			if valid_argument_counter <= max_args:
@@ -138,7 +140,7 @@ def parseArguments (args, arguments):
 								#print('Prime sequences is now ' + primesequence)
 								primesequence = str(primesequence)
 						i += t
-						
+						training_arguments['primetext'] = primesequence
 						training_arguments['primetext'] = '\"' + str(training_arguments['primetext']) + '\"' #Put quotations around the primetext
 						#print('Prime sequences is now ' + primesequence)
 			elif __name__ != '__main__':
@@ -194,8 +196,8 @@ def sample(training_arguments, commandlist):
 	result = subprocess.check_output(commandlist, stderr=None)
 	
 	samplestring = result.decode('UTF-8')
-	result = denormalize(samplestring)
-	return result
+	result, samplelist, numSampleList = denormalize(samplestring)
+	return result, samplelist, numSampleList
 
 # Denormalize sampled text
 def denormalize(sample):
@@ -218,13 +220,16 @@ def denormalize(sample):
 		replace(" ; ", "; ").\
 		replace('\n\n', '\n').\
 		replace('\t', '').\
-		replace('\n \n ', "\n")
+		replace('\n \n ', "\n").\
+		replace(' # ', " #").\
+		replace(' 0 ', '0')
+	sample_clean = re.sub(r'(?<=\d)\s+(?=\d)', '', sample_clean)
 	sample_clean = sample_clean.replace(" n't", "n't")
+	sample_clean = sample_clean.rstrip()
 	samplelist = sample_clean.split('\n')
 	samplelist = list(filter(None, samplelist)) #strip blank entries in samplelist
-	for i in range(len(samplelist)):
-		print(str(i).zfill(6) + ' is ' + samplelist[i])
-	return sample_clean, samplelist
+	numSampleList = [(str(i).zfill(6) + ' is ' + samplelist[i]) for i in range(len(samplelist))]
+	return sample_clean, samplelist, numSampleList
 
 if __name__ == '__main__':
 	if len(sys.argv) > 1:
@@ -233,8 +238,9 @@ if __name__ == '__main__':
 		#print(sample_commandline)
 		args, training_arguments = (parseArguments(args, arguments))
 		commandstring, commandlist = commandLine()
-		sample(training_arguments, commandlist)
-		#print(commandstring)
+		result, samplelist, numSampleList = sample(training_arguments, commandlist)
+		print(commandstring)
+		print(result)
 		
 #else:
 	#print('Not main')

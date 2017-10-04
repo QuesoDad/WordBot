@@ -68,62 +68,36 @@ def fitTweet(tweet):
 			
 		if tweet != "":#If the file isn't empty, get the last three words
 			tweetList = tweet.split()
-			last3 = str((tweetList[-3] + " " + tweetList[-2] + " " + tweetList[-1]))
-			#print('The last three words are %s'%last3)
+			last3 = str((tweetList[-3] + " " + tweetList[-2] + " " + tweetList[-1])).rstrip()
+			print('The last three words are %s'%last3)
 
 		if (tweet[-1:]).isalpha() == True or ((tweet[-1:]) == ","):
 			print('Tweet doesn\'t end with punctuation, creating new ending'.upper())
-			tweet = tweet + last3Sample(last3)
-		print(tweet)
-		
-		tweet = tweet + last3Sample(last3)
+			tweet = tweet + " " + last3Sample(last3).strip()
+			tweet = tweet.strip().replace('\n', "")
+		#print(tweet)
+		#tweet = tweet + last3Sample(last3)
 	return tweet
 
 def last3Sample(last3):
 	''' samples from the last three words of the text until it gets a punctuation mark '''
 	y = 0
 	arguments = []
-	#print('Does last3args end with a punctuation?')
-	primetext = ' -primetext ' + str(last3)
-	length = ' -length 3'
-	model = ' -model char'
-	temperature = ' -temperature 2'
-	
-	while (last3[-1:]).isalpha() == True:
-		#print('last3 doesn\'t end with a punctuation')
-		y = y + 10
-		#print(str(y))	
-		seed = ' -seed ' + str(y)
-		
-		commandpass = primetext + length + model + seed + temperature
-		commandpass = str(commandpass)
-		#print('Last three args = ' + str(type(last3args)) + str(last3args))
-		
-		#LOOP AND MAKE SURE IT DOESN"T KEEP SENDING THE SAME COMMAND EVERYTIME OR KEEP ADDING ARGUMENTS TO THE SYSTEM
-		
-		args, arguments = sample.rawParse(commandpass)
-		
-		print('commandpass is ' + commandpass + ' and the type is ' + str(type(commandpass)))
-		
+	seed = random.randint(0, 200)
+	length = random.randint(3, 9)
+	result = 'placeholder'
+	lastChar = (result.rstrip())[-1]
+
+	while lastChar.isalpha() == True:
+		test = '-model word -wordlevel 1 -temperature 2 -length ' + str(length) + ' -seed '+ str(seed) + ' -primetext ' + last3
+		seed += 1
+		args, arguments = sample.rawParse(test)
 		args, training_arguments = sample.parseArguments(args, arguments)
 		commandstring, commandlist = sample.commandLine()
-		newending = sample.sample(training_arguments, commandlist)
-		#print(str(commandstring))
-		#print(str(tweet))
-		#print(str(newending))
-		#print(str(type(tweet)))
-		#print(str(type(newending)))
-		newtweet = tweet + str(newending)
-		#print('The new tweet is ' + str(newtweet))
-		#print('last three are now: ' + last3)
-		#print(sampler.get_sample(last3, y))
-		#print('the value of y is: ' + str(y))
-		if (newtweet[-1:]).isalpha() == True:
-			last3 = newtweet
-		if y > 30:
-			last3
-	
-	return last3
+		result, samplelist, numSampleList = sample.sample(training_arguments, commandlist)
+		result = result.strip()
+		lastChar = (result.rstrip())[-1]
+	return result
 
 
 
@@ -134,8 +108,7 @@ if __name__ == '__main__':
 		tweet_file = sys.argv[1]
 		tweet = fileCheck(tweet_file)
 		tweet = fitTweet(tweet)
-		
-		print(str(tweet))
+		print(tweet.strip('\n'))
 else:
 	print('I\'m NOT MAIN')
 	if len(sys.argv) >= 1:

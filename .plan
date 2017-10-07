@@ -1,15 +1,13 @@
 
-setup list comprehensions
-
-loop dict, not replace(' -', '')
-
-Sampler - produces denormalized text based off given model
+DONE: Sampler - produces denormalized text based off given model
 
 tweetfile maker - picks model and produces a text file for it
-	-trims tweets to proper length
-	-enters proper length tweets into file
-	-produces text endings from sampler until the tweet is a complete sentence
-	-leaves a specific 6 character number next to each tweet for reference
+	DONE -trims tweets to proper length
+	DONE -enters proper length tweets into file
+	DONE -produces text endings from sampler until the tweet is a complete sentence
+	- loops through entire given file
+	- Corrects capitlization after punctuations and checks for duplicates
+	- leaves a specific 6 character number next to each tweet for reference
 
 tweet image scrapper
 	-optionally take two words given or use a tweetfile

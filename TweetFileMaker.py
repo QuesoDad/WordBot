@@ -45,6 +45,7 @@ def parseFile(filename):
 	try:
 		record_File = open(filename, 'r', encoding='UTF-8')
 		statinfo = os.stat(filename)
+		
 		with open(filename, 'r') as fin:
 			data = fin.read().splitlines(True) #open the file and stick it in a list
 					
@@ -154,17 +155,28 @@ def addHashtag(tweet):
 	tweet = tweet.split()
 	newTweet = ""
 	taggedTweetWord = ""
-	#print(tweet)
+	
 	for i in range(len(tweet)):
+		hashtagged = False
+		
 		#print(tweet[i] + ' is ' + str(len(tweet[i])))
-		if len(tweet[i]) > 7:
+		for item in tweet:
+			firstChar = item.strip()[0]
+			print(firstChar)
+			
+		if len(tweet[i]) > 7 and firstChar != '#':
 			hashtagged = bool(random.getrandbits(1))
-			if hashtagged == True:
-				taggedTweetWord = '#' + str(tweet[i])
-				print('Hashtagged ' + taggedTweetWord)
+		
+		if hashtagged == True:
+			taggedTweetWord = '#' + str(tweet[i])
+			print('Hashtagged ' + taggedTweetWord)
+		elif firstChar == '#':
+			taggedTweetWord = tweet[i]
+			print('We can\'t hashtag ' + taggedTweetWord)
 		else:
 			taggedTweetWord = tweet[i]
 		newTweet = newTweet + " " + taggedTweetWord
+		print(newTweet)
 	return newTweet
 	
 def last3Sample(last3):

@@ -99,3 +99,4 @@ sync.ffs_db
 char-rnn-trained.t7
 word-rnn-trained.t7
 lm_lstm_autosave__epoch167.86_3.4929.t7
+tweetfile.txt_output.txt

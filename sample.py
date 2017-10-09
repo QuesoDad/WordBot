@@ -241,6 +241,7 @@ if __name__ == '__main__':
 		result, samplelist, numSampleList = sample(training_arguments, commandlist)
 		print(commandstring)
 		print(result)
+		#print(str(numSampleList[0]))
 		
 #else:
 	#print('Not main')

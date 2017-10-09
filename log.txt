@@ -1,0 +1,597 @@
+NEW TWEET 
+ 
+ 
+Tweet is currently 67 characters long.
+Tweet complete tweet is : #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe
+
+Last char is e and it says (lastChar).isalpha() is True
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are to keep safe
+Tweet with new ending is #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe @ codyhe case (
+NEW TWEET 
+ 
+ 
+Tweet is currently 82 characters long.
+Tweet complete tweet is : #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe @ codyhe case (
+Last char is ( and it says (lastChar).isalpha() is False
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are codyhe case (
+Tweet with new ending is #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe @ codyhe case ( cost ( list0
+NEW TWEET 
+ 
+ 
+Tweet is currently 95 characters long.
+Tweet complete tweet is : #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe @ codyhe case ( cost ( list0
+Last char is 0 and it says (lastChar).isalpha() is False
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are cost ( list0
+Tweet with new ending is #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe @ codyhe case ( cost ( list0 Why reason we thought this he'
+NEW TWEET 
+ 
+ 
+Tweet is currently 126 characters long.
+Tweet complete tweet is : #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe @ codyhe case ( cost ( list0 Why reason we thought this he'
+Tweet is currently 99 characters long.
+Tweet has been trimmed to : #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe @ codyhe case ( cost ( list0 Why
+Last char is y and it says (lastChar).isalpha() is True
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are ( list0 Why
+Tweet with new ending is #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe @ codyhe case ( cost ( list0 Why are or do 196
+NEW TWEET 
+ 
+ 
+Tweet is currently 113 characters long.
+Tweet complete tweet is : #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe @ codyhe case ( cost ( list0 Why are or do 196
+Last char is 6 and it says (lastChar).isalpha() is False
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are or do 196
+Tweet with new ending is #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe @ codyhe case ( cost ( list0 Why are or do 196 Will here!
+NEW TWEET 
+ 
+ 
+Tweet is currently 124 characters long.
+Tweet complete tweet is : #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe @ codyhe case ( cost ( list0 Why are or do 196 Will here!
+Tweet is currently 99 characters long.
+Tweet has been trimmed to : #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe @ codyhe case ( cost ( list0 Why
+Last char is y and it says (lastChar).isalpha() is True
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are ( list0 Why
+Tweet with new ending is #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe @ codyhe case ( cost ( list0 Why thank you ?
+NEW TWEET 
+ 
+ 
+Tweet is currently 111 characters long.
+Tweet complete tweet is : #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe @ codyhe case ( cost ( list0 Why thank you ?
+Last char is ? and it says (lastChar).isalpha() is False
+THE TWEET ENDS WITH SOME FORM OF PUNCTUATION. 
+
+?
+Working on 0
+#G0snar is 7 characters long.
+The first char in #G0snar is #
+Looks like #G0snar starts with #, already.
+newTweet is currently +  #G0snar
+Working on 1
+#MikeMcMahanTM is 14 characters long.
+The first char in #MikeMcMahanTM is #
+Looks like #MikeMcMahanTM starts with #, already.
+newTweet is currently +  #G0snar #MikeMcMahanTM
+Working on 2
+I is 1 characters long.
+The first char in I is I
+I is not longer than 7 characters.
+newTweet is currently +  #G0snar #MikeMcMahanTM I
+Working on 3
+feel is 4 characters long.
+The first char in feel is f
+feel is not longer than 7 characters.
+newTweet is currently +  #G0snar #MikeMcMahanTM I feel
+Working on 4
+like is 4 characters long.
+The first char in like is l
+like is not longer than 7 characters.
+newTweet is currently +  #G0snar #MikeMcMahanTM I feel like
+Working on 5
+that is 4 characters long.
+The first char in that is t
+that is not longer than 7 characters.
+newTweet is currently +  #G0snar #MikeMcMahanTM I feel like that
+Working on 6
+feels is 5 characters long.
+The first char in feels is f
+feels is not longer than 7 characters.
+newTweet is currently +  #G0snar #MikeMcMahanTM I feel like that feels
+Working on 7
+like is 4 characters long.
+The first char in like is l
+like is not longer than 7 characters.
+newTweet is currently +  #G0snar #MikeMcMahanTM I feel like that feels like
+Working on 8
+it is 2 characters long.
+The first char in it is i
+it is not longer than 7 characters.
+newTweet is currently +  #G0snar #MikeMcMahanTM I feel like that feels like it
+Working on 9
+to is 2 characters long.
+The first char in to is t
+to is not longer than 7 characters.
+newTweet is currently +  #G0snar #MikeMcMahanTM I feel like that feels like it to
+Working on 10
+keep is 4 characters long.
+The first char in keep is k
+keep is not longer than 7 characters.
+newTweet is currently +  #G0snar #MikeMcMahanTM I feel like that feels like it to keep
+Working on 11
+safe is 4 characters long.
+The first char in safe is s
+safe is not longer than 7 characters.
+newTweet is currently +  #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe
+Working on 12
+#codyhe is 7 characters long.
+The first char in #codyhe is #
+Looks like #codyhe starts with #, already.
+newTweet is currently +  #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe #codyhe
+Working on 13
+case is 4 characters long.
+The first char in case is c
+case is not longer than 7 characters.
+newTweet is currently +  #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe #codyhe case
+Working on 14
+( is 1 characters long.
+The first char in ( is (
+( is not longer than 7 characters.
+newTweet is currently +  #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe #codyhe case (
+Working on 15
+cost is 4 characters long.
+The first char in cost is c
+cost is not longer than 7 characters.
+newTweet is currently +  #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe #codyhe case ( cost
+Working on 16
+( is 1 characters long.
+The first char in ( is (
+( is not longer than 7 characters.
+newTweet is currently +  #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe #codyhe case ( cost (
+Working on 17
+list0 is 5 characters long.
+The first char in list0 is l
+list0 is not longer than 7 characters.
+newTweet is currently +  #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe #codyhe case ( cost ( list0
+Working on 18
+Why is 3 characters long.
+The first char in Why is W
+Why is not longer than 7 characters.
+newTweet is currently +  #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe #codyhe case ( cost ( list0 Why
+Working on 19
+thank is 5 characters long.
+The first char in thank is t
+thank is not longer than 7 characters.
+newTweet is currently +  #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe #codyhe case ( cost ( list0 Why thank
+Working on 20
+you is 3 characters long.
+The first char in you is y
+you is not longer than 7 characters.
+newTweet is currently +  #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe #codyhe case ( cost ( list0 Why thank you
+Working on 21
+? is 1 characters long.
+The first char in ? is ?
+? is not longer than 7 characters.
+newTweet is currently +  #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe #codyhe case ( cost ( list0 Why thank you ?
+ #G0snar #MikeMcMahanTM I feel like that feels like it to keep safe #codyhe case ( cost ( list0 Why thank you ?
+NEW TWEET 
+ 
+ 
+Tweet is currently 33 characters long.
+Tweet complete tweet is : #TimothyPizza did people we know
+
+Last char is w and it says (lastChar).isalpha() is True
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are people we know
+Tweet with new ending is #TimothyPizza did people we know otherwise well yeah,
+NEW TWEET 
+ 
+ 
+Tweet is currently 53 characters long.
+Tweet complete tweet is : #TimothyPizza did people we know otherwise well yeah,
+Last char is , and it says (lastChar).isalpha() is False
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are otherwise well yeah,
+Tweet with new ending is #TimothyPizza did people we know otherwise well yeah, guy that ask /
+NEW TWEET 
+ 
+ 
+Tweet is currently 68 characters long.
+Tweet complete tweet is : #TimothyPizza did people we know otherwise well yeah, guy that ask /
+Last char is / and it says (lastChar).isalpha() is False
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are that ask /
+Tweet with new ending is #TimothyPizza did people we know otherwise well yeah, guy that ask / Not like you're done.
+NEW TWEET 
+ 
+ 
+Tweet is currently 90 characters long.
+Tweet complete tweet is : #TimothyPizza did people we know otherwise well yeah, guy that ask / Not like you're done.
+Last char is . and it says (lastChar).isalpha() is False
+THE TWEET ENDS WITH SOME FORM OF PUNCTUATION. 
+
+.
+Working on 0
+#TimothyPizza is 13 characters long.
+The first char in #TimothyPizza is #
+Looks like #TimothyPizza starts with #, already.
+newTweet is currently +  #TimothyPizza
+Working on 1
+did is 3 characters long.
+The first char in did is d
+did is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza did
+Working on 2
+people is 6 characters long.
+The first char in people is p
+people is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza did people
+Working on 3
+we is 2 characters long.
+The first char in we is w
+we is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza did people we
+Working on 4
+know is 4 characters long.
+The first char in know is k
+know is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza did people we know
+Working on 5
+otherwise is 9 characters long.
+The first char in otherwise is o
+otherwise is longer than 7 characters and doesn't start with #.
+hashtagged is set to True
+Hashtagged #otherwise
+newTweet is currently +  #TimothyPizza did people we know #otherwise
+Working on 6
+well is 4 characters long.
+The first char in well is w
+well is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza did people we know #otherwise well
+Working on 7
+yeah, is 5 characters long.
+The first char in yeah, is y
+yeah, is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza did people we know #otherwise well yeah,
+Working on 8
+guy is 3 characters long.
+The first char in guy is g
+guy is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza did people we know #otherwise well yeah, guy
+Working on 9
+that is 4 characters long.
+The first char in that is t
+that is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza did people we know #otherwise well yeah, guy that
+Working on 10
+ask is 3 characters long.
+The first char in ask is a
+ask is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza did people we know #otherwise well yeah, guy that ask
+Working on 11
+/ is 1 characters long.
+The first char in / is /
+/ is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza did people we know #otherwise well yeah, guy that ask /
+Working on 12
+Not is 3 characters long.
+The first char in Not is N
+Not is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza did people we know #otherwise well yeah, guy that ask / Not
+Working on 13
+like is 4 characters long.
+The first char in like is l
+like is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza did people we know #otherwise well yeah, guy that ask / Not like
+Working on 14
+you're is 6 characters long.
+The first char in you're is y
+you're is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza did people we know #otherwise well yeah, guy that ask / Not like you're
+Working on 15
+done. is 5 characters long.
+The first char in done. is d
+done. is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza did people we know #otherwise well yeah, guy that ask / Not like you're done.
+ #TimothyPizza did people we know #otherwise well yeah, guy that ask / Not like you're done.
+NEW TWEET 
+ 
+ 
+Tweet is currently 114 characters long.
+Tweet complete tweet is : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's about about there
+
+Last char is e and it says (lastChar).isalpha() is True
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are about about there
+Tweet with new ending is #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's about about there 4 things turns up of look  @
+NEW TWEET 
+ 
+ 
+Tweet is currently 142 characters long.
+Tweet complete tweet is : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's about about there 4 things turns up of look  @
+Tweet is currently 95 characters long.
+Tweet has been trimmed to : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's
+Last char is s and it says (lastChar).isalpha() is True
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are black while It's
+Tweet with new ending is #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's really proof an whole right )
+NEW TWEET 
+ 
+ 
+Tweet is currently 125 characters long.
+Tweet complete tweet is : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's really proof an whole right )
+Tweet is currently 95 characters long.
+Tweet has been trimmed to : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's
+Last char is s and it says (lastChar).isalpha() is True
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are black while It's
+Tweet with new ending is #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the as here in who a new story ?
+NEW TWEET 
+ 
+ 
+Tweet is currently 128 characters long.
+Tweet complete tweet is : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the as here in who a new story ?
+Tweet is currently 99 characters long.
+Tweet has been trimmed to : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the
+Last char is e and it says (lastChar).isalpha() is True
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are while It's the
+Tweet with new ending is #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the Doug of say us will being tell about 1
+NEW TWEET 
+ 
+ 
+Tweet is currently 138 characters long.
+Tweet complete tweet is : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the Doug of say us will being tell about 1
+Tweet is currently 99 characters long.
+Tweet has been trimmed to : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the
+Last char is e and it says (lastChar).isalpha() is True
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are while It's the
+Tweet with new ending is #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the too white thing if Why'
+NEW TWEET 
+ 
+ 
+Tweet is currently 123 characters long.
+Tweet complete tweet is : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the too white thing if Why'
+Tweet is currently 99 characters long.
+Tweet has been trimmed to : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the
+Last char is e and it says (lastChar).isalpha() is True
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are while It's the
+Tweet with new ending is #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the sad here don'
+NEW TWEET 
+ 
+ 
+Tweet is currently 113 characters long.
+Tweet complete tweet is : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the sad here don'
+Last char is ' and it says (lastChar).isalpha() is False
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are sad here don'
+Tweet with new ending is #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the sad here don' s special :
+NEW TWEET 
+ 
+ 
+Tweet is currently 125 characters long.
+Tweet complete tweet is : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the sad here don' s special :
+Tweet is currently 99 characters long.
+Tweet has been trimmed to : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the
+Last char is e and it says (lastChar).isalpha() is True
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are while It's the
+Tweet with new ending is #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the many pass but it we thought,
+NEW TWEET 
+ 
+ 
+Tweet is currently 128 characters long.
+Tweet complete tweet is : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the many pass but it we thought,
+Tweet is currently 99 characters long.
+Tweet has been trimmed to : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the
+Last char is e and it says (lastChar).isalpha() is True
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are while It's the
+Tweet with new ending is #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the times but can'
+NEW TWEET 
+ 
+ 
+Tweet is currently 114 characters long.
+Tweet complete tweet is : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the times but can'
+Last char is ' and it says (lastChar).isalpha() is False
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are times but can'
+Tweet with new ending is #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the times but can' ll remember on him. It aside.
+NEW TWEET 
+ 
+ 
+Tweet is currently 144 characters long.
+Tweet complete tweet is : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the times but can' ll remember on him. It aside.
+Tweet is currently 99 characters long.
+Tweet has been trimmed to : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the
+Last char is e and it says (lastChar).isalpha() is True
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are while It's the
+Tweet with new ending is #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the time.  20
+NEW TWEET 
+ 
+ 
+Tweet is currently 109 characters long.
+Tweet complete tweet is : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the time.  20
+Last char is 0 and it says (lastChar).isalpha() is False
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are the time. 20
+Tweet with new ending is #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the time.  20 posted 6  It!
+NEW TWEET 
+ 
+ 
+Tweet is currently 123 characters long.
+Tweet complete tweet is : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the time.  20 posted 6  It!
+Tweet is currently 99 characters long.
+Tweet has been trimmed to : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the
+Last char is e and it says (lastChar).isalpha() is True
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are while It's the
+Tweet with new ending is #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the good, quote. .
+NEW TWEET 
+ 
+ 
+Tweet is currently 114 characters long.
+Tweet complete tweet is : #TimothyPizza _ N _ _ and i just love when with a way to be having of a single black while It's the good, quote. .
+Last char is . and it says (lastChar).isalpha() is False
+THE TWEET ENDS WITH SOME FORM OF PUNCTUATION. 
+
+.
+Working on 0
+#TimothyPizza_N__ is 17 characters long.
+The first char in #TimothyPizza_N__ is #
+Looks like #TimothyPizza_N__ starts with #, already.
+newTweet is currently +  #TimothyPizza_N__
+Working on 1
+and is 3 characters long.
+The first char in and is a
+and is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and
+Working on 2
+i is 1 characters long.
+The first char in i is i
+i is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i
+Working on 3
+just is 4 characters long.
+The first char in just is j
+just is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i just
+Working on 4
+love is 4 characters long.
+The first char in love is l
+love is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i just love
+Working on 5
+when is 4 characters long.
+The first char in when is w
+when is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i just love when
+Working on 6
+with is 4 characters long.
+The first char in with is w
+with is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i just love when with
+Working on 7
+a is 1 characters long.
+The first char in a is a
+a is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i just love when with a
+Working on 8
+way is 3 characters long.
+The first char in way is w
+way is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i just love when with a way
+Working on 9
+to is 2 characters long.
+The first char in to is t
+to is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i just love when with a way to
+Working on 10
+be is 2 characters long.
+The first char in be is b
+be is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i just love when with a way to be
+Working on 11
+having is 6 characters long.
+The first char in having is h
+having is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i just love when with a way to be having
+Working on 12
+of is 2 characters long.
+The first char in of is o
+of is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i just love when with a way to be having of
+Working on 13
+a is 1 characters long.
+The first char in a is a
+a is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i just love when with a way to be having of a
+Working on 14
+single is 6 characters long.
+The first char in single is s
+single is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i just love when with a way to be having of a single
+Working on 15
+black is 5 characters long.
+The first char in black is b
+black is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i just love when with a way to be having of a single black
+Working on 16
+while is 5 characters long.
+The first char in while is w
+while is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i just love when with a way to be having of a single black while
+Working on 17
+It's is 4 characters long.
+The first char in It's is I
+It's is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i just love when with a way to be having of a single black while It's
+Working on 18
+the is 3 characters long.
+The first char in the is t
+the is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i just love when with a way to be having of a single black while It's the
+Working on 19
+good, is 5 characters long.
+The first char in good, is g
+good, is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i just love when with a way to be having of a single black while It's the good,
+Working on 20
+quote. is 6 characters long.
+The first char in quote. is q
+quote. is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i just love when with a way to be having of a single black while It's the good, quote.
+Working on 21
+. is 1 characters long.
+The first char in . is .
+. is not longer than 7 characters.
+newTweet is currently +  #TimothyPizza_N__ and i just love when with a way to be having of a single black while It's the good, quote. .
+ #TimothyPizza_N__ and i just love when with a way to be having of a single black while It's the good, quote. .
+NEW TWEET 
+ 
+ 
+Tweet is currently 116 characters long.
+Tweet complete tweet is : #abobrow what's worth all the internet that won't NOT there when it's more about so I can't do what you've God mean
+
+Last char is n and it says (lastChar).isalpha() is True
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are you've God mean
+Tweet with new ending is #abobrow what's worth all the internet that won't NOT there when it's more about so I can't do what you've God mean okay did it was ?
+NEW TWEET 
+ 
+ 
+Tweet is currently 133 characters long.
+Tweet complete tweet is : #abobrow what's worth all the internet that won't NOT there when it's more about so I can't do what you've God mean okay did it was ?
+Tweet is currently 99 characters long.
+Tweet has been trimmed to : #abobrow what's worth all the internet that won't NOT there when it's more about so I can't do what
+Last char is t and it says (lastChar).isalpha() is True
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are can't do what
+Tweet with new ending is #abobrow what's worth all the internet that won't NOT there when it's more about so I can't do what Not to notice tell this 7 Fuck.
+NEW TWEET 
+ 
+ 
+Tweet is currently 131 characters long.
+Tweet complete tweet is : #abobrow what's worth all the internet that won't NOT there when it's more about so I can't do what Not to notice tell this 7 Fuck.
+Tweet is currently 99 characters long.
+Tweet has been trimmed to : #abobrow what's worth all the internet that won't NOT there when it's more about so I can't do what
+Last char is t and it says (lastChar).isalpha() is True
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are can't do what
+Tweet with new ending is #abobrow what's worth all the internet that won't NOT there when it's more about so I can't do what enough again. Why holy that,
+NEW TWEET 
+ 
+ 
+Tweet is currently 128 characters long.
+Tweet complete tweet is : #abobrow what's worth all the internet that won't NOT there when it's more about so I can't do what enough again. Why holy that,
+Tweet is currently 99 characters long.
+Tweet has been trimmed to : #abobrow what's worth all the internet that won't NOT there when it's more about so I can't do what
+Last char is t and it says (lastChar).isalpha() is True
+TWEET DOESN'T END WITH PUNCTUATION, CREATING NEW ENDING
+The last three words are can't do what

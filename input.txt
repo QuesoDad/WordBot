@@ -1,76 +1,2591 @@
-This is a placeholder file. During installation and setup this file should be moved to /Dockerdata folder.
-
-Replace this file's contents with the corpus text you want to train on.
-
-As a suggestion, I've found using Regular Expressions to clean text in Notepad++ works well.
-
-You can use Regular Expressions (REGEX) in Notepad++ by bringing up the Find window, going to the Search Mode options on the bottom-left, and selecting Regular Expression.
-
-The training system doesn't support special characters well, so it's a good idea to clean them out.
-
-Find non-asscii characters
-[^\x00-\x7F]
-
-To take out these characters:
-
-1. Go to the Replace tab in the Notepad++ window.
-2. Enter the expression and leave the replace with section blank.
-3. Go to the top of the file.
-4. Click "Find" once.
-5. Click Replace All.
-
-Use these steps to clean up your corpus. Keep in mind long sentences and prose are harder to pattern match for training on basic grammar. Consider putting a gap between sentences and selecting to remote sentences over a certain length. For example, Twitter likes 140 characters, so setting Sequence to 160 give enough space that the training can pick up on ending sentences with punctuation.
-
-There are additional Regular Expression commands that I've used below.
-
-Find capitalized words (The 5 is how many capped letter recurrences are allowed
-([A-Z][a-zA-Z0-9-]*[\w]{0,1}){5,}
-
-Select any line with the words “Project Gutenberg” in it.
-^(.*?)Project Gutenberg(.*?)$
-
-Find incorrect capitalization
-[a-z][A-Z]\s
-
-Find all Capped letters and put a space in front of it
-([A-Z])
-Replace with:
- \1
-
-Find all numbers (With match case turned off)
-(?![a-z])\w+
-
-Select anything between quotes
-("([^"]|"")*")
-
-(^|\.)[^"]*\K"(?=[^"]*(\.|$))
-
-Select from “}” to “{footnote”
-(\{footnote).+?(?=\})
-
-Select Text in Brackets
-\[(.*?)\]
-
-Find non-asscii characters
-[^\x00-\x7F]
-
-Find every @twitter name in a document
-
-([@])\w
-
-Find URL
-
-(http|ftp|https):\/\/{1}(\S*)
-
-Find all duplicated lines
-
-^(.*)(\r?\n\1)+$
-
-Match any text blocks over 140 characters
-.{140,}
-
-Match all RT
-RT (.*)
-
-Match all #Harmonblock2017
-(.*) #harmonblock2017
+I'll make sure the original remains here just for me. It's part of my heritage.
+ 
+The country will be taken for a very, very long walk, and it will be unleashed, and it will still be a very good boy.
+ 
+Talk about dog whistling.
+ 
+@garywhitta i believe they'd call it that but does anyone actually know there were nazis there is what i'm saying
+ 
+yeah i don't even know, i retweeted gleefully taking hate speech rally at face value then i was like, wait, who has a hate speech rall.
+ 
+@mcslackens @midnight haha
+ 
+thread contains good vitamins.
+ 
+@ANDREWTI catchy!
+ 
+@MollyJongFast This makes me wonder what you thought the joke was
+ 
+@codyhe11er good morning
+ 
+@MacAffinity iOS: The scaling constraint bug is still there I'm sure you know that
+ 
+If that's a joke, then it's a joke which, like Stephen Miller's head, may owe some of its off-putting shape to its clumsy delivery.
+ 
+@Viss no but that makes me thirsty what is it?!
+ 
+I think you're saying if I write a rom com about an unlucky Brookstone manager abducted by a wizard on amphetamines it could net 3 billion.
+ 
+@matt_hilker @zilverback i definitely do have a bow!
+ 
+@JLongb0ne @wylie102 @Sethrogen If you didn't know then WHY DID YOU STA
+ 
+Well if he's going to use my cancer metaphor I'm going to start saying Fascism needs to hasta la not be backinator.
+ 
+@_ClaireConnelly @tford017 Ha! Invisibilia. That was it. Latest season
+ 
+@eyedoteye Is it fruit water?
+ 
+@liljellyfish_ @JustinRoiland Holy crap. Or holy pickle. That's quite a friend and friend's mom. Happy birthday!
+ 
+@Fay2 @PreetBharara Then I'll follow him!
+ 
+@MayHapsaWaffle Well now you get nothing though
+ 
+@xlcomedy I need to see more credentials before I give you access to my feelings
+ 
+@toxicBiohawk Did you see that bunch? I blocked them. That shit was insane to me.
+ 
+@erudaituu @rooosterboy @MikeStuchbery_ @getongab trust me dumbass you're a troll
+ 
+@MikeStuchbery_ This is the dumbest thing I've seen on Twitter all week, and I exude and attract dumbness
+ 
+@Come_N_Play i would love to come back
+ 
+@vitorwy @obiraaijmaakers @kaitlinsm @nke_ise @xiotex What would be the worst case scenario if you weren't helping out here
+ 
+Now here to follow 74 responses telling me Belle and Sebastian is only the name of the band and that it has 7 members because comedy
+ 
+@90minutetape @danguterman @notanothersarah @MoistFalcon @DarkKingZoro @crashrosbe @EricaHayes87
+ 
+@codyhe11er I was a thoughtful husband
+ 
+Am I getting this right?.
+ 
+@johnclavis @Alex4Facts @ryanoneil Oo! Oo! The sidelines of a Nazi parade!
+ 
+@brtnlewis These sound like advanced classes. I'm saying, listen to your scene partners, say yes to them and help them move forward.
+ 
+@g0inDownSwingin where'd it go I tried to retweet it and it said it was gone!
+ 
+@Alex4Facts @ryanoneil If the scene is about basic improv class and you don't know what that is, don't enter and take high status.
+ 
+@DorZL non sequitr entrance
+ 
+@exzisd listening before entering please thank you
+ 
+@adamgreeney trying
+ 
+@BGOOCHY stop competing for status
+ 
+@MCSVoice see last rule thanks
+ 
+And possibly the biggest rule of all? Stop TRYING to be funny. You're in someone else's scene. Help them or EXIT.
+ 
+No questions. No denial. Listening before entering. Don't compete for status. Teamwork. Move the scene.
+ 
+I could defeat fascism overnight if I could buy everyone in America a basic improv class. YES AND.
+ 
+@LouiseW17533234 @nytimes embed
+ 
+@Sathnam @Glinner I'm glad to see you guys aren't using the ??
+ 
+@tara_constance Don't you dare act like Tapper Dan doesn't have his own draw
+ 
+@addisonwoodside @RobSchrab texted it to me
+ 
+@fraac1 Haha
+ 
+Jesus, that show is more relevent than I realized before I started riffing that metaphor. We're terrified of literal white walkers right now
+ 
+Oh! Just started. Does the little guy marry the hooker? Yes I know he's with them! I'm not against you. We all hate...nationalism walkers.
+ 
+@johnclavis When friends said you voted for Nader, that means you voted for Bush I was like fuck you, bipartisan fascist. (Deep breath) (DEEP sigh)
+ 
+@johnclavis (quietly) I voted for Nader.
+ 
+@johnclavis Ha
+ 
+I was anarchist when tyranny was Republicrats and my beard was brown. You guys are wildlings, I'm that sad, fingerless Onion Knight guy..
+ 
+@sh0velface @RickandMortyPod @JustinRoiland It's got damn!
+ 
+Take a break from politics to play and learn music with iTrump. Like having a trumpet in your pocket! iTrump: The name you can't forget!.
+ 
+Maybe took a PR escape hatch from having their global interests weighed against jobless swing staters. Capitalism: Nastiest Woman of All?.
+ 
+@nicklesbe I can not believe it without clicking on it!
+ 
+Mine references Family Guy. But if she referenced Community it's possible I'd try to bend it into a discount.
+ 
+@males_oliver @TheMysticJem no no I'm sorry i didn't mean to imply you were being demanding! i understand and I appreciate your appreciation!
+ 
+@Thesixler @behindyourback That's okay! Don't be sad.
+ 
+@StorySlug @behindyourback yeah but that's....cooler - aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah
+ 
+@behindyourback We need a name for people who have to do their best to not lash out when opposing bad things becomes popular. First pitch: bad
+ 
+whoever matched this photo with this headline is getting a promotion and I'm downloading this trumpet app right now.
+ 
+@QuinnHudson6 well now i feel twice as bad.
+ 
+@QuinnHudson6 (miiiiight have searched for alternate phrasing had I known it would be airing during civil war 2)
+ 
+@funksoulbrotha3 @questlove too soon? fair enough
+ 
+@QuinnHudson6 white list. he means he took jerry off the list of exceptions for the kill bots, if jerry steps into the garage, he'll get killed
+ 
+@jamesbot9000 who told you it was the worst
+ 
+A world in which there are Eight Jan Michael Vincents and Sixteen Quadrants. Every R&amp;M Universe So Far -- Vulture.
+ 
+@abigailseymour @ryanridley @MikeMcMahanTM @AlfRuxpin @chrispiers Hahahah
+ 
+@questlove Okay but to be clear I can't tell his statue from the others because I'm WOKE
+ 
+They got James Woods and the White House but let's be real we got all the badasses.
+ 
+@AlfRuxpin @ryanridley @chrispiers You mean because Ridley's Jewish or because he's the most feminine of the writers?
+ 
+@AlfRuxpin @ryanridley @chrispiers Incel? Haven't heard that one
+ 
+@ryanridley @chrispiers (2/2) Here's the backlash:.  the backlash isn't backlash, it's a death rattle from a dozen shitty, broken souled twits
+ 
+@chrispiers @ryanridley Sure good idea!
+ 
+@males_oliver Ha. That is a very strange character to want to see return. I appreciate the courage it must take to express that particular fandom
+ 
+@JustinHubbard19 That funding was cut. The idea was that it would eventually trickle down
+ 
+@hardwick i can't sleep either
+ 
+@danguterman What was he hoping his peoples would say? He already knew he needed milk
+ 
+@TheGoodDrBones Okay ha well that makes it even more funny to me holy shit
+ 
+My favorite part of this video is around 36 seconds when it definitely sounds like someone, somewhere, tries and fails to play a trumpet
+ 
+@Scoutycat2 @acitrano @ACSOSheriffs Don't forget you have to hit it twice.
+ 
+damn it was almost off then this amazing shit starts. This is department whose job will be preventing next Charlottesville. RT'd a nazi oops.
+ 
+@RheaLove253 Aw. That makes me sad. Hangry.
+ 
+@therealduckie I need more context here
+ 
+@ghost_ass_kid Happy Birthday! Is that okay that it's just a reply? You're not requesting a whole outward public shout are you?
+ 
+@CALI_URSUS What's this?
+ 
+@Dale_Sams Does she write your jokes
+ 
+@chooch_1080 your mom!
+ 
+@sblackmoore @mightybattlecat James Woods with my weekly reminder to thank Christ Bruce Willis isn't on Twitter
+ 
+@Senidolce @immigrant4trump @realDonaldTrump wow that sounds serioud we should totally impeach her
+ 
+@immigrant4trump @realDonaldTrump well that settles that, we should definitely impeach her
+ 
+@skvverrel @RickandMorty @danguterman @FullofErrors @TomKingTK @ryanridley Ha
+ 
+@gamermainer @StephenByrne86 @RickandMorty @JustinRoiland Awesome!
+ 
+@danguterman @FullofErrors @TomKingTK @ryanridley @RickandMorty Haaaaaapy biiirthday!!!
+ 
+Yeah it's totes cray how hard it is to get ahead in politics without being elected to any office you entitled dope lick our taxpaying taints.
+ 
+Whoa, slow down, Speed Racer. You know how this works. First you notice a group of people are truly bad. Then wait 3 days, THEN dignify them.
+ 
+@special_c15 @MikeMcMahanTM @N8_rocks That's very flattering! It's great to finally see people get to see this stuff!
+ 
+@DaedalusBC304 @N8_rocks Then I'm a genius!
+ 
+@elizalovesyou @TeenVogue Stop trying to hijack a solid joke by convincing yourself I was in any way critical of Teen Vogue in it.
+ 
+Silver lining: Alec Baldwin, All Mexicans, 17 basic cable pundits and a disabled reporter just found out they're retroactively dignified.
+ 
+11:00 Karate Kick a stop sign 11:05 eat a box of bullets 12:00 threaten to sue Wonder Woman.
+ 
+@spenser4hireart There's nobody on the other side of your issue
+ 
+@ayymaverick Meh
+ 
+@chrisbauewrites @No74225123 Not here for this horse shit discourse, take it on the road, stop tagging me with it, I will block you
+ 
+@chrisbauewrites I don't give a fuck
+ 
+I'm too old to tell when he's kidding but I watched his other videos and am now a fan
+ 
+To Do List 1. Bow hunt a warthog 2. 100 Pushups 3. Use tiny phone to demand people's plight be given fair coverage in dating tips magazine.
+ 
+@gaymansblog @TeenVogue I think there's a riveting piece about that in their sister publication, Twentysomething Ignoramus Quarterly.
+ 
+Fond souvenirs from our journey to this timeline will be Tiki Brand Product's Nobel Peace Prize and Teen Vogue's Pulitzer.
+ 
+@AWALLFilms @JustinRoiland @timheidecker @ericwareheim Can't wait to find out what this is about
+ 
+@N8_rocks There was a line deleted at one point where drunk Rick says I love you Noob Noob...all approximately 98 pounds of you. Shoulda maybe kept
+ 
+This place is a sewer
+ 
+This strangely ideal viewer is not a bot!.
+ 
+@Delayed_Melody Look I'm biased but I have to go yes on this issue
+ 
+@ohjollygeez I heard it but I'll take it!
+ 
+@knightofeffect That heart emoticon just saved you
+ 
+These are not meundies. Don't want to false advertise. I can check the label when I get home and and have a better back and weigh less.
+ 
+Let's do it.
+ 
+@iKWLZ Shit shit shit, I love you too
+ 
+Okay raising the good kids is already getting complicated.
+ 
+@OfficialSkyeYT What did you ask?
+ 
+you know what, yes, and you deserve to be taken to the zoo and it's not fair to you that I spend all my time beating your shitty brothers.
+ 
+@SenatorIvy @JustinRoiland well everyone knows Justin is corrupt as fuuuuuuuck
+ 
+yeah, so, that's already two people right there, it's also a shitload more people. what exactly are you arguing for other than attention.
+ 
+@MSico i'm sure that's the case but that doesn't change a certain code of craft at play.
+ 
+Yes. Which I believe I un-retweeted as @RickandMorty when i caught it but thank you for reminding me to go retweet it myself it was great
+ 
+you're not wrong but you're tactless judgmental garbage...? Are we doing this right?.
+ 
+No no. TV shows aren't people and have no politics. I am a person, if you follow my account, you hear me, that's fair, i speak for me alone.
+ 
+i mean...world's smallest violin for that guy but whatever
+ 
+before i knew
+ 
+@DJDaddi01 thought i'd add to the diagram.
+ 
+You know how your singing sounds better in the shower? Apparently white pride feels cooler through a laptop.
+ 
+This is what a civil war hero looks like. Maybe new statues are in order..
+ 
+That account knows what it's talking about! Also HAPPY RICK AND MORTY DAAAAY I meant to say as MEEEEEE!.
+ 
+@J90FOO @RickandMorty Thanks!
+ 
+@Charlie3tweet Don't tell people what to do and stop asking other people to do things for you.
+ 
+Waiting for Twitter's permission to decry an active fascist coup is like waiting for my liver to stage an intervention.
+ 
+Sometimes you gotta let your inner Michael Rappaport do the talking.
+ 
+@HippoJuiceShaun Your compliment structure has first act problems
+ 
+WHAT HAVE YOU DONE.
+ 
+@SmackFresh I know it's been over three years but do you still want an answer to this question
+ 
+While I'm here I guess I'll just check to make sure nothing big is happening okay cool looks like we're locked and loaded WHAT THE FUCK
+ 
+Let's queeeeeeeeest!.
+ 
+@yes_im_awake yes but they're united
+ 
+by the way i had deleted my twitter app for the week off my phone but forgot the ol' ipad. cutting this relapse off now peeeeeeaz ooot ?????
+ 
+@guttamothafucka nobody's getting me, i do like spotlighting certain breeds of dick but we all are feeling ample fan satisfaction, don't worry!
+ 
+@johnhorner i think so! that's crazy!
+ 
+@KingSupertramp_ i swear i'm getting back on the elliptical monday
+ 
+@DCTrotter @EdouardLaib @haydencohen matters! thanks!
+ 
+@MrSweetpickles thanks! we never will. i mean, you'll be sick of it before we are!
+ 
+@GeekFurious if i hug you for saying this will it reveal too much petty insecurity
+ 
+@koakowskiarts Yes i caught it. Caught his whole timeline. You can track him figuring out he'll hate the season before it starts airing.
+ 
+@ProdgeTheDM @Hadas_Gold there ya go killin' again!
+ 
+@jfvena @karterhol @RickandMorty thanks!
+ 
+@aka_yatzy why
+ 
+#SpeakEasyRaid
+ 
+@Jimalytics I missed the part of my tweet that recommended anyone die on any hill or requested any feedback
+ 
+@WiedenKennedy @billautomata you guys may have washed your money since the sixties but you built your empire on sex tunnels
+ 
+You're losing poor white voters / You said they loved me / they're worried about their pills / DESTROY THEIR PILLS.
+ 
+We have been...Bourdained!.
+ 
+@HellaBandwidth We'll find out if you're racist some other way when I get back
+ 
+@Sethrogen @MarcBodnick I disavow this needless competition and so does marijuana which was sent here by God to make everyone equally fun
+ 
+I don't know which position on therapy you're reconsidering but either way I can use this tweet to strike fear into my therapist, thank you.
+ 
+@G0snar I hope misspelling a word while grammar checking a stranger on Twitter can be your rock bottom
+ 
+Sending this thread back in time to my teenage self, hiding from society on a computer: It follows, kid. KEEP MOVING, IT FOLLOWS.
+ 
+There is SO much to eat out there. Find the strength to make it food.
+ 
+It'a RICK AND MORTY DAAAAAAAY
+ 
+Good therapy to have the harmontown pre-show be me tweet-scolding less than appreciative TV viewers
+ 
+Okay it just looks like me tweeting something confusing and a link. Got it!
+ 
+Testing what this looks like on this screen when I quote retweet it.
+ 
+Poetically enough, kid, that hair was closer to both of ours than the next guy's. hello with good. what about you?
+ 
+@mdr5256 Maybe everyone imagines everything. Maybe putting thoughts into words isn't your thing. Maybe watching TV is stressful. Talk to dad maybe?
+ 
+Let's get Obama something special for his birthday like a series of events that inadvertently spotlight his merits and possibly kill us all
+ 
+@mdr5256 I see. You disliked it, and were thinking I might also dislike it. Because you suspect what you disliked is the result of other writers.
+ 
+@albinoz12 @RickandMorty What people?
+ 
+@mdr5256 But then what? I go to the office and say a guy on twitter didn't like the episode and I realized I agreed, what happens because of that?
+ 
+@KyleHamlin As long as it's renewed and Justin and I are proud of it I reckon! We currently want to do it forever
+ 
+@chelseaperetti @jenstatsky this was my timeline.
+ 
+@timwotherspoon @mdr5256 Sweet! Glad to hear it
+ 
+@dtyrrell23 It's...not going to change that much when you're where I am in THAT department
+ 
+@JordanJesus Working on it! I mean...working on working on it at least...there's glimmers of hope in the distance for the first time in a long time
+ 
+@NotJEvanCurry Thanks!
+ 
+@mdr5256 Why are you telling me
+ 
+@LaVojeto @michelemorrow @n3koboyy @GameGrumps @JesseCox Blech
+ 
+@JasonWScott Thanks!
+ 
+@ALxBro you got it
+ 
+@6oh4p either way?
+ 
+I'm embarrassed to say sometimes I'll curl up by a fire with a glass of brandy and a Presidential speech. I can tell this one makes the list.I've always had deep reverence for the job of Presidential speech writer. Partisanship aside, there's a craft to stirring the soul like this.no matter which party is in office i'm always kind of a sucker for the inspiring speeches.@ignomaniac.
+ 
+@Braunger i know what it is but I can't say. okay look he already paid for the wall as a gift and wants it to be a surprise
+ 
+there's news about this coming within weeks is all i can really say...well for weeks. ha. sorry. thanks for your patience.
+ 
+Why does the mainstream media have to spin this story negatively. PEOPLE ARE USING LINKED IN.@Thesixler @Titochuk If there's voice editing software, how can we trust the Radiolab episode@Titochuk @Thesixler What is it, president doubles?
+ 
+@Pomathan @lutongwang @kumailn Who are you talking to
+ 
+@lutongwang @kumailn Jesus that is a somber and effective quote, I'm gonna be repeating that
+ 
+@kumailn Pics or it didn't happen
+ 
+@fortunesfool73 I don't follow him but I can block you if you like
+ 
+@LilAbner_45 @riddysback @billymflynn @realDonaldTrump Golf Magazine Leftists
+ 
+@bigjaw1379 @WhoseRyanStiles Good job. His joke almost made everyone laugh at a President but you stepped in and saved the day
+ 
+Don't even sweat it. It's your word against an anonymous rumor. Why would anyone believe that over you, let your reputation speak for itself.@CharlieaWhite I did it! Did you see?
+ 
+@Alwaysimplied @nytimes You're having a conversation with yourself
+ 
+@Alwaysimplied @nytimes It's a review of a standup show
+ 
+@okaykoko @nytimes It's a tweeted link to a full review of a standup show, the trans thing is addressed
+ 
+@NothinOffensive @nytimes It's a review of a standup show
+ 
+@visionwest1 @nytimes Good one
+ 
+@InfoReynold @nytimes You
+ 
+@DonCoffee2 @nytimes Way to blow the lid off of something
+ 
+@BLUBBERWANG @nytimes Thanks for not saying fuck, let's keep twitter classy
+ 
+@USA_ManUtd1982 @nytimes Weed doesn't kill brain cells
+ 
+@GopHostile @nytimes Read the article
+ 
+@vitalymontreal @JeromeELord1 @nytimes It's a review of a standup show
+ 
+@towermandan @nytimes He didn't write the article and can't hear you
+ 
+@JoeyJoShabadoo @nytimes It's a review of a standup show.
+ 
+In case you ever partake in the guilty pleasure of preemptive blocking, the replies to this post are like the cove but if dolphins sucked.@codyhe11er beeeeeean
+ 
+@Czernobog SNAP INTO A SLIM JIM
+ 
+@Seven16 Henry James, we are brothers
+ 
+WHY IS THE YOUNG WOMAN'S ONLY CONCERN ABOUT HER FUCKING HAND HEALTH
+ 
+Okay. So. Here's the thing. Um. How do I put it. I guess. Well. Let's say this: Do everyone else. And. Come for me last. And. I own a gun..First of all, I do. Second of all, true props are unconditional. If something's worth saying it's worth saying ON YOUR KNEES TO A DEMON.@robbymcchargue who the fuck wouldn't like it?
+ 
+God damn millennials. Is it still good to be stupid fresh.@alisontafel that was the essence i got that i couldn't remember
+ 
+@LovelyAndyUK @AtScottCairney @donttrythis oh i'll take your word for it and delete it to be safe
+ 
+Not to be a comedy snob but the concept of the Statue of Liberty as a lady is not, by itself, a radical departure from the creator's intent
+ 
+@BrianWCollins THERE'S A TAB YOU CAN CLOSE?!
+ 
+I'm going to spend the next six hours trying to decipher whether or not this person approves of me and it's going to be worth it.@TouchTherapist @midnight Haha, I wish all the symptom drawings made it into the show, they were great
+ 
+@ACLU I think a lot of Americans could be more critical of America if they could just understand it's a she!
+ 
+@ecnielsen It's smart to set goals you've already accomplished by the time you're done setting them!
+ 
+Oh I totally retweeted it at the right time. I felt bad for nothing! @midnight! Sorry I got my cancel germs on your show!
+ 
+I very much failed to retweet this but, I mean, that's tragically fine now. So glad I got to do another one bless you @hardwick and crew.@DaneDeMuth Thanks! I say wait it out. More than half the country at this point really wants to see this through and if he's innocent he'll be fine
+ 
+I didn't want to say anything but I've noticed every year there's less Phil Collins in jukeboxes..
+ 
+@EthanGeisler i don't perceive you as smart or funny enough for that judgment to hold an ounce of weight
+ 
+@DaneDeMuth Sounds like we've got a pretty big problem on our hands. Any plans to fix it or should we just wait it out
+ 
+I devour all Olbie niblets but this one really hit the spot. There's a special collector's edition tweak on the traditional ending.@sepinwall You just got Age Outed by the Age Outer!
+ 
+Is anyone else nervous we may cross a threshold where the only option is to root for him? He's going from Kirk in Dear John to Louie in Taxi.
+ 
+@timothy_boothe There's at least five people left in the country that would go down to get him and I want to seize that opportunity
+ 
+I'm forming a plan here. I need a mile-long trail of gold bathroom fixtures and a very deep pit.@AH_AdamHughes Ha
+ 
+@Matt_Lawson21 Off the menu? Because of my typo?!
+ 
+@nakedirish YOU
+ 
+@nakedirish Fuck yoo!
+ 
+Maybe I'm friends with someone named David Throbes?
+ 
+iPhone makes me retype all my stylized slang and profanity but thinks Game of Throbes is a thing now my friends think I'm a FUCKING IDIOT
+ 
+@ErnieWithaHat @mikeypredsfan @Winston__Booth Education and medicine aren't responding well to the laws of capitalism that's for sure
+ 
+@sepinwall So, Kevin couldn't wait
+ 
+@stevesilberman Wait til you find out the next guy's name is Borat
+ 
+Fictional kids are off limits!.@SeanDBpierce Hi!
+ 
+So. If he signs the bill, it's pee tape time? If he doesn't, who's rigging our 2018 elections, domestic hackers that hate net neutrality?
+ 
+How about a haiku? UFO won't start / I hitchhike through Terran snow / small green thumb trembling.@RealEagleBites @realDonaldTrump I'm afraid you'll fit your thoughts into one fucking tweet, Chatty Kathy
+ 
+We do have to give you this. The media acts like you do everything wrong but you've barely slowed the Obama Climb.@trashboatirl i know it, i know it! thank you
+ 
+@mediumvillain @adamjohnsonNYC @ByYourLogic i hate it when cynicism is accurate
+ 
+@Phonycian @adamjohnsonNYC @ByYourLogic oh snap dude you totally either satirized a joke you didn't get or ripped it off daaaaaaamn
+ 
+@MitchellCares @adamjohnsonNYC @ByYourLogic that's...quite literally a third of the joke
+ 
+I'm seeing this could be interpreted as the shrink telling me about gf's sessions. that would be..dark. it was other way around and funny.@TheOnlySanchez2 the therapist. the therapist said it.
+ 
+@OsephTheGreat you're
+ 
+@DSK_Daniel but i love her
+ 
+@AlexanderPeeh what are you nuts she's a woman
+ 
+@trashboatirl you know, when i saw i had like 40 replies to this tweet i thought i was popular. But hi!
+ 
+@DNABeast it's the secret to a long relationship
+ 
+@GeekFurious more accurately referred to as your friends that don't work for me
+ 
+@JordanBloch @codyhe11er i don't have to click that to know it's the grapefruit tutorial
+ 
+@Belmersaurus @wac415 @ArchAtiba are you serious?! that's so fucked up
+ 
+@philorphilip well it doesn't go in your vagina dummy
+ 
+@MCWarburton @mindykaling doing a Gilmore Girls run in The Mindy Project is like pole catting at a Nickle-Me-Twirl
+ 
+@codyhe11er Okay but once I'm washing it, who needs a mouth
+ 
+@codyhe11er Eat a dick
+ 
+my girlfriend and i see the same therapist and i just found out that loving me for a year is considered proof that she can do anything
+ 
+Here's me and Scott Adsit tenderly kissing..
+ 
+glad you guys dug the episode, by the way, i've become too scared to read reviews but i heard it got good ones and viewers were happy, yay
+ 
+Just want to mention that if a national tragedy occurs, a lot of people will suspect orchestration. Not to imply anything, just, um, don't.@The_Trump_Train @realDonaldTrump I admire your commitment sir
+ 
+True but way worse things happen every day to people that didn't actively cause their misfortune and aren't sociopaths.Is that good? Like, it was hot, or lit, right? I hope you don't mean it was burnt up, unless being burnt up is good.@T_Ravis_Trying Ketel One
+ 
+I miss the mooch
+ 
+??.
+ 
+@TheFallenTitan @NancyOBeeMIT @BigOleCynic Awwwwwwwwwwww
+ 
+I happen to disagree with this, HOWEVER one of the 800 things I learned from Hudson Hawk is never dismiss an idea..@Kadomox I hear you my man
+ 
+I think it's fucked up that the people that feel that way don't delete their tweets and the people that want to lead us do. That's fucked.
+ 
+All I want to do is die sometimes
+ 
+There's a thousand elements of Hudson Hawk that I truly think, if you heard them pitched, you'd be like that sounds awesome.
+ 
+I fucking seriously mean it
+ 
+Shout out to innocent person I absolutely would have killed if ride sharing apps hadn't happened. Love you. So sorry I would have killed you
+ 
+Someone tell High School Dan Harmon how fucking awesome Anne Frank turns out to be.Will someone please remind me, if I become a mucky muck, after we knock out that community movie: Hudson Hawk remake for real
+ 
+@benschwartzy Hahaha
+ 
+We had a good run old man.
+ 
+@mightybattlecat Hahaha
+ 
+@JenKirkman telling people they shouldn't consider the possibility that politicians are evil is like ... a weird fucking hobby. TeamKirkman4Ever
+ 
+@JenKirkman 1 piece you post explains why reporters aren't going there and i get that but don't get why the public is so selectively prudent about it
+ 
+HAPPY RICK AND MORTY DAAAAAAAY
+ 
+@JenKirkman you saw this one right? kinda sets the scene.
+ 
+The replies under this article should be put in a time capsule. Future historians will have questions that we're answering plainly every day.@morganword1742 @thehill you want the country to do one thing at a time
+ 
+My dog barking at drawn lines representing the idea of a dog.
+ 
+@TotallyLaime I'm not retweeting it so you don't have to start your day with 5 teenagers telling you Hilary forgot to shake Benghazi's hand
+ 
+@KerianneHarting @IsaacBloomberg Good point. New pitch: put White House on apple crates, add three stairs to the front door?
+ 
+Retweet to bring all the Senators that voted to stop punching our face a nice cold beer while they fall asleep in their armchair
+ 
+@garywhitta Dude JACKPOT
+ 
+Just a pitch: Show him a red lobster placemat, tell him it's an order signed by Obama denying Presidents the right to swim to Atlantis.@zachxmcclune Why do you care how I look?
+ 
+@rob_dukes agreed
+ 
+@JohnDiesattheEn i prefer to jump the gun when it comes to tyranny aversion though
+ 
+@tomcheater @1080mofo @denofgeek I have no idea how that shit works
+ 
+Painful for HQ fans, but imagine how stoked I must be that this isn't my fault!.@random_tangent @BrianWCollins Same but I was 20 something and my BOSS WROTE IT so I NEEDED and wanted to like it and still had to flee
+ 
+@BrianWCollins Spy Hard
+ 
+Could some crime reporters help out? I'm sure the health care reporters are great I just doubt one chooses that gig for the adrenaline fix.Constitutional crises are never convenient but this invention has been robbed of its historical spotlight.@tutumichelle @SarahThyre He's literally famous for not being able to read
+ 
+Dear Banana Scouts, I'm apalled by the behavior of the famous gorilla you flew in to pose with my son, his outfit used to represent stuff.holy shit Ozark holy shit Linney and the Bates it's my favorite
+ 
+I'm kinda healthcare ignorant but did a rich dude just spend my money extending his life so he could legally shorten poor people's lives.Damn bro, wrong weather for the henley I don't care how rad I look
+ 
+eat shit Lawrence!.Sometimes Twitter wins you back.@Thesixler @michaelianblack what can i do to support this road trip movie combo
+ 
+@JenKirkman THEY'RE JUST TRYING TO - oops never mind
+ 
+@realJoeWojo i loved the eggs
+ 
+by the way i take no offense from people wanting the cartoon, it's better than if people didn't want it, i just thought that was funny
+ 
+July 30th lady geez!.@ChronicX0469 oh my god, big bad devin skaggs breaking it down #represent #maga
+ 
+@HumorForFatMen @AntiGlib dumb
+ 
+@Gwlsy yeah well there's a fucking dog in it who cares
+ 
+Okay but is the article leaving something out, like he called upon the GOP after attending a middle school's live adaptation of Footloose.@Molly_Kats @KarenKilgariff i don't know but i'm pretty sure her superhero logo is her eyebrows
+ 
+@televisionary Someone from Twin Peaks blocked me?
+ 
+@dannychun To be fair, we kept scheduling this and you've pushed the meeting way more times than me
+ 
+I get this. Vegetables taste like I'm fat and sad. Pringles taste like I'm in the Top Gun volleyball montage. Sadly the vegetables are right.
+ 
+his favorite season so far.i guess i see why he'd delete his old tweets.Everyone knows chlorine dissolves poop in a swimming pool but why am I even saying that thanks for inviting me to your barbecue gotta go.no captions for EW photos so I'll tell you I said I'm pregnant with the future of television and EVERYONE LAUGHED.This M'F'er is NOT trying to ice skate uphill.
+ 
+I do advise keeping a sense of humor. Laughter could soon literally be the best medicine.Photo taken moments after @slevy79 informed the table that the apple pancakes at the Original Pancake House are outrageous.rickandmorty's photo.
+ 
+@stevesilberman I've heard some stories!
+ 
+A slice of my life - yes I got Cody's permission to post it.
+ 
+@Freedom_Alwys @KarenRylander @joshledermanAP Do you get blocked by a lot of people
+ 
+There are bathroom passes this year! But that means you probably needed to be in line since Monday.
+ 
+.@JustinRoiland here is our itinerary DO NOT SHOW THIS TO ANYONE SENSITIVE INFORMATION.@TheEvolNom i've pretty carefully assembled my politics to be compatible with everyone I'd enjoy having a beer with so I'm guessing I'd be miserable
+ 
+Just posted a photo.
+ 
+This is fantastic. Why not just retweet it, then, Dan, why do you have to get your envious blowhard joke curator pee on it just retweet it.
+ 
+@brad_merc Don't know or care. based on your response, I assume it's doing better than your non-profit ensuring fairness for pissy know it alls
+ 
+@cutebuttsaga just because all cool people are sarcastic doesn't make all sarcasm cool
+ 
+@LukeLandVO haha
+ 
+Musk tweeted he got verbal approval to make a thing he wants us to be excited about and got 700 replies telling him he needs paperwork
+ 
+@notch smug condescension is everyone's only weapon. it's weirdly also how you expressed support for me when i was getting gang tweeted
+ 
+@MacAffinity you probably already have this on bug list: embedded files can't be opened with a pencil-double-tap in touch gesture only
+ 
+Here for those that don't like gram links. Very proud of this. ipad pro using @MacAffinity - can't oversell Affinity Photo!Fucking Badass #MAGA.@fubarbooyah @PassengerShame Do you keep saying it because nobody told you it was dumb the first time?
+ 
+@BLPrime @jessiechar My friend @JeffBryanDavis had one of those happen and the woman doing it acted confused and offended when he objected
+ 
+Final boarding call for service to, just guessing here, Miami.
+ 
+i can't retweet all of them but there's joyful stuff happening in my replies.
+ 
+PNG.Now wait a minute Tiny Lumberjack Don where have you been my entire Photoshopping LIFE.Thank you for using your college degree to explain how little I understand today's idiot
+ 
+CC @TheEricGoldman @IGN #CraigHarris #Found.Crane shot. Explosions on skyline. Feral cats fight over what we hope is a human doll. Mr. Bojangles plays. Credits..
+ 
+Discounting fake news I think it's close to 100 percent! I don't see anything else that needs doing, let's all just relax and have fun.@mattduss Sorry! Winner!
+ 
+What is my purpose You're an office building's security guard  Cool. Be right back.@garywhitta @MyTrackingBoard @UCPisTV @C_Hardwicke That's new best friend talk!
+ 
+@MacAffinity And as a special thanks here's a mesh warp of Rick and Morty creator @justinroiland that I made on my iPad w Affinity during press day.@MacAffinity Great! Thanks for responding! It's good to know I'm not just using it wrong. Your app is miraculous and I can't wait for Designer on iOS
+ 
+This tweet is defining it on more levels than you know..@JustinRoiland and I are about to go live at.
+ 
+I was worried about Tillerson's lack of experience in that G20 meeting but it looks like he took direction well.@SarahThyre @LibyaLiberty don't forget the face he makes when sitting in the sun patiently waiting for a circling fly to mistake his shell for a rock
+ 
+@Glinner i thought the whole point of being gay was - ah, forget it
+ 
+@MacAffinity iOS user: looked online and guide. Is there something I'm not getting about ratio constraint in transform studio? Seems broken
+ 
+Agreed! Everything he did, he was doing to help and the more you can tell us, the better it's going to be for him. #MAGA #Truth #Helpful.Theory: He thinks idioms have to be licensed like music and he's trying to save money.@toddbarry Jesus Christ what is he doing
+ 
+@emilypheller @emilyvgordon @kumailn I haven't seen the movie but I'm not going to be told I can't @ someone
+ 
+WWJJJS (What Would J. Jonah Jameson Say).
+ 
+If we're going to keep putting this guy on TV I want to talk about him looking like Dark Future Old Matt @Braunger.
+ 
+Okay now what are we supposed to do in season 3 that lives up to THIS?.
+ 
+@MissDaisyBlooms and a flying donut to us all!
+ 
+Tonight on Harmontown: @GothamGirlBlue has some great recipes for millennials on the go but also we might talk politics and twitter a little
+ 
+going into what feels like an unprecedentedly joyful weekend, felt important to stop by and tell twitter to go fuck itself. Just for 2 days.
+ 
+@RobSchrab hey I'm outside your place for Schrab night, is the doorbell not working
+ 
+Thread..
+ 
+@billyeichner Congrats!
+ 
+These numbers would discourage a more entitled writer but I respect new media and did not expect to dominate over night.@deep_leviathan @Jadmai what show is that
+ 
+@Jadmai music band haha
+ 
+@DichotomusPrime I'm fine, that's my sad definition of entertainment
+ 
+@Sxdeways Thanks!
+ 
+@401experiment @bobberson2142 can't say it better than Vonnegut
+ 
+@Boogar_Sugar ha
+ 
+@G0snar don't tell other people what to be interested in
+ 
+@DillonMcCabe (walks creepily by your hiding spot)
+ 
+@Jadmai The problem with cop doctor is that he thinks he's judge, jury and executioner. he's not. he's cop and doctor
+ 
+@Jadmai i'm intuitive!
+ 
+Okay, look, man, I'm not a cop, I'm not a doctor, but I am a human being and I know what another.Yall motherfuckers can talk all the shit you want as long as you remember to hydrate PEACE
+ 
+@Brantiscool Stop watching my shit, poser! Or know every time you do that the dude that wrote it thinks you're an embarrassing 90 IQ shit face.
+ 
+@Brantiscool You wouldn't make eye contact with me if you were within 30 yards. I guarantee it. Do not attempt to convince yourself otherwise.
+ 
+@Brantiscool What you ought to think about is, the reason you like my stuff, and took it to mean I was one with you, is because you're manipulatable.
+ 
+@Brantiscool You just bitched at a stranger that wasn't talking to you about his language and pretty much implied your dick is hard while doing it
+ 
+@NeoRutty @G0snar @theadamgrace I think I only clicked on a celebrity racist rant arrest video so I could feel like it was 2016 again
+ 
+@JackDobbyn I need to understand if you're saying my question was stupid so I can know whether to block you.
+ 
+@jackcharlt I'd assume that's an apt description of any angry character worth their salt!
+ 
+By the way, was he actually racist? not trying to whitesplain, it's just that all I heard were bleeps and standard drunk dude patriotism
+ 
+Watched 4 mins of Shia Labeouf arrest because I was promised a racist rant while 30 books I bought for decoration judge me from their shelf
+ 
+@ignomaniac See, this, to me, is a nice response. Why is this so hard to figure out
+ 
+@TriGuyBren That's accurate enough an explanation yes.
+ 
+@Tobin_Maker Why would you leave a supermarket to work in a salt mine if you want to break a movie into 10 TV episodes
+ 
+@wonderbuoy Wait what?!
+ 
+@Taylorblake2001 Excuse me? Did you want my full attention?
+ 
+@_PatrickGerard_ STOP RESPONDING TO EVERYTHING I TWEET
+ 
+@_PatrickGerard_ It just sucks. It just stinks. It just SUCKS. IT SUCKS, YOU MAKE ME MISERABLE.
+ 
+@_PatrickGerard_ It's always sweaty and sad. And you wouldn't hear a peep from me if that was it...but the thing is...you default to criticism OF ME
+ 
+@_PatrickGerard_ And it always SUCKS
+ 
+@heathercampbell Haha
+ 
+OUT: satirizing treasonous collusion between homophobic tyrants by implying they're lovers. IN: boots!.Yeah I bet even if you just DRESSED like a lady president you'd get special treatment. You should try it! Like wear some silky stockings ha!.will resume, starting with funny wuts but spend this time thinking about how you address my majesty
+ 
+@Capm_Merica Letting this pass but THIN ICE brother
+ 
+@_Pinback I'll allow it
+ 
+@spookly_ WINNER
+ 
+@irishbucsfan I do picture you as that because you're sweet and humble and polite!
+ 
+@devxvda I'll give this a pass because it could be construed as siding with me
+ 
+@iowa300 DON'T HIGH ROAD ME! Just kidding thanks I think you're going to like it
+ 
+Peace among worlds baby.Yes let's all all stop talking about the media YOU FIRST, FUCK FACE.@ColonelFKassad Ha
+ 
+@BradWestness I remember everyone knowing Y2K was bullshit so you can probably be more worried about the things everyone's worried about right now
+ 
+This just happened @WhoseRyanStiles.
+ 
+I want my fake bipartisan globally oppressive multicultural first world empire back I was gonna get a Teslaaaaaaa
+ 
+I'm writing movies that will take years to come out, do you know how inconveniently timed a fascist coup this is, I was HAPPINESS ADJACENT
+ 
+@Klovar @Uppercut07 @SharlandNM I'm thinking more like that but look what happened last time I said it out loud
+ 
+@tftalbott Yes
+ 
+And grandstanding and defensiveness and grandstanding particularly about Russia Russia Russia and now he has found shyness
+ 
+...that these people were told they would not be in the meeting some time after they got there...
+ 
+I believe I read that he flew to G20 with many many people that thought they'd be attending the Putin meeting
+ 
+@notch it feels like birth probably felt. it sucks and you want to go back and nobody around seems to care but it's unmistakably better than before
+ 
+season 5 of doctor who is a god damn masterpiece, really embarassed i'm only seeing most of it now
+ 
+@RobSchrab @KarinaLongworth @edgarwright @newbeverly #MercyForSquid
+ 
+After I had a creative win to bolster me I did go back and read every response from today. And they're all nice except 2 or 3 guys.
+ 
+@TheNathanWaSho @cactusprak you're a different guy! But you did send me a photo so away we go
+ 
+@ErikRodriguez69 I like that.
+ 
+@formalcloud I can't think of a more needlessly stupid thing to be confident about
+ 
+@MiamiGrime oh I should watch that again I've only seen it twice.
+ 
+@random_tangent @Crackermack @DevinKofsky @TapeDeckChris @formalcloud a-fucking men. This virtue-signaling label is fucking insane
+ 
+@crashrosbe it was MELTING
+ 
+@pizzasauceboss oh ha I didn't look at your name I thought you were a stranger saying don't forget the condensed milk
+ 
+@pizzasauceboss levy put it on!
+ 
+@shahroseaziz EAT MY DICK I hope that feels better because I want you to feel better EAT MY DICK!
+ 
+@joehospodor STOP IT YOU SON OF A BITCH
+ 
+Being stuck is not because you're untalented or lazy and it's not proof that you're not a writer. It's being stuck, it is a thing.
+ 
+Just finished figuring out a story that took a year. Writers: don't insult yourselves when you're stuck. Employers: don't read this tweet.
+ 
+I was just forced to eat froyo with resees crumbles #putin #thisishowtheygetme
+ 
+I just ate an entire gyro in ..and I'm trying to make sure I don't exaggerate..I think I ate it in 48 seconds. All I have is my honesty
+ 
+here's one of my laborers with a dog head because I live beyond your illusory definitions of morality.@hudlion @altNOAA we can expect those ranks to swell
+ 
+It better not be Fake 2 Cents.I should be able to WONDER if I'm going to see 90 responses attempting to mitigate my humanity, that case shouldn't be AS closed as it is.
+ 
+I'm not reading your responses. Here's why: you fucking suck. And I shouldn't be able to guess that. That shouldn't be a predictable thing.
+ 
+It's already been a week since therapy? Jesus Christ I've got ten minutes to make room for God in my life or my ass is fucking GRASS
+ 
+@Jere_meh @ScottJonesy @AJemaineClement @TimDHansen Or he thinks New Zealand is a U.S. colony. Just a theory JUST A THEORY
+ 
+@ScottJonesy @AJemaineClement @TimDHansen It's where y'all are.
+ 
+@chanelnotbr4ve @KarenKilgariff This is why I only tell very select friends about Doc Hollywood.
+ 
+@TheAnaBraga @Azcomicgeek @FiIibuster @realDonaldTrump you're excited about people wishing the president wasn't president
+ 
+Let the nation have it, Mr. President! You can defeat the country, we believe in you!.@Boonyagogo CLOSE
+ 
+1. gives marker to guy 2. refuses marker 3. enjoys all benefits of Harry Potter mafia 4. SHITS on its Highlander rule #JohnWickIsOverParty
+ 
+dude if wick breaks the continental rules i will lose all - WHAT THE FUCK JOHN WICK YOU PRIVILEGED ASSHOLE
+ 
+Give me one reason why my mice shouldn't kill you, John. I control cheese. (laughter) Escort Shrunken John Wick to the Habitrail.
+ 
+at this point the only thing missing from this saga is john wick taking a shrink pill and forming an uneasy alliance with the Mouse Yakuza
+ 
+OH MY GOD FISHBURNE
+ 
+i think it's doing great. by the way to be clear i think this is the john wick 2 we all asked for and i'm among its satisfied customers.they call Wick..El Spirrito...it means...universally recognized multi millionaire employing a global network of suppliers and manufacturers
+ 
+how did john wick understand less than me that they take blood oath markers seriously in the Harry Potter mafia
+ 
+okay doorbell ringing if bad guys come over and he has to Re-wick while the cement is wet i will pledge my fandom to this sequel
+ 
+You know what? i'm five minutes into John Wick 2 and asking all these questions when I should just watch and wait for the answers. sorry
+ 
+Nigel's tail is a blur in this photo because meundies sent a get well package for him. I hope.What question did the reporter ask? Mr. Trump, Stan Wachowiak, Glogow Sun Gazette - how do you feel about life? Just take a big, dumb lap.i love that it turns out the ONE thing he HAS to be transparent about is his next move in every fucking round of a god damn missile crisis
+ 
+Humbled by my grandpas today. Mom's dad faked his age to fight. Did the unspeakable to prevent the unthinkable. Happy 4th. Fuck tyranny.
+ 
+Can we just get a photo for the piece? Cool, I love your trophy room. Oh this light, look into the light, okay give me alienated.@Rob_Stott Marijuana criminalization driven by Hearst and Dow due to untreated hemp's ability to replace chemically washed wood pulp
+ 
+@AbelCharrow Ha
+ 
+@usnews Sending them to hang out with the kids in this photo for a weekend ought to dry them up
+ 
+It's all good. Boo's Philly is open. It's not on my diet but my hands were tied. To a cheese steak. Which is rigged to my mouth with pulleys
+ 
+Fat writer trapped in home with recuperating dog and overdue treatment during 4 day national holiday weekend delivery restaurants closed SOS
+ 
+250th episode of Harmontown tonight! Guests: zero; Fucks Given: lots!.  8PST #AskHarmontown
+ 
+@MikeMcMahanTM wait I thought you were @pleaseprint when did you become @MikeMcMahanTM
+ 
+5. Jack slapped John on vine! Was that unproblematic? 6. kids get that drinking is no excuse and verbal abuse is abuse (good for you!)
+ 
+I wandered into the #jackgilinskyisoverparty and learned like 9 things in 2 minutes NOT including who jack is and why he's over
+ 
+This video is a PRETTY low blow by Lorde's PR team.(but also I have to block you because otherwise a humping line forms and then where's MY day off).
+ 
+@quietcreep nicely put
+ 
+@princemysticc It's objectively more merciful to adopt. But the way people talk to each other in the supposed name of compassion is amazing
+ 
+@premodernism they're shitting JUST LIKE US! (looks around) ...right?
+ 
+come for the amazing way this puppy shits, stay for the amazing collective shit humanity takes in the replies.@missmuffit_ @cuddlybaer11 @jesuisanac @yungxashy @malaynap.i guess he deleted it in a fit of insight and conviction, so here it is for reference.@_PatrickGerard_.
+ 
+My timeline this morning. I have never been more conflicted about a Saturday in my life.I don't know if the butts are a problem but I know a butt with a crack problem when I see it.United Deep States, baby.Was told today doctors have the fastest rising suicide rate and judging from my reaction I guess I know why. Now I feel bad. For DOCTORS?!
+ 
+And to the very relevant fact that a few bad guys are trying to cheat and undo everything grandpappy and great grandpappy fought to secure.
+ 
+Yes.@SarahThyre Specifically to part 4. And he wants to harm people, in order of a list arranged biologically and the folks LAST on that list need to act
+ 
+@SarahThyre A fucking men
+ 
+@NellSco The statistically likely answer is I was having what the trades call a tweetstorm and you wanted to clear your timeline of dansplanation
+ 
+@phonnnno Helpful information thanks
+ 
+So funny and sooooo clinically airtight.
+ 
+@pattonoswalt Virtue signal boost #cuck
+ 
+@steveagee I'm on your side baby
+ 
+All comedians are ordered to cease discussion of socialized medicine and resume provision of free universal jokes to our nation's humorless
+ 
+Just posted a photo.Can't tell if this look means he wants another pill or something with Bojack on it.
+ 
+@vnlls Hey I don't tell you when to post dumb sports shit and how to get blocked
+ 
+Not that accuracy is the goal but I do think this one's started waning.cornered like an animal. did not see The Mummy.
+ 
+@LanceBravestar1 @RobSchrab @kumailn try again means stop!
+ 
+This video is great but I want to see the spinoff where it's 90 seconds of everyone that said they bought a zoo.
+ 
+Thanks @hardwick and all you ID ten tees for letting Harmontown come to your makeshift town we're down for next year and will focus on EDM
+ 
+I want titanium grid fins.I will end my quote-retweets with this video in which I sound and look smarter than my weird hotel bed thread now forever lost to time.@jndevereux @timheidecker Facts he could have gotten anywhere #WhereAreTheStubsFromTheTicketsToSeeTheMummy
+ 
+Retweeting because without even reading it I know it's just going to be a lot of frantic lies that prove he hasn't seen The Mummy.I like the idea that he just looks forward to summer being out because he's a monster, like he air guitars when he's buying school clothes.This feels very very quote retweety and urgently more pinnable. Come see us today!!!! In 2 hours 52 minutes!!!.
+ 
+Fun to quote retweet: this person is pretending to have seen The Mummy and gave it 6 popcorn bags and has produced no ticket stub photo.It's a good time to say fun stuff i can quote-retweet if you want to help me bury that awkward collective/abstract noun thing in my timeline
+ 
+@roonious79 Other than that all I can tell is that nobody has ever cared what you've had to say and your attempts at humor skew lazy and petty
+ 
+@roonious79 Well, you seem not very passionate about anything but an indecipherably boring tax or marketing firm of some kind
+ 
+@roonious79 And now it's time to click on you and take a look at your tweets for a few moments and see whether you're worth keeping in my life.
+ 
+I really just wanted to talk about singular vs collective nouns because I find them interesting. I'm a threadaholic. See you in PALO ALTO
+ 
+Stay together. If you are fighting anything worth fighting, it will be side by side with people you kinda don't dig. Don't let it divide you
+ 
+...she needs to have been an individual. To the same folks that need every single black kid getting shot to be a single black kid. Etcetera.
+ 
+@Lyricoldrap I can confirm that
+ 
+Yes x1000. Journalists were activated for ten seconds after the election because clicks and now they're gerbils at a feeder again.
+ 
+@davidmackau @s_m_i @BuzzFeed @juliareinstein Everyone wants a job!
+ 
+Nigel on his way to surgery, posting it because I can't be there when he gets home today. He's a.End of threaddddddd so hungover
+ 
+And we're flattered by it and thankful to you and can't wait for you to see S3 and also JUSTIN IS A PIECE OF SHIT I'M GOING TO FIST FIGHT
+ 
+Like I said it breaks my heart to think of some kid reading one of these clickbait pieces after all the energy that kid has put into fandom.
+ 
+I don't know if any danger to the show itself that comes from you believing justin and I are fighting and the show is gone forever, BUT
+ 
+It happened. That's how it works. You do something you don't know you're doing and then you're like oh I did that and then you do otherwise
+ 
+And we look back and we talk to each other about how we can avoid it happening again and I'm pretty sure the reason it won't is cuz
+ 
+We'd be all too eager to share it with you.
+ 
+That took way too fucking long to write because it just seems like the same stuff that took way less time to write. That's it. Boring answer
+ 
+And Christ knows if you've ever seen MY name on the internet I've only got myself to blame for an association with intrigue/confusion/drama
+ 
+Than you might ever imagine. Post internet TV audiences are so used to finding out there's an intriguing/confusing/intense reason 4 delays
+ 
+Justin and I are very regretful about the season taking way too long. I want to explain what happened because it's way less dramatic
+ 
+A hungover thread where I address Rick and Morty devotees because I feel bad for any fan worrying about any show-threatening issue:
+ 
+This is the nicest phrasing of this concern in TV history and I promise it will not happen. RaM dies of satisfaction in..I'm guessing 2040.@thazawrap 20 minutes from later
+ 
+@Buddhabuuuddy @Thesixler You thought my dog just found some barium and ate it
+ 
+@Thesixler Did the script I wrote about it bring extra audience to the Friday 40 show or did I simply hijack their hard work with a half hour opener
+ 
+@Thesixler What amazing Apple product would I have bought with the 1700 dollars it cost to do this
+ 
+@Thesixler Assuming it was ordinary grass from the backyard, do I now have to never let him out unsupervised again? Has he lost his appetite for it
+ 
+@Thesixler Why the hell did he eat so much grass in one sitting that it became a cellulose cork the diameter of a policeman's flashlight
+ 
+You guys should come to Burbank in 20 minutes I have a weird feeling you're going miss the greatest thing that's ever happened here
+ 
+@Thesixler The reason doc 2 was pulled in- therefore the reason Nigel is now under a knife in a completely different timeline (for better or worse)
+ 
+@Thesixler And then from there it's an unremarkable leaving-your-dog-for-surgery story but the weird thing to me was:
+ 
+Weirdly we (me and @thesixler) didn't ask for 2nd doc. Accepted doc 1's take but his odd bedside manner plus my social defects [I'll thread]
+ 
+New x-ray suggests object moving from tummy to intestine. 1 doc wanted to wait, doc 2 said no, go in. We opted for 2.@cheedear Why do you ask?
+ 
+Journalism's survival of the internet starts with new journalists understanding that the biggest threat to journalism was once ink and paper
+ 
+...Whose kitchen this is, why I'm holding a calculator and where Marla went.@Salvy35z @danguterman @HuhuTV @hulu Look I could get in big trouble for telling you this but it drops on Huhu in September
+ 
+@Jtoms2 Ha I thought you were telling me to get a better dog then I realized what you meant
+ 
+Fabric in tummy. Surgery in AM. I've inflicted torture on my sweet boy by being a slob with a delicious smelling crotch and anus #heundies.
+ 
+Because I promised an update to some nice folks that counseled me on a wood-ingesting dog: Nigel's getting x-rays and we'll know tonight
+ 
+@CaitMcMillion that's comforting #WickerDog
+ 
+@hansmormon if he stops moving? He kind of can't stop moving, like he keeps adjusting himself, you think maybe that's cause enough
+ 
+@Metaorphan okay thanks. I don't have a car if I'm gonna do that it'll mean waking @Thesixler
+ 
+@danguterman @Thesixler @cpmckenna all of you eat a dick
+ 
+to be fair, billionaires just seem to get money in ways poor people don't, I read that some of them are pulling down 8 figures, PRENATAL.The titles people enter when they upload to pornhub imply a needless level of concern that we'll mistake them for romantics
+ 
+get off twitter get off twitter you've got to do it just look away get off
+ 
+@JenKirkman KIRKMAN!!!
+ 
+Remember when this was the essential scope and depth of Twitter? We ruined it. We're driving a mac truck on a donut tire.
+ 
+I non-ironically love that everyone but me pictured a gigantic bicycle.
+ 
+Jesus I'm glad I have a partner. This is like watching an enraged male hamster try to hump a lioness from inside one of those plastic balls..I did an amazing analysis of something?! MY GYM TEACHER WAS WRONG! And clearly out of his field!.@MikeMozier Thank you! We were really proud of it.
+ 
+@sarahkendzior That's a deeply unfair portrayal of him and that essay. I'd say deliberately misleading but I can't fathom your motivation.
+ 
+I know you're all busy celebrating but don't forget the spirit and the meaning behind the ORIGINAL #NationalSelfieDay.
+ 
+1 tweet can't hold it! @DaveHolmes @ScottMGimple @thesixler @JeffBryanDavis @steveagee Dino @braunger @ynb FRIDAY 8.
+ 
+@kurtismarsh I'm sorry I reacted harshly but you acted like a guy that wanted to tussle so I tussled. Now I love you and am going back to work.
+ 
+@teylor_smirl you don't need to be witty for me or anyone my friend
+ 
+@Spectre_7 I'm not there yet I gotta learn to texture a donut and stuff.
+ 
+@RheaButcher oh cool! It's apparently gone through many many changes. maybe if you get back into it we can send each other models and mess with them
+ 
+ironically the very idea that eaten farts CAN be owned is the fundamental concession democrats should never have made.@RheaButcher I can't tell when you're making fun of me
+ 
+@lnrdgrr Eu no quero me gabar, mas fui melhor em usar o Maya do que agora estou no Google Translate
+ 
+@ATNpodreview who's on the other side of THAT issue?
+ 
+I haven't farted around with 3d modeling software in like a decade. Blender has become Open Source Maya, I'm giddy, heroes do still exist
+ 
+Yeah well big deal you eat farts so it's really even.@Jk_grinnell There are too many layers here to do anything but give you a nod
+ 
+If you think THAT makes you feel old imagine not knowing what the fuck 30 year olds are referencing and just wanting everyone to die.Aaaaaaaaaand HIRED..It was indeed a time to buy. Oh man but so hard to get a loan. From a bank. In America. We should ask him how things shook out! Before 2017..@KeeganAllen You kids truly have your own language. AND MASERATIS
+ 
+Delightful rendition of Pringles Dick. And enough going on in the frame to feed a subreddit for a week #Tightbookcase.
+ 
+KIDS ARE OFF LIMITS.With a flamethrower robot hand
+ 
+One character missing from these Mueller team announcements would be a defected KGB agent in an iron mask rumored to be Putin's gay brother
+ 
+Randy Quaint.@KeyToons But also Yoko caused the Beatles breakup like Jar Jar wrote the screenplay for Phantom Menace
+ 
+@gabrielmayers Glad to hear it. My therapist says use your I statements. Nobody can argue if you speak for yourself and do so as honestly as possible
+ 
+This book is so vital to America's future right now it's insa- it's neurodivergent. Check it out if you haven't.
+ 
+Tweet questions/thoughts/whatever to #AskHarmontown
+ 
+Tonight: Christina Oh on working with Bong Joon Ho and we begin our new Pathfinder campaign!.  at 8 PST
+ 
+Oh man life is truly but a play for Boo the Cast Guy, but will he be heard no more.The way you have access to whale feelings in the Splash Zone. The way Starling got access to Multiple Miggs'....family medical history.
+ 
+What do we want / Not sure / When do we want it / The Beatles?.@Calavante3 Looks like time can still move pretty fast. Bye and good luck!
+ 
+@Calavante3 Two minutes left to answer!
+ 
+@Calavante3 Why's that buddy?
+ 
+@camabelle @JackPosobiec Does he think plays in which people are killed are just elaborate advertisements for killing?
+ 
+Is it okay if I retweet it even though I don't care if it changes anyone and very simply derive joy from his persecution?.@jonahray OH MY GOD
+ 
+Inspiring thoughts and a big list of names men can drop to save their cowardly lives in the event of the dreaded Reverse Handmaid Apocalypse.
+ 
+@hodgman Clicking a heart didn't feel like enough so I typed haha
+ 
+@hodgman Haha
+ 
+Hey Rick and Morty composer @RyanElderMusic, let's do less strings and more percussion in this moment because it's your muhfuckin BIRTHDAY
+ 
+@JonKMBZ @WeirdWittyWords It is very possible they are dumb. Totally possible. I have no argument with that theory
+ 
+@CrookCounty773 I picked it up!
+ 
+1. It's The Crucible 2. Nobody would care because 2a. It's a play 2b. Plays with murder aren't pro-murder 2c. You're probably untalented.@wiltedkayle I saw a couple.
+ 
+@DavidKoechner The Xbox One X Box Two..Quote retweeting it so I can pin it..@HepatitisAtoZ Occam's razor says he didn't see it but my razor says he liked it.
+ 
+@That1990Guy If you cry I'm going to start crying
+ 
+Thank you. I require loyalty..Oh man. Then the justice that was coming was going to be in your favor? That's like the worst kind to obstruct! Are you bummed I'd be bummed.Trying to bum out an ipad owner by revealing it's a giant iphone is like saying you know that cake is just a huge cupcake, right.@ryanridley @MikeyHoelzl @FelixJofre @JustinRoiland I am impressed but confused by you not telling this guy to eat balls and blocking him
+ 
+I just know my fellow ipad dorks have been frustrated by the absence of photoshop level software so I wanted to share this enthusiasm. Peace
+ 
+Again, learning guaranteed to frustrate but the more you do the more holy shit time saving power you gain. And no this isn't a paid plug.
+ 
+20 bucks (but worse apps cost more); lacks procreate's seamless canvas rotation and stylus isolation; reportedly buggy - I've crashed once
+ 
+affinity photo highlights: history window! Magic edge-snapping. Mesh distortion. text tool unlike any other...only cons:
+ 
+new champ image app for ipad:Affinity Photo. steeper learning than Procreate and Art Studio but worth it for non-destructive power
+ 
+Nope couldn't do it. Dialogue mixed too much lower than karate chops. Switching to Chinatown
+ 
+I farted and Cody didn't laugh, that means she's so asleep I can watch John Wick 2
+ 
+My account was hacked. And whoever did it made me eat two bowls of cereal in bed
+ 
+@MrRyanMorrison And if you're an insect how can you be a suckling. Let me sober up and think on this
+ 
+@robotlemur Tell her her spouse is the one that sucks. Who would tweet someone this horse shit? As far as I know, not your wife. Fuck off
+ 
+@strixtle Don't question me
+ 
+@DanWilbur @datrumpnation1 @trentster @realDonaldTrump He's got 3 minutes to answer it
+ 
+@Tristen48404255 @MrRyanMorrison Go fuck yourself, insect
+ 
+@Raclyph Good luck finding anyone in your underfunded school to help you write a blog entry about me blocking you
+ 
+@Thiknbeautiful @SethMacFarlane That didn't seem worth the work
+ 
+@LightiusR It's gone forever because of you
+ 
+@datrumpnation1 @DanWilbur @trentster @realDonaldTrump What if he doesn't show respect, what are you going to do about it
+ 
+@Thiknbeautiful @SethMacFarlane.
+ 
+.@kevinddaniels @murphyplease thank you for keeping art on lockdown with me (Kevin's pic is not on my phone) #ArtPrison.@realDonaldTrump informal poll, I ask all presidents: when a dad beats a mom, should the son (A) do nothing (B) conclude she deserves it
+ 
+.@realDonaldTrump i can't remember what I was talking about. I'm drunk and I have more work to do than you and your dad. Block me
+ 
+.@realDonaldTrump I want to say that nobody in the history of our nation has ever been so ungrateful and so unworthy but that'd be hyperbole
+ 
+.@realDonaldTrump I see you as beneath me and I see your father as beneath my father and your grandfather as beneath my grandfathers
+ 
+@BJ_Schwartz @steveagee @emilyvgordon I can't fucking wait to stand in that spot and suck a bullet the very last second the insects surround me
+ 
+@steveagee @emilyvgordon Fuck. By the way amazing photo
+ 
+@steveagee @emilyvgordon It means I made myself out of dirt without permission
+ 
+[a friend] just asked me Trump hasn't blocked you? In a tone of voice I haven't heard since your shoes have laces? in 1985
+ 
+@emilyvgordon @steveagee I know what both of you the fuck mean. And it kills me that you can't connect. This has been me Dansplaining
+ 
+@sundownmotel @JuddApatow @Harmontown I wasn't aware I had the reach to invite him but done and done FWD @slevy79
+ 
+Let's not bother upsetting each other today. I'm going to post doodles I make in the car between meetings and read nothing
+ 
+I believe there was Russian interference here but I accept the results.Y'all
+ 
+I initially walked into MSY with the wrong attitude. Who cares about an airport's wifi speed when this goes down right at the gate.@lukerharrison @abobrow Just kidding Andy in case my dry humor doesn't translate
+ 
+@lukerharrison @abobrow But not Season 4, right, we call that the Andy season
+ 
+And then step 8 is the population has been reduced by 90 percent making it pretty easy to start over when someone with gills finds dry land
+ 
+U.S is at story step 4: 1. We 2.Began Limiting Thought.  a Thoughtless Autocrat 4.He's purging 5. read @sarahkendzior.@JasonCastroisme You're smart to have that winky emoticon in your name
+ 
+I'm looking for more of a mesh or lattice level 3D distortion. It's probably too much to ask from the app world but worth checking followers.
+ 
+Mine would be strange choice of corners from which to start adjusting your world.
+ 
+made with procreate but does anyone know of an ios app with freeform text distortion (preferably non destructive).
+ 
+Yeah but compare this to any human organ over thirty years of unemployent. We gotta figure out how to make mining sun rays a job.Made with Procreate Pocket.@DarkestKale Sounds good to me!
+ 
+And humanity burst forth from its digital shackles and marched proudly into a bold new age of iron.@cpmckenna Game Over and Over
+ 
+Where was I going with that. Okay. More New Orleans
+ 
+So the modern Saints that will go marching in...if you want to be in their number...they may be saints of a religion you don't recognize
+ 
+The irony being that our cultural Armageddon appears to be coming down to dogmatic dichotomy versus ability to process contradiction
+ 
+Or hello again just to conclude my thought which is now that gross people use it ironically I want to take it back okay bye again
+ 
+This is certainly the biggest slice of the pie chart for me. I've heard it at therapy and used it [sincerely] on my podcast.Have you guys heard this phrase safe space and more importantly have you heard it from anyone in real life that was using it sincerely
+ 
+Could you at least just hold him for ten seconds while we have a cocktail.Always stopped short of rewatching Cloud Atlas because of the retirement home story but it's been so long now maybe I'll love that part
+ 
+(For fifteen years)
+ 
+the latter being a serious question from a guy that just doesn't understand the rules at this level. i can read up later after i eat
+ 
+@ericgarland ive become a dad on twitter without having a single kid
+ 
+@ericgarland why was that a reply to @ericgarland
+ 
+Godspeed..New Orleans is gorgeous but it's definitely feeling the woodwind shortage
+ 
+Before you even trip you need to take a long ass look at my Twitter profile's Vine Loop counter and step off
+ 
+I connect with you when I'm flying because in a way aren't we all guzzling plastic cups of Absolut in a flying steel tube run like Kmart
+ 
+Oh shit sorry I was trying to say follow @laurenduca not @lauradeluca but that's not retracting @lauradeluca's worth as a human
+ 
+I'm airborne bye enjoy American soil
+ 
+Maybe he's just being a smart lawyer. Remember that rumor that KFC was abbreviating cuz it wasn't legally allowed to call it chicken
+ 
+Sorry, why am I doing airline complaints. Go see (and follow) @lauradeluca ...the president's lawyer just misspelled president
+ 
+airlines should share safety video writers and directors at the meetings where they agree on the value of leg room per inch
+ 
+Thanks for trusting American with your life, here's a safety video proving we can't get a ripoff of Michel Gondry off the ground
+ 
+Great so now on top of all this I have to learn Maria lied to the Von Trapps.
+ 
+See? Called it. Guys my height are always right about guys of every other height..But I'm thinking about all my notably tall friends and they're all very diplomatic. Adaptation to targeting by playground Napoleans I reckon
+ 
+I'm impressed with a man that early on must have known he'd end up 7 feet tall still bothering to accept training in how to be questioned
+ 
+I await the answer and withhold my laugh until it's safe
+ 
+.@paulscheer is just one Legend coming to the Party on Viceland. Intoxicatingly animated at @StarburnsInd.Come see the first ever live episode of Dumb People Town at the Starburns Castle! Tomorrow!.
+ 
+I broached this with a racist yesterday and he called me a race traitor and that is our core issue. Without me it's simply not the same race
+ 
+But we can't brand or market if we have no synergy. Did you know most of our race hasn't met and many that have don't like each other
+ 
+Then we have to talk marketing because basically everyone selling my race is ..well they're....let's say I question their sales training
+ 
+@MikeyGorman @Thesixler He QUOTED HIMSELF
+ 
+Honey what are you working on/Trying to make racism sound smart/Have you tried saying measure/yes/Measure of quarter?/Whoa double smarts.Looks like cover of a direct to VHS movie pairing a once bankable and recently bankable actor. Elijah Puffin &amp; Coke Headman are: Vamphunters.@CarterNThallon @FITLBOX Thank you both.
+ 
+@FITLBOX ....what?
+ 
+I hate to cut you off Rachel but I'm told we're being joined from a parallel timeline by Deeply Offensive Patton Oswalt -.@Explicit_X07 Now if I have your god damn permission, I'd like to get on with my amazing life by failing to masturbate and passing out. VOTE BETTER
+ 
+@Explicit_X07 You're a poop eating fart faced booger monster. I hope your favorite sport loses.
+ 
+@Explicit_X07 Don't tell other people what to do or how to think on the internet. You're entitled to nothing. You're young and stupid. Fix yourself.
+ 
+@Explicit_X07 So. Where do we start. You're stupid. You're a stupid poop eating poop face. Fuck you. Go fuck yourself. I don't respect you. You suck.
+ 
+@Explicit_X07 And your view is probably that it's fun to pop wheelies or something because you basically function on the level of an animal
+ 
+@blindmelonade Are you on the feed? I'll be back later. I have a show to do.
+ 
+@Corey_Barnes We're gonna have our first real unveiling/discussion of characters tonight and I believe that means next episode we begin gameplay
+ 
+@editinggolden Use that feeling! Put that feeling into the next thing. Repeat for twenty years. You will be famous by 40 I promise
+ 
+@fraac1 It didn't trigger HIGHER levels of empathy in me I'll say that much
+ 
+@samieiam @JeffBryanDavis @Thesixler This can probably be arranged
+ 
+@paigepossanza There's nobody booked specifically. June 28th I believe I've got a nice juicy female for ya, Exec Producer of Okja
+ 
+@paigepossanza YOU HAVE A HUNDRED MILLION DOLLAR MOVIE
+ 
+@paigepossanza Right now? Because we're trying to make sure it doesn't during the show. If you mean during the show...we're working on it!
+ 
+@tate__ak We might not be able to get to this one but I hope we can.
+ 
+Honestly though for all we know you're trying to spell gum.Jeff's back tonight! Tweet questions/whatevers to #AskHarmontown and I'll get the Tweetdeck going..  8 PST see ya!
+ 
+Dan Harmon live tweeting LIVE from the scene of a CNN tweetstorm, CNN's Brian Stelter is tweetstorming, here I'll help with eyeball emojis ?.@kk40_45MAGA @deseraestage @keithmac273 @barbaraward235 @MarthaVineyard4 @boyd_mccamish @realDonaldTrump Be careful or what?
+ 
+Just posted a photo.it's not easy to get @jonahray out on a saturday morning...but i know my man pretty well.Distress signal / Alpha Centauri / light speed barrier broken with CO2 powered reactor / species dying from lack of N-word opinions HELP
+ 
+@gyllenha People are going to say he's over the top. Everyone's over the top but it works, he does stick out. You love him, you'll love him in it.
+ 
+Okja should deserves many Oscars but I hope they create a new category for Outstanding use of John Denver in a humanitarian gunfight
+ 
+It was a fucking joke. Or whatever the fuck it was and this is fucking America and the bad guys will NOT reward these acts of contrition
+ 
+-and gender IS at the fore of it and I don't mind standing behind women but I want to shove them toward the fascists as sparingly as i can
+ 
+Then some jagoff gives it to TMZ for 50 bucks and I'm gonna just sip a coffee while a bunch of hacks and critics stone a comic to death
+ 
+For all I know it was shot for a limited edition 90 dollar book benefitting breast cancer research available only in a gallery's gift shop..
+ 
+Okay done. I'll finish the book I started before the election so it could be the literary/comedic equivalent of a Guitar Hero Strategy Guide
+ 
+@duncantrussell Thank you for changing my day's trajectory
+ 
+@bierman_cody @JustinRoiland We couldn't have done it without bad compliments from human garbage
+ 
+This is where Cvefe happened. Now there's just a crater full of beer bottles. Which I assume it is no longer illegal for us to leave there.
+ 
+@ShafikFM @P_Strickland_ @girlonetrack @realDonaldTrump I like chocolate
+ 
+@slevy79 @Thesixler Googling it
+ 
+@ChrisHackscrew @MarkPygas @realDonaldTrump Ha yeah but it's sure as shootin' gotta be tougher doing what you're doing
+ 
+Ooo la la, we get it, you were in Europe.
+ 
+@_Tr3yzle @zerggz So you are just getting your accounts mixed up.
+ 
+@zerggz @_Tr3yzle It upsets you when I do and say whatever I want?
+ 
+@_Tr3yzle @zerggz You think the problem will be solved faster by the stranger evaluating himself
+ 
+I want to make it here.  via @clickhole
+ 
+@_Tr3yzle Let's brainstorm ways to improve the situation that are within your immediate control
+ 
+I look back on reading this tweet from a high school graduate on Memorial Day on Twitter yesterday with the thing on the thing before stuff.The Enterprise would have covered more ground if they'd admitted their 5 year mission was to validate themselves and bust Spock's balls
+ 
+@kumailn @StrollingFellow I deem this funny joke worth any collateral damage to the anime community
+ 
+@AutodeskGraphic Gotten any bug reports about ipad pro's smart keyboard not working when renaming layers? Works when renaming folders
+ 
+Phasers set to butt hurt.You don't have to respond to anything. I'm going to sleep and we already know you're stupid
+ 
+I still don't think any lady said gotta catch 'em all to a journalist at the Holocaust Museum. I think it was fabricated. #SimplerTimes
+ 
+Couple more days til the weekend then an unknown number of weekends then eternal silence
+ 
+13. Tell it you're a fraud and want to die and be healed by it and then when it feels like a fraud that wants to die tell it to grow up.
+ 
+Okay I'm sure she's a great person but I usually get a first name before I'm under this much pressure.Just posted a video.@cinefamily.
+ 
+@ooWisewun Gross
+ 
+@Miri_Teixeira_ I don't believe you
+ 
+This will never work. Movies NEED titles. People use them to find the movie. Even if you just call it Movie 002 that works. You're welcome.
+ 
+@Miri_Teixeira_ You seem like a dick
+ 
+It's like, hey I invented telepathy we can read each other's thoughts, how does it work, well, put this bucket on your head. And scream.
+ 
+Because I don't know anyone that thinks people or audiences they meet in person are getting dumber.. so..i think it's just a distortion
+ 
+Twitter in particular makes everything stupid really big and everything subtle pretty invisible...technology in general does that I reckon
+ 
+I can't figure out if the internet numbed our irony buds or are kids more sincere now or did God run out of souls are they sociopaths
+ 
+@alan_deeb ??
+ 
+@TheLostAtHome Turn them off
+ 
+@vnlls How do you think cartoons work, explain the process to me
+ 
+Yeah but can I get a little more real and hold the extra another day sauce.You're saying it's better to give a little thought to something before responding and I can definitely see why that might be advisable.@mcdeighan @darthqueeg That's correct, guns aren't to blame because they aren't magical, where did you want to go with this
+ 
+@DanTheLeo I choose to interpret this as sarcasm just to protect myself
+ 
+@DuaneQm And by the time you finish your reply you'll be blocked but you'll put energy into it and come see this. Don't misinterpret the block.
+ 
+@DuaneQm Actually I should refine that and say you're not being factually wrong about anything, you're just choosing to be a dickhead.
+ 
+@DuaneQm You have your head up your ass but that's as good a place to start as anywhere else. Just notice you're unhappy there
+ 
+@BardurT In every way that matters, I bet I would've considered him one. And I've got a pretty bad feeling about you too
+ 
+@DuaneQm At what point in this story does a flag fall on someone's head and kill them or a cursed book shoot a laser
+ 
+It should be enough. I hope it does turn out that if all of them had stopped lying at any point they could have finished their ice cream..@MisterAce12 Um...what...is....that
+ 
+Sunglasses @ Rodeo Drive.Sofia Astrom (@astromsofia) directed this little heart wrencher in about 10 square feet of space at @StarburnsInd..Hungover.@ItIsCorry What is that in her lap?!
+ 
+@jakebertrand23 I don't know why this feels like it's supposed to offend me
+ 
+That was a lot of booze
+ 
+When you come home to yard lights so bright one of your security cameras can't enter night mode you gotta wonder when landscapers lost touch
+ 
+@AngryBread HA! Yes. Sorry to spoil the answer but yes
+ 
+@ezlaffler I am pretty drunk but I need to understand what you're asking here
+ 
+Tonight on.  a journalist back from the Middle East. I'm a college dropout so tweet Q's to #AskHarmontown see ya 8 PST
+ 
+But I have a show tonight so then I had to get out of bed.Oh! Fuck! I saw Get Out! Just wanted you to know, that makes everyone, you can all talk about it openly from now on thanks for waiting
+ 
+I can't keep hanging out here and lose my entire Saturday I need to get back to games and masturbation thanks for listening
+ 
+OBAMA.@SwimOdin Aw I was never really going to get there, I shortened it from 75,000 just to make the character limit
+ 
+@ElliottcMorgan They hunt for food? Isn't that a more functional hunt can we really decry a witch hunt if it's how witches feed themselves
+ 
+@ElliottcMorgan But they're hunting
+ 
+27) was the cartoonist afraid that if they drew Trump too handsome, readers would claim a conservative bias
+ 
+26) has VR porn gotten anywhere in 6 months
+ 
+25) I guess because that's how you know someone's a hunter - it sure isn't because they're in a pointy hat or green, those aren't hunters
+ 
+24) why would witches use shotguns
+ 
+23) what about the Xbox or PlayStation am I going to have to update those for six hours or can I just play something
+ 
+22) should I drink myself to death
+ 
+21) do you think if I've let my HTC Vive sit for over six months and I try using it today it will be done updating before tomorrow
+ 
+20) what do you think is going to happen if you accept that you're a fucking idiot and hasn't it already happened without you accepting it
+ 
+19) how can you claim pride in anything and be so transparently ashamed
+ 
+18) what is wrong with us
+ 
+17) why is obama in there now and is he not a witch
+ 
+16) why is this cartoon so god damn amazing
+ 
+15) why don't I feel proud
+ 
+14) if yes, what the fuck do we call what's happening
+ 
+13) if being white or American or male or straight are worth protecting is it because without guys like me civilization will crumble
+ 
+12) why is it possible to vote republican and support a literal autocrat I actually have the answer to this one let's not go there
+ 
+11) why is it impossible to vote republican and be creative
+ 
+10) even in the symbolic realm how can two witches be lawmakers if the other witches are news organizations
+ 
+9) they believe in witches don't they holy shit
+ 
+8) do they believe in witches
+ 
+5) if the goal is to make America Great Again was America great when The Crucible was required reading or was it already not great then
+ 
+4) IF the answers to the above are no, they think a witch hunt is when witches hunt is the sole satirical fulcrum here the hat labels
+ 
+3) does that mean they think when trump said it was a witch hunt we were all in agreement but this is the table nobody saw turning
+ 
+75 questions about this. 1) are they saying think about it, who's the real witch 2) do they think anyone says let's do a witch hun.@laurenduca HA
+ 
+@TommyP365 Im guessing three or four strokes per second
+ 
+When I said bitch about identity politics I meant claim politics are invalid when they reference race/gender, which we can't claim yet..@laurenduca You don't need strength you have a Platform and this says that can make you president
+ 
+@Glinner It's happening here too, something to do with, like, when a population of rats outgrows food supply, there's mutilation, infanticide, etc.
+ 
+is Johnny Knoxville still committed to wearing that sailor cap #ThingsSuccessfulMasturbationFreesMyMindToAsk
+ 
+Your job kid not mine I'm playing Zelda.Everything fucks with everyone. You can hurt someone with a wink now and we are gonna look back on that miracle and miss it from craters
+ 
+We saw new faces and said those aren't us, found out we were wrong and now we mostly argue about whether that fucks with anyone. It does.
+ 
+I feel..wrongness paved our way here. Everyone being wrong about everything got us here. Fine. Like babies. Adorable. Can't continue. Won't.
+ 
+Logic says pick your battles, logic says hoard wealth logic says be afraid. Love, honesty, conviction, humility, empathy...those kill racism
+ 
+We aren't there. we favor logic and fairness because we want to get there but we aren't there and logic doesn't get there from here.
+ 
+Let's live in a country where logic and rule of law are so secure you actually can bitch about identity politics and have truth on your side
+ 
+So. We can guess, with 0% error, the ethnicity of the first lawmaker to say impeach and the word he got called. Let's boost the error rate.@optrav1 So far we good I dunnooooo....uplifting silence...
+ 
+@laurenduca Tonight, on Platform Tank. Which of these seven hundred million phone owners will have what it takes to receive...a Platform
+ 
+I guess we thought insanity worked like TV head-bump-amnesia.Really. 3 women on Supreme Court? That's a lot of Supremacy, girls, plus Shonda Night, don't be greedy, if I stop supporting you you're done
+ 
+Well see we're doing great what the fuck is everyone worried about..
+ 
+We have Government fanfic now. I like picturing Trump boarding Air Force One and the Supreme Courtmobile pulls up with its gavel on the roof.@yashar @steve_isom Stop telling strangers to stop. Feels like shit. Oh wait i just did it, sorry, as you were
+ 
+How amazing would it be if she accidentally unified the Middle East and got grounded by the Pentagon for undermining Western hegemony.Being right is life and death. And starts with being wrong. And you know all that, your mom told you. I've become a fortune cookie. Peace
+ 
+And being wrong about women makes you set them on fire and being wrong about the sun gives you cancer and on and on. Being right rules.
+ 
+But it's not a problem. It's okay. We had to learn wrong is bad. Because being wrong about poop versus food or hot versus cold is lethal.
+ 
+We could be close right now. And yeah we may all blow up or worse but we for sure all need to be wrong if we're ever going to be all right
+ 
+@IxusLXXIX Or a poor dad or no dad
+ 
+I've never been right about anything. I'm so scared to be wrong but I've been wrong my whole life and I have a bunch of food and video games
+ 
+@gaskin115 No hate, you haven't been rude. Sorry I called you 11. I'm curious how a 20 year old justifies a conservative mindset though
+ 
+@TimothyPizza Whoa. Awesome. That has got to be deeply satisfying. Was it expensive? Can you dig straight down? I would so doomsday prep there
+ 
+Holy shit, Trump's a langolier, when's the last time any of us successfully lit a match.@TheEricGoldman That was such a sad Dad monologue. Like Trump wouldn't have been elected if our shows were still about magic islands and meth
+ 
+Is there a name for that reading style? Constiproclaimation? Dicklexia? Tarzantac 150? Scarlett Fever Martian Baby?.FYI I read Obama always tested the voltage of foreign electrical outlets with a plastic fork, he said using a metal fork was unacceptabl.Deal. And it would probably be best to get you on a #MonthlyLease.he ran out of room guys he ran out of room.@SarahThyre as long as you aren't the music supervisor
+ 
+@RobSchrab apparently that phrase existed before he tweeted it but I still think he didn't know that
+ 
+@AdiandtheBat That's time's way of ensuring black women lead us to the FUTURE
+ 
+@gaskin115 You're eleven, stop talking to old people on the internet
+ 
+But also imagine going back and getting Hitler impeached by making people think he's Dracula.
+ 
+Remember when I told you to go with Starburns because we could start shooting it the next day? That was not an intentional lie I'm just dumb.
+ 
+@Yosh_Island @JustinRoiland Holy SHIT. It's hard to perceive the cat as stoked about it but also there is no evidence of a cat looking stoked ever
+ 
+@DavinDuhamel the fuck are you talking about
+ 
+@zanytoboggan oh my god I love that
+ 
+@chemasolari i waaaaaas
+ 
+It was a foreign airport so I thought I could get away with singing Old Marc Maron (Bam-ba-lam), Old Marc Maron (Bam-ba-lam). I was wrong.@HartHanson or you can just GET one and become immortal!
+ 
+if you read this quote very carefully it's pretty clear McConnell is speaking directly to his own interests here.
+ 
+@aarondhoffman that's great news and explains why you're calming the fuck down.
+ 
+Taking a hit in the feminism column for points in nostalgia and accuracy.@Y0sephA okay thanks for the recommend!
+ 
+I told them I like choo choo trains. I explained that choo choos, as I invented calling them, are cool, like police mans, even dead ones..@brianstelter I'm no graphic designer but I may have the answer.The internet took down every wall and then it turned out a few had been load-bearing. The end.
+ 
+@msarge it was last night!
+ 
+Lightning.I just wanted to leave a tweet I'm not going to read anything
+ 
+I guess I'd try to be a trustworthy custodian of their developing psyche but with my luck I'd end up making them Culture War Grumpy Cat.@Horrible_Human @FlyingMezerkis it didn't NOT get him blocked if that's the metric
+ 
+DEAL. Good night!.That is SO CLEARLY A WHALE and we are SO CLEARLY UNDERGOING A TEXTBOOK FASCIST TAKEOVER.@AndyKindler @sarahkendzior I have never been right about any prediction in my life, why did this have to be my grand told ya so
+ 
+Why did I start clicking around twitter during what feels like the last vacation of my life. What did I think I'd see WHAT WAS I LOOKING FOR
+ 
+@Hamdango (bro not bri)
+ 
+@Hamdango I'm gonna get it to a place where you don't even notice bri
+ 
+@TimothyPizza and thank you for helping make Fo-Fi happen
+ 
+@TimothyPizza haha fwd @codyhe11er
+ 
+@tittergrrl Jesus, I hadn't seen that.
+ 
+I think you might be in luck this season!.@random_tangent @ImKeithDavid @RickandMorty that's correct!
+ 
+@welding_skunk @JeffBryanDavis oh fuck
+ 
+@StrahanyJ is it a clip of me saying I'll never go to therapy and that it's impossible for Trump to get elected
+ 
+@adnanwho now if I could just do something with that realization aside from thinking about it
+ 
+@LumaTouch that's good news, I'll keep following for updates!
+ 
+@MickRorty @RyFry96 @MikeMcMahanTM @JustinRoiland @RickandMorty @ryanridley @adultswim @emilyeffler good work!
+ 
+@lyndiewitt when you hit the tweet button on accident!
+ 
+@michaelkoes they're not running things, they're exploding things, hillbillies elected them, stop arguing, it's a tweet
+ 
+@OldKentuckyShrk I'm sure you're very smart don't worry about it
+ 
+@BustyRackleford @davidcrosss IVANKA'S OFF LIMITS
+ 
+What is it called when you're working on a tweet and there's an I, o or p in it so you hit the tweet butt
+ 
+@davidcrosss KIDS ARE OFF LIMITS!!!!!!
+ 
+I like the guys that don't lose their first shoe.@PFTompkins you city folk think you can run the world just because hillbillies running it makes it explode
+ 
+Looks like the bubble broke. Seller's market, girls!.@LumaTouch I am very grateful for your work and love your app and I just want to say I can't wait to be able to crop video.This motherfucker rappin down a sidewalk #Logic #Everybody #AlbumRecommendationsFromMiddleAgedDivorcedGoldenDoodleOwners.
+ 
+@atrubens @JhonRules the goal isn't a respectful way to be disrespectful it's a way to be disrespectful of assholes while respecting friends
+ 
+If you mean did anyone suck my dick, that was never the goal. If you're implying language's goal should be results, I guess... eat my ass..?.I find it hard to believe it will be this simple but I thank you and will put it on a list. #NewSuckMyDickSearch.I want to phase suck my dick out of my verbiage to respect ~30% of my friends and will need a new thing to say to ~85% of strangers
+ 
+It probably won't work but is it worth asking why the President was born and then click refresh on his mom's hospital records.@Thesixler.Fans call it Paul Blar Mar Car. Our awareness that we'll never have what fancy Bigalow fans have makes us the richest of all.@TheLegofThanos It's fucked up. I'm sorry.
+ 
+@TheLegofThanos Is that a basic fact for all Americans now or is something bad happening to you?
+ 
+He's not, sorry. You'll have to deal with his temporary replacement @RobCorddry.@Monterhey jesus for a second I thought you were the FBI warning me
+ 
+Come down tonight unless you're afraid of my middle aged flow #MiddleAgedFlow #HipHopPruneJuice.It works! I see your #AskHarmontown tweets. Now if the show's going horribly we can scroll through them!.  8pm PST
+ 
+Let's take a whack at intertweetivity tonight. Tag questions, thoughts, topics etc. with #AskHarmontown, I'll set that as a filter
+ 
+Imagine if grownups stopped grounding us and just did our homework. Imagine a flying car that removes and runs on cellulite. Imagine Dragons.@nickpod44 @digitalbrain242 @MFKR_Media I just wanted to let you know what got you blocked. It weren't politics. It was entitled dumb assery
+ 
+@nickpod44 @digitalbrain242 @MFKR_Media You're also defending esoteric coal mining bullshit nobody brought up and are being a pissy whiner
+ 
+@nickpod44 @digitalbrain242 @MFKR_Media you initiated a discussion about political nuance by saying i see left and right as good and evil
+ 
+@FirelordLilB not me!
+ 
+@TMugg @CecileRichards @Thesixler @dylanlscott can you tell me more about the teams and what game is being played and stuff
+ 
+Human misery is bipartisan and if you don't like profanity, don't stand between pieces of shit and the fucked-over.@danguterman did you wake up in your Godfather shirt because that means the episode's going to get an A- in AVClub
+ 
+@JustinRoiland I can't remember. I know it was so important to us that it be slo mo blood splatter and it took forever
+ 
+I bet there was a writer on Handmaids Tale that the other writers now email every day saying still think the flashbacks skew arch, Gabe?
+ 
+@JustinRoiland I made those googas! Now I don't know how to turn on a Nintendo!
+ 
+What if the FCC investigation reveals Trump literally sucks on Putin's dick and they're both relieved we're all cool with it world peace
+ 
+@DCKantel your face is gonna be an impression of my fist! But now I have to say just kidding because fun doesn't translate
+ 
+@DCKantel if you aren't doing an impression of the internet you have my deepest sympathies
+ 
+I figured some of you might want to update your coffee mugs this is just my pitch.PM: we have 29 of 76 seats so it's hard to pass laws. Trump: That means you're doing a great job. Bonding about forcing agenda like a poop.@StickneyCrystal @curtisisbooger yes come back Curtis!
+ 
+@jbsmth65 ha
+ 
+But that's not science, that's a refraction I perceive through glass I'm tapping. We're all on display in a zoo with no keeper my twittas
+ 
+Yeah. But Breadfest and Circus on Demand seems to have produced a FEW less cooks and jesters than gluten tasters and essays on jingly hats.
+ 
+And I'll read all your thoughts about that after I follow you after someone recommends it after you express something to which they respond!.Of course the top danger of equating comedy with politics isn't your twitter feed being more starchy. It's a fucking clown writing your laws
+ 
+Folks like this sold subscriptions to party loyalty in a time when that worked for you. Times have changed. Review your subscriptions..Anyway..I say, follow your nose. Own your nose. Trust your roommate's nose. And work toward being a nose worth your roommate's trust. (done)
+ 
+Oh and also there's a Uhaul unloading swastikas next door we're wondering if we will be required and willing to die for each other (Contd).
+ 
+The bad news is: this isn't about milk or truth. It's about trust. The milk's in the crossfire. Good news is: we live together. (contd)
+ 
+A healthy house sees the bigger fridge related picture: there's no point in sharing a fridge that makes anyone starve or get sick (contd)
+ 
+There's the roommate that insists her rotten food is fine and gets off on that defiance and the roommate that leaves so many notes (contd)
+ 
+Don't parse words as code. Language is food in a shared fridge. Some is clearly rotten, some stinks to one roommate and not another (cont'd)
+ 
+@adamguillette @donttrythis yeah you're a real advertisement for charm and humility
+ 
+@Dante_7x scrolling down and seeing nothing but you. Blocking.
+ 
+@Dante_7x you are flooding my timeline
+ 
+@schalicto maybe I should have addressed that 7,000 times throughout the episode
+ 
+@JPChastain why would taking orders from you be a favor to me?
+ 
+@RobotWizrd @BrianStrain yeah but how good do we REALLY want to be at what he did there
+ 
+Okay but can we at least just dry-strike on the sofa
+ 
+Retweeting under protest.Well, I'm still playing Zelda all night. Fuck yall, you can't untake adderall
+ 
+Aw man. Snow day melted?
+ 
+@ronackner oh whatever put it in your Facebook or something, I'm having fun
+ 
+By the way: The Apprentice? Unscripted. This apocalypse was brought to you by everyone but union writers #wgaunity
+ 
+@MikeMcMahanTM I know that, why would you think I didn't know that
+ 
+@rob_sheridan @kumailn I feel like that's just a slightly less lethal but equally confusing remapping i may as well stick to time served
+ 
+@rob_sheridan @kumailn okay I actually had seen that and had not bothered because it wasn't swapping A and B but I see your point
+ 
+@rob_sheridan @kumailn ...okay it's going to take me twice as long as you'd think to check because I keep CANCELLING EVERY MENU ACCIDENTALLY
+ 
+@rob_sheridan @kumailn son of a bitch...I'll be RIGHT BACK
+ 
+It took me forever to figure this out: You won't freeze to death in the cold areas of the map if you're carrying a lit torch.@rob_sheridan @kumailn you can't switch those buttons! Where can you do that? Are you using pro controller that might be different
+ 
+God damn it, can we almost strike every year, I'm not being sarcastic, I love writer jokes.@TimSaccardo @CutlerEmily guys I'm going to miss this!
+ 
+Glade stock plummets. If that joke doesn't land I can always throw it to an empty, soon to smell normal room #wgaunity
+ 
+I am probably going to retweet every joke in this area.
+ 
+Steeeeeerike THREE since I became a member! And I just got the paraglider in Zelda
+ 
+@Noalarmplanet yeah. He probably spends most twitter time in an anonymous account defending politicians that talk like 8 year olds
+ 
+Deface the Nation isn't even wordplay. The face part of deface is still - I mean, here's the thing: Just fucking kill me.
+ 
+Not to undercut his stoicism but nobody reacted to that bit (adding a prefix?) when he did it in a different softball interview last week.Charlie Chan and the Secret Service OD'ed on old timey adderall.@Charley_Newman1 you can't tell me shit bro
+ 
+@ShizonSean @StarburnsInd @duncantrussell @StarburnsCastle We all have stories to play out. Well. You don't seem to. But maybe that's yours
+ 
+@abobrow he thought it was more like a Disney movie where a kid finds the world's raddest skateboard or inherits a shopping mall
+ 
+I'm not assuming it's anyone's job to do anything about this but if the weather were always like LA right now i could see myself trying joy
+ 
+@THEseanSross it's up now right?
+ 
+Still tickets for @duncantrussell Live at @StarburnsCastle. Get 'em while they're Trusselly!.Count the eyebrow wiggles in the scene where he takes the magic groupie hoooooooooooome.
+ 
+He's scared if all our kids get fucked up on drugs one of them will end up President.
+ 
+@DeadSouth86 sorry why am I taking my frustration out on you you're paying for the feed
+ 
+@DeadSouth86 no it's going to be worse
+ 
+Come see @duncantrussell live at the Starburns Castle Thursday April 27! Tickets here:.When you feel ugly, look from within and see that you're a tube of spasming tissues converting air, water and other life into turds and pee
+ 
+@DavidGN40 @DennisPerkins5 @SteveKingIA I'm sure some Germans expressed inquisitive detachment in the 30s. I think we call them nazis now
+ 
+After watching 5 seasons of Intervention I'd say statistically, keep an eye on any loved ones that are good chefs or bad musicians
+ 
+@level2wizard I think that guy's single political accomplishment was that we all ended up pretty united for at least an hour
+ 
+@shippy710 then it's a fitting comeuppance that you'd ask someone so lazy that they can't be bothered to know what you're even asking
+ 
+@RobSchrab @cpmckenna god was I ever so young
+ 
+@lenadunham @JuddApatow @JenniKonner congrats! Mission accomplished.
+ 
+Circumstantial details will vary but socially, psychologically and spiritually, this is how we all go out.I don't remember what @codyhe11er and I were discussing when she took this photo but I like to.
+ 
+Okay: what if you heard a rumor halfway through NBC's The Apprentice that the contestant that kept winning was an actor with a deal at CBS..Before Easter tweets, remember to ask #WWJSBABTTHWAYL (what would Jesus stare blankly at before turning to humanity with a yeesh look).@EveryoneIsDril @Thesixler @Matquesadilla Third Act Problems
+ 
+I just got it. The MSM should wear the shirt. But he's wearing it. He thought he looked good in the pic but didn't want you to be confused.I don't understand what the fuck you're saying. You have every tool and level of access required to say anything but you're a fucking oaf..
+ 
+Just posted a video.Just posted a video @ Pershing Square.
+ 
+I want to catch serial killers by getting in their heads but can I please not be put on the trail of anyone that enjoys math or sports
+ 
+Looks like the North Korea sitch is cool for ..a day. Maybe two countries having leaders with same illnesses will be an unexpected solve
+ 
+@TylerTinsley I really need to look this up you're the second response in 2 minutes to mention it
+ 
+@breadgravy well it confirms that it's their world.
+ 
+@jonahloeb I like them both yeah I really loved dragon age origins a LOT
+ 
+If you guys think North Korea is really going to blow us up, I should read up on that..but me expressing concern may make it cut to us F'ing
+ 
+Don't know which Mass Effect I'm on. I remember trying to talk a blue lady off an emotional ledge in her lab and it just cut to us F'ing
+ 
+Okay sorry I yelled at you. I had two drinks at work, I think we should all just relax, get high, unbox our Switch and download Mass Effect
+ 
+@nevitac0 we all need to shroom together.
+ 
+I'm getting less irritated as I mentally degrade from age and booze. I guess we're all lonely but most of you think arguing is socializing
+ 
+I guess you can be so stupid emotionally that you can't understand that pointlessly disagreeing isn't discourse and has never made you happy
+ 
+Is it that when you're stupid you don't know you're stupid? I don't buy that. You can't be as stupid as you are and not have noticed by now.
+ 
+@realJoeWojo why argue?
+ 
+@brwnrclse the media is journalists with editors that answer to corporations. Journalists and editors can refuse to do things. Integrity.
+ 
+The articles about the doctor repeat the crime. There's no surplus of articles about the airline cartel. Journalist or fuckwad: your choice.
+ 
+I had to delete that tweet because @pleaseprint fucked up my Nintendo Mike Tyson research
+ 
+@cd_hooks fascinating times. I'm sure season 4 will be filled with inspiration from it and totally outdated when viewed from a crater
+ 
+@cd_hooks okay. We're worried about the same thing in general. a ton of theoretical dummies. Fascism can show them simplicity. Freedom can't
+ 
+@cd_hooks @samfbiddle @SethAbramson if you read the thread through no agenda there's nothing there forcing thoughts into any critical mind
+ 
+@cd_hooks @samfbiddle @SethAbramson he said there's a lot of ways to slice it and then he thoughtfully sliced it every way he could.
+ 
+@cd_hooks @samfbiddle @SethAbramson what he said is it's super nuts that the Kremlin did that and worth talking about.
+ 
+@cd_hooks @samfbiddle @SethAbramson he didn't say that. You're undermining your journalism cred. Nobody said that at all
+ 
+@cd_hooks I will definitely read it. I'm a fan of Greenwald even when not agreeing with him and assume similar points to his will be made
+ 
+@cd_hooks @samfbiddle @SethAbramson saying something feels like Glenn Beck is a totally valid statement about your feelings and that's it.
+ 
+@samfbiddle @SethAbramson you should investigate your motivation for sarcastically dismissing him. I want him to keep thinking analytically
+ 
+I bet 90 percent of today's calls between @United and the FAA are about the costs of enforcing a ban on handheld devices
+ 
+Just posted a video @ Portland International Airport.#TSAtips do you have metal in your body will never be a phrase so familiar to travelers that it can be angrily muttered without consonants
+ 
+@KeithScottWest Dan Harmon - How to Get Blocked (On Twitter NOW!)
+ 
+@Danny_T_Yang Oh man and then the sequel is Regularworld
+ 
+Another cool thing would have been if the movie Waterworld had just kept building on the hero's ability to distill his pee into useful stuff
+ 
+This idea is neat. It would be cool if the missiles actually launched after a certain number of votes.@mittpop of course not! That's utterly impossible. Don't you remember that fishing trip you and I had where @justinroiland explained that?
+ 
+@DarthConte @SethAbramson what worst case scenario are you hoping to prevent by telling someone to stop their bullshit@mittpop why don't termites get out before you tent your house
+ 
+Ahhh. Therrrrre's the CNN I grew up on. Time to go back to defining left and right by how thick we think Kevlar should be.@realJoeWojo I noticed nobody's looked at this tweet and I thought maybe if I responded it could get a few of those little hearts for you!
+ 
+@TheMasterHunt @Jake_B_Smith99 @roxxxxxxxxanne yeah, it is a stupid concept. Because it isn't a real thing. Nobody has ever said it to you.
+ 
+@avi_eisenberg that could have read as sarcasm but I really liked it
+ 
+My Dad's Dad just opened his eyes in his coffin because he thought your tweet was his Dad.@avi_eisenberg brilliant
+ 
+I guess I'm newly offended by your belief that you tell jokes. I perceive you as a dunk tank act. You sell tickets to being told you're hack.Airline staff are secretly trained by the Red Cross to make levels of flight fullness sound like categories of hurricane
+ 
+Back before Hilldale was overrun by Lobos and Zip Heads.Cody, my bean, is wearing her rain-proof jacket for Portland so #NowPlaying Neoprene Bean by Billy Ocean ?.there's a minecraft mod pack that makes minecraft like Stardew Valley
+ 
+I knew there was something familiar about it.  via @YouTube
+ 
+@therealhennessy are you naming me or yourself Crackertron?
+ 
+@NobodyRly oh shit thank you for reminding me to binge that
+ 
+Are either of us really so complex or subtle that we can't gain the other's perspective from a thirty second scroll of their twitter feed.@ElDudeAbides215 ha
+ 
+All right you're definitely smarter than me so I'm calling you a nerd. And if you prove you're cooler I'll just be taller or wealthier.I watched TV every day for all of the 80s and that is the most insane Pepsi ad I've ever seen.
+ 
+Psycho's tweets have been in empty politispeak since around this rash of empty politigestures (awareness days, donations, bannon pull) began
+ 
+@sunkicksout I'd have to read beyond the headline in which case I'd already be detaching my perspective from most of the population's
+ 
+@michaelkoes whatever you do, don't look it up and see that it's both. That's a valuable portion of your 20s you could be using to police me
+ 
+@peter_fishbeast so it's about being cool
+ 
+@RVAwonk @OscarNunezLA @thehill then history watched McConnell become the real life version of Carvey's Turtle from Master of Disguise
+ 
+@knoxindahouse @toddbarry great joke. Millennial or Mormon?
+ 
+Dallas News, the Seattle weatherman that followed his dreams, the instructions on the name changing form, then the economy, in that order.@Tobiwonkinobe @JustinRoiland @RickandMorty I hate to disappoint you but that person got a tattoo of the episode with an Oscar winning guest
+ 
+@samyoelin delaying those lyrics may be Trump's biggest offense. Forcing me back into minecraft a close second
+ 
+Why am I the only one that's never around when I'm awesome.
+ 
+ATTN: @toddbarry.Pretty sad paper trail if you're trying to claim my trademark lime comedy. I've been working this shit on the road since you were in diapers.I was doing it for the body heat. Thanks for warming up our Windy City stroll!.World's least successful GoFundMe.This is why Rick and Morty was late. I am Danna Harmontana.Ready when you are!.
+ 
+@pleaseprint @JustinRoiland AGGGGHHHJJJJJJJ
+ 
+You think you know somebody #MoreLikeCodySellerOuter @ United States.@rmgn you know what sucks? You and I are basically the only people that will ever see that because there's no way to quote
+ 
+@ryanridley @danguterman @rolldiggity best joke of the premiere was rebreaking it 75 times
+ 
+@KeithScottWest this is the first time in internet history an emoticon was actually necessary. Saved your life mofo
+ 
+Ordered vodka rocks no lime. Drink came with lime. Instantly removed lime while complaining and sipping drink. It was my neighbor's drink.
+ 
+@AeronautGreg ha
+ 
+I'm on an airplane. I better stop tweeting
+ 
+@united the one that costs 600 dollars to get into regardless of ticket class and has broken souls treating members like criminals in front.
+ 
+@_ChrisPappas_ @JustinRoiland oooh I like it
+ 
+@kumailn @guybranum @SarahThyre @PFTompkins hipster
+ 
+Thank you Chicago now I must return to my home and my bean @ Chicago O'Hare International Airport.this motherfucker loves GOLF got damn
+ 
+@timoreilly have you been on mastodon? Open source potential twitter replacement.
+ 
+@kit__jenkins @rebeccazhuang_ @JustinRoiland You're welcome, Rebecca! How dare you, Kit
+ 
+@alexismdparkin I hate being even
+ 
+@MAURICELAMARCHE I've been on prilosec forever. Must've had something yesterday that overruled it.
+ 
+@ParkerMolloy @Glinner we've hit baby boomer bedrock
+ 
+@thekiranoir Because you're me and you're welcome!
+ 
+My last two tweets are my attempt to permanently destroy the word millennial now that they're 40
+ 
+Video ends as left cat gets confused by trainer's bell ignorance.@the_jokl @Thesixler @Aniozz what is happening with the turtles, is this a coincidence or a new Pepe thing
+ 
+@JennyPentland @SarahThyre @steveagee @kumailn @PFTompkins @guybranum.@JennyPentland @SarahThyre @steveagee @kumailn @PFTompkins @guybranum great, we're moving into a giant tamale outside act 3 of The Goonies
+ 
+Holy. Shit. Amazing..
+ 
+@ZeFenrir @JohnRoycomic god damn it that is the funniest thing in the history of everything thank you and congratulations
+ 
+@SarahThyre @kumailn @PFTompkins @guybranum I've always felt like I'd use a gun which is weird because i'm uncomfortable around balloons
+ 
+@kumailn @PFTompkins @guybranum do you guys ever just feel like dying
+ 
+@Daughter_Gaga I'm really sorry I'm so exhausted I can't do the whole meet n greet thing sorry
+ 
+YOU SHOULDN'T HAVE BREXITED.To the 900 waiting in Chicago: Rick and Morty's season 3 premiere started airing. It will be airing on a loop after we're done, you're fine
+ 
+.@karan_shah99 happy now mother FUCKA.
+ 
+When you're so bad at business you can't sell wanting to be rich to the poor.@AndyKindler okay, it's not...going to Shabbas....til you wake up... meh.
+ 
+@leslieleeiii @KoolaidUSA @Firedup2020 @ChinaKatSun @ericgarland @GothamGirlBlue Hey thanks for calling me successful
+ 
+@KoolaidUSA @Firedup2020 @ChinaKatSun @ericgarland @GothamGirlBlue five
+ 
+@chelseaperetti Boos is going to kill me I love it so much
+ 
+He shouldn't be so sure, he seems like kind of a tit..Can't sleep. Heartburn.
+ 
+@alagigs29 sup
+ 
+It's not...going to stop ...except on that special Saturday you guys have when everything stops..Fuck you.
+ 
+I don't appreciate you exploiting the rule that obligates me to retweet any gif of a submarine being thrown into a dragon's heart.To dreeeeeeeam the impossssssible dreeeeeeeeam.Absolutely not you piece of shit.Can I see your scalp?.This gets you nothing but a retweet.@karan_shah99 @BrandonJohnsn if you go to sleep you're going to miss the premiere of Rick and Morty
+ 
+@dwarfcraft I appreciate that, I really feel like it went off the rails
+ 
+@HippoJuiceShaun and here's me.@HippoJuiceShaun this is another dude on the same plane:.No but let's talk about this...@karan_shah99 @BrandonJohnsn sorry. Okay well, fine. For real. Would you believe me if I told you I would make it start airing tonight?
+ 
+I have reached the age of hair consciousness and this dude seems 1. Around my age 2. Fucking LUCKY AS HELL 3. Unappreciative (product?).@karan_shah99 @BrandonJohnsn what if I waved a magic wand and made the first episode of season 3 premiere tonight is that what you'd want
+ 
+@random_tangent @abobrow @Thesixler this is amazing thank you. I am now almost wanting to see this before Get Out
+ 
+A link exists in Hollywood between babysploitation and untenable levels of narrative complexity. Millennials: research Baby Genius saga.The tarot is showing me a large rally in Wyoming..
+ 
+1. Is it even possible for your company to go out of business? 2. Do you fix prices with other airlines? 3. Stockholders vs. Customers: pick.
+ 
+This is what's offensive about government. The prices. A lawmaker's soul should cost more than a shitty basic cable pilot.
+ 
+On page seventy he oversteps his bounds by putting another baby in the corner.With all respect, sir, Liverpool's in the black for pop cultural contribution, there's no need to horn in on garbage like this.@DiscordianKitty I can explain:.Russel Simmons has officially won the you're probably wondering how I got here biopic opener contest.@Blackferne @Thesixler your sacrifice is appreciated
+ 
+So is boss being used like millennial slang, like he's a boss baby, like he has awesome sauce? Like he's a totally tubular rad baby?.Good job my friend. Except the last one but even that one beats Versarchery. CC animators working on Shrek 10 mall signs.@buvox @ggreenwald @breakingcreech @DarthTargaryen1 fuckin' a it's valuable. Also by definition not popular. So the pity party feels..dumb
+ 
+@GamingAndPandas @ggreenwald @breakingcreech @DarthTargaryen1 I agree. I didn't set out for empty snark. Started in blithely critical harbor
+ 
+Oh my god I was afraid to ask thank you.@ggreenwald @breakingcreech @DarthTargaryen1 got it, so it's about NOT being unhip
+ 
+@breakingcreech @DarthTargaryen1 @ggreenwald so it's about hipness
+ 
+@silentliberal @AchmarBinSchibi @ggreenwald @burnodo Right. MLK. The parallel is so obvious, how is the media not running with that
+ 
+@danguterman @JeffFlake @Google @Viacom they TEACH too?! Hot
+ 
+And that I sort of lost track of all the executive orders and am not sure I'll be allowed back.@AgitatedStove @pattonoswalt don't tell that to the woman staring up his butt hole with his foot draped across her face
+ 
+Kind of impressed I made it a whole 2 hours after putting it in my own head.@pattonoswalt remember in Rollerball when they got high at a party and went in the back yard to explode trees with a laser pistol
+ 
+@SarahThyre @JuddLegum Jesus. He's creepy all the way into adorable, he's like an icon for Frosted Creeps Cereal
+ 
+@memebuscemi by itself but not really in anything
+ 
+He refused to share Triceratops innards with any T. Rex other than his reproductive mate ? ??.@FeralCherylZ I mean it really seems like we're going to be seeing something on that end. Oh man
+ 
+Great, now democrats have to memorize code words for this AND child sex trafficking.I'm comforted that it's too complex for me. It means there's grownups on the case and I can go get froyo. Just tell me who peed on Hitler
+ 
+@abobrow it's a fun temptation since 1. He spent his twitter life posting Obama's numbers 2. His are the lowest in the metric's history
+ 
+more like poopsident dump
+ 
+There are still tickets for Harmontown in Chicago this Saturday!.@CroutonAndRanch thanks! It's not really bravery, it's more compulsion. I've been lucky enough to never get too good at taking orders
+ 
+@FelixHayden make me
+ 
+They know it pays the rent. After 8 years selling white anxiety, their viewers crave it but it's harder to justify now. So they poke around..My butter loving better writing bean #womancrushwedensday.I had vegan food for dinner so I may turn into a god before your eyes.There's no tanks or foreign flags outside the window so I guess I'm getting on the elliptical. Up and at 'em workout buddies
+ 
+Nice try, gramps. Put this bag of bones in your model T and talk to me when it's got nano stuff.I see Lady Gaga junior as the lead! Sold to Amaflix for a million holograms!.
+ 
+@JustCallMeDjm @wesleysnipes I second that
+ 
+@MagicalRarePepe @davidi_exelrod I'm not allowed to say. Sorry
+ 
+Why is it less acceptable to masturbate to a mannequin leg than to pornography? Because the world fears genius, sir..@cwagg7 @stutteringjohnm @realDonaldTrump I checked the definition. The president is definitely guilty. He needs you. Go to him.
+ 
+@thebigchugger @jaychandrasekha okay well i thought we were talking about page 19
+ 
+@thebigchugger @jaychandrasekha Provocative but circumstantial. Ask me what the book's about. Ask me what's on page 19.
+ 
+@Mlake_Baher that's what you got from that..?
+ 
+@npg1989 have you tried tattling on the TV to your parents
+ 
+@thebigchugger @jaychandrasekha prove it
+ 
+@FelixHayden no
+ 
+.@jaychandrasekha should be SUED for Mustache Shenanigans. I'm burning my copy and banning its ashes. Buy it to find out why!.Sounded to me like he said authoritative, then accidentally corrected to authoritarian because his mnemonic device was it's the opposit.Exercise tip: if you don't do it for two weeks it's heroic.@x2ohseven @wloverude @united I like the airline think leggings are tacky. Kind of sums up the tone of the argument: Snobby cavetalk
+ 
+@RyanBoulanger1 @turbo_dingus Tell me about the process of making Rick and Morty and which part I should speed up for you. Speak expertly.
+ 
+I was confused by her performance style but apparently this lady was discovered at a murder mystery dinner. And is always on her way to one..If that doesn't work I guess they're going to get a big box, prop it on a stick and put a woman with no self esteem under it.@Lizzard_Rambles my folks are talking to PFT's but it's too early to say which of us will be absorbed. I would just double shrine it for now
+ 
+@tftalbott about four hours a night then I'll crash for 12 once a week
+ 
+Evidence aside, it's possible the FBI can't arrest the President because the only handcuffs that would fit are being used to detain toddlers
+ 
+#MakeAmericaEvocativeOfAMattressSaleCommercialAgain.@Therealrobbbs oh I think that's a given
+ 
+Drunk Minecraft, @JohnOliverMP and @KeithOlbermann and maybe Rogue One if I don't pass out
+ 
+@robdelaney @Nick_Offerman I'd like to watch from outside dressed like The Flash
+ 
+Friday Night. Drunk Minecraft
+ 
+@sherbetsaucers eat a wiener
+ 
+@lolacocobaby fuck off
+ 
+Do we even want to make it to presidential primaries just so we can watch 30 red and blue parasites accuse each other of backing Trump
+ 
+@TwittahMirrah @ggreenwald @Ron_Sinclair @bassstation9 maybe you're being facetious but that's how fascists justify illegal searches
+ 
+Does the investigation involve paperwork? I got nothing beyond the FBI googling stuff, but yeah, douchenews aside, this should bristle us.@artaratoryx this seems like a healthy response to something you like! Sarcasm!
+ 
+@rudhraigh turns out it was perfectly fine! Tend your own garden!
+ 
+@sarahkendzior amen
+ 
+Who's got two of these and is calling me in the morning? Me! On Dr. Ken! The show! Not the guy!.@HoochNScooch is that criticism
+ 
+I hope you do! And I skipped masturbating for this and now I'm going to skip writing my book for drinking and THAT'S OKAY #TherapyFu #Bow.I'm deeply in love, free of hardship and surrounded by wise, weird people I laugh with most of the day HOW ARE YOU #TherapyFu #ASKINGSTUFF.That's incredibly potent praise and I hope you trust yourself enough to let yourself be as proud and special as you helped me be #TherapyFu.Thank you! It means a lot to me and you remind me we should focus on positive tweets 3 times more than negative #TherapyFu #FeelingsAreMath.
+ 
+I'm sorry I dismissed your point of view. I feel bad. That's not who I am. I will work harder to change #THERAPYFU #USEDADUDETOJUMPHIGHER.
+ 
+[deep breath] and different people think differently which is their job! To not be me! And together we form GOD #THERAPYFU #APOTHEOSIS.You're welcome I'm flattered my work could have that role in anyone's creative life shout out to everyone that made Community #THERAPYFU.
+ 
+I could catch the emotional equivalent of a bullet in my mental teeth right now #TherapyFu
+ 
+I'm fresh out of therapy so if you really want to impress the tent it's the lowest risk time to put your head inside my mouth
+ 
+@VannyMac I wish they hadn't given that award that silly nick name!
+ 
+@SheHartLiss no doubt of that. But holy cats that Ryan guy trying to explain insurance to himself with a power point...
+ 
+I deleted a really high horsey joke about uber's uberfacts and then found out uberfacts isn't uber so deleted but leave this SHAME SHRINE
+ 
+@PLK_Kelley oh god are they not. Ha. Now I feel awful. I'm gonna delete. I only took an hour wording that joke
+ 
+@Napican @SuperKentendo that's awful, I'm very sorry.
+ 
+I thought my taxes were buying the luxury of not having to understand health care. Now I learn the dudes complaining just understood LESS?!
+ 
+Was..having an idea illegal all that time? Waiting 7 years to learn how insurance works doesn't make you Mandela, it makes you fuckin' dumb..Aw. They can't make their TiVos work so they had to schedule meetings on Shonda Night. (Joke cowritten by @notanothersarah) [lady writer].The Front Dot. For When You Want 34 Friends and Coworkers to Know You're Responding to Something, Just Not Whatever the Fuck it Is.If you see my profile pic change a few times over the next hour it's not about vanity it's about deadlines.
+ 
+@kumailn #TheNunesAbides
+ 
+Is it real? Thank you so much for sending it. My name was a mistake in a New York Times correction. This is a fantasy I just learned I had!.@KwakuBear Agreed! And did those KKK guys quit or retire?? And did Daryl do more or less than an activist? I walked away sad but stirred.
+ 
+(Cycle of abuse)
+ 
+Nerd.
+ 
+This is the documentary I mentioned in last night's podcast. Must see. Cultural Tilt O Whirl ride..@dustinsmile what assertion did you perceive me making about prison that you're countering?
+ 
+Take that Africa.
+ 
+Don't argue with my tweets. I shan't read your dumb shit. You know you're dumb. Just be honest with your dumb self. Don't fuck up my country
+ 
+But I don't own a country across the street. I own one with you. And we don't sell cookies. We sell innovation and giant fucking explosives.
+ 
+Could we stop using this poor clown as a token in our games and unite the rational people of all parties that see him as an actual crisis?
+ 
+You won't convince me that's an image of a cool cat laying down the law for an uppity girl. He's purple, can't look at her, can't say no.
+ 
+Unimportant to guess what he was trying to do there. Super important to recognize he had an impulse and zero ability to manage it in any way
+ 
+You want to do the handshake? The famous handshake where you try to yank people toward you? Want to try that shit with Mama Fatherland.@goldengateblond @RheaButcher He looks purple. She probably embarrassed him. She speaks 3 languages including the half of one he speaks
+ 
+@mystermeeseeks you're addressing 18 people
+ 
+@O_Tahma I'll ask the questions here. Who blocked you? When did that happen? Why do you think that might have been? How will you solve that?
+ 
+sounds like I go ascii or I go home. Lot of DF tutorials use starter packs and I was jealous of graphics but I'll be a bigger dwarf about it
+ 
+@Itszutak thank you
+ 
+@HappierKindaSad okay thanks
+ 
+God help us all he's learning iMovie.underused and normalization are what he means but I can see why spell check let these through because they're words in a dictionary.@ValenzianoFrank drama and creative writing. Those programs were cut by the time you were in school I think
+ 
+Maybe it's a nazi rule that they can't deny being a nazi! They're like undercover cops in that lie our dealers told us
+ 
+I didn't have time to finish asking why this group would out him before I had to ask why he'd refuse to deny it.@nickcnyc07 @LauraJSilverman @spj9877 You're not worried because you're a fucking kid. Your biggest concern now is your best friend moving.
+ 
+I'll pay twice whatever taxes I'm paying for the First Lady's safety. And twice whatever I paid for the EPA. But I get to make ONE job cut..@nickcnyc07 @LauraJSilverman @spj9877 does that mean I'm more sensitive than you? A pissy baby shaking a rattle at People Magazine?
+ 
+@THEKUNTAR @SarahKSilverman if you assume everyone you've ever heard of has 80 million more dollars than you I can see why you'd be angry
+ 
+@darrelanderson @LandonSheely @donttrythis who was it that privately funded the internet you're using to cultivate your Ayn Rand impression
+ 
+@cabbiedohe @billyeichner Jesus, you really DO need the funny people to get back to work
+ 
+@RobSchrab @JustinRoiland hahaha
+ 
+@MattRHale haven't seen it
+ 
+@RuanBreytenbach don't be too blown away but I don't know what you're referring to
+ 
+@intaxic8ed @Thesixler yeah if only your identifying characteristic had been your work with ceramics or dancing
+ 
+@O_Tahma eat a dick
+ 
+@rmpeavy @random_tangent that was supposed to be cosign I was drunk
+ 
+Fair enough. I'll digest and sober up. It was just... kind of a bummer. We wanted miscellaneous Kremlin income so BAD.
+ 
+@TheLegofThanos I remember!
+ 
+@NussiHimself that sounds like a feature
+ 
+@C_bus83 @Harmontown this feels like sarcasm
+ 
+Not to jinx it. (Rubbing liberal rosary) Please be a pedophile please dear god be a pedophile anything anything anything #Pedophile1099
+ 
+@rmpeavy @random_tangent consign
+ 
+Whoooo giiiiiiiiives a fuuuuuuuuuuuuck, they can write my diiiiiiiiiick off my baaaaaalls, (singing).this may be the first time in American Date Night history where the sex is mutually phoned in.didn't you and other peoples that can't achieve minimal ownership of the single fucking language offered you cried about immigrants.@Hanzi83 No idea what the fuck you're talking about. It's Twitter. It's a medium. Make a point within it. This is absolute gibberish.
+ 
+@Hanzi83 no idea what the fuck you're saying. Pat yourself on the back, that's the goal of your faction, right?
+ 
+Okay. Fuck whatever I was talking about. Fuck everything. Fuck it all. God damn it I have never wished harder for worse news in my life.I can't unfollow him because he's genuinely a good journalist but he's overtaken by a one man crusade to prove himself right about.........?
+ 
+I am constantly uplifted by @ggreenwald's vigilance against America's tumble into a post Trump DNC-run dystopia. In. Our. Fucking. Dreams.
+ 
+A douche to infinite decimal places.@JesseThorn @AndyKindler I approve of an Andy Kindler has always been a national treasure thread but am currently too drunk to help
+ 
+@ggreenwald @tbonier hey I heard there's polar bears going extinct. Glenn, is the idea to boycott integrity until everyone acquires a 200 IQ
+ 
+#DwarfFortressBugOrHipHopLyrics.Chutney. The answer is chutney but I need to add that I don't literally want it eaten in case you're that German guy.@ianslessor @mirikuincognito okay look there's a syllable here and there that you have to rush but it's worth backing conceptually
+ 
+@CountNinjula are you doing a bit? you know that's the actual thing they were doing right
+ 
+if you spend 6 years blocking everyone you dislike, your twitter feed, one day, without warning, blossoms into a window sill garden of BFFs.Holy shit. Thank you..you can tell from the free chips offered on airlines that Frito Lay was like fuck you guys
+ 
+I got scared off this game when I texted his LinkedIn profile to @slevy79 whose laptop screen is in Doug's eyeline. I became the villain.Well, their vote certainly counts as more American. Varies state to state but most flyover folk count as 3 city folk under electoral math.oh my god Doug from IBM is now on a social call. And he's judging the fuck out of a mutual friend
+ 
+Doug from IBM is on the bottom of a major power play. He's been sitting in chastened silence for 5 full minutes
+ 
+His life is....already wasted. That's not a quote, it's a summary.
+ 
+I speculate he has a crush on whoever he's talking to and is her inferior
+ 
+He leaves Sunday to go to Vegas
+ 
+Doug is either incredibly important or incredibly unimportant to this conference call. He has literally not said a word since announcing
+ 
+.@myfavoritemurder's instagram has over 100k followers. Feral audio sends Elvis cookies to all murderinas (it's fan lingo I'm a fan)
+ 
+My room at The Radisson in downtown Austin is FESTOONED with AC and USB outlets. Thumbs up! The.@RuanBreytenbach what is Rand supposed to be
+ 
+@SupahSpankeh yeah you're a shining example of relaxation. Tend your own garden.
+ 
+Oh, did she clarify, CBS? Yeah that's the verb I always use when a lady tells me she's not Inspector Fucking Gadget #ThisIsNotNormal.This gives me hope. America will soon have to accept that writers are superior to directors.Nobody needs to tell anyone that hotels have toothpaste at the front desk. We all know that. We all. Fucking. Know. That..
+ 
+Put. Toothpaste. In your fucking. Hotel rooms. We can't. Legally. Fly with it. We barely. Remember. To bring. The brush. Provide. The paste.
+ 
+So, in summary, at ..hold on...(reading glasses) 10...central? Tune to twitch, but, slash seesotv. For Harmonquest - RUNNING OUT OF ROOM FOR
+ 
+You're asking for the handle. Does the information.  help? Good. Okay see you there at 2.7 central mountain Greenwich
+ 
+@michaelianblack @OscarNunezLA @billyeichner thirded
+ 
+Tune all microwave cameras to @twitch for a live @HarmonQuest tonight from Esther's Follies at #SXSW 10pm CST/11pm EST with Jason Mantzoukas
+ 
+That ride to McDonalds when your Dad accidentally cringed you into anarchism.Let's quest, @HarmonQuest and @Twitch ...saying more about this event would entail learning to spell Mantzoukas. Whoa I nailed it first try.Dumb people trying to weaponize crazy people. We watch them mash at every button in a nuclear sub while your reps wait and wait and wait.@duncantrussell.I just got excellent choiced for ordering a Stella with my burger from room service and I can roll my eyes for you but it got me pumped.
+ 
+@duncantrussell.@d_leonee can we just focus on you? When are you going away?
+ 
+@inawordortwo if it's consolation, I remember the peace corps responding to that pilot by letting me know Britta couldn't have gotten in, ha
+ 
+@dnomyarmai their demand for safe spaces that you read about on the internet. You got upset about words you didn't like and became unlikable
+ 
+@cole_boudreau use them how
+ 
+Time to minecraft and/or collect cookies and/or learn DWARF FORTRESS #Heaven.And you can save the jokes about that being less time than it spent setting things up. More like Pelican Long, we've heard them all.@cole_boudreau complain about bottle episodes?
+ 
+@dnomyarmai the guy that took your photo in Philly you mean
+ 
+44 isn't an age it's a calibre or something.
+ 
+Watch Paul Ryan walk himself through the unbelievable concept of healthy people paying MONEY to help sick people just...HANG AROUND.@JordanPeele great, now I know I'll be watching something when I'm watching it the first time! RUINED
+ 
+@hebrewplorable @hardcore_hank who are you talking about and who are you talking to? How do you type this much with no fucking point of view
+ 
+@Brett_Calabasas @njm4250 do you understand its possible to think Trump's a piece of shit and not necessarily give a fuck about red vs. blue
+ 
+@Freddyvolpe @anbtruth @Longbow141 @Baserunner237 @oreillyfactor Yeah. It is always that. One hundred percent same page.
+ 
+Gotta do a quickie.WHITE?!.@AndyMackenZ @theMerovingian @PFTompkins are you going to use logic to convince me you're a likable person? Do you have...ALL the logic
+ 
+@samster712 don't talk to me like a barista
+ 
+Listen, we can all handle a motherfucker tweeting, what we'd like is a process to readjust his ADDRESS.@matunos I meant tuba and typed it.
+ 
+@SarahThyre you are justifiably assuming I was going for that one thing but the fact is that motherfucker is sad tuba music
+ 
+@Mighty_Ginge @JustinRoiland.@kumailn.Saving this photo in case anyone born without hearing wants me to show them sad tuba music.Two questions: is there a Pulitzer for the pairing of a photo with a headline and can we vote multiple times.Now you're in the Sunken Plac..@kenjeong welcomes me to my on-screen TV producer desk on the set of Dr. Ken.@WritCom like Buck, like Obama's a buck? Is that a racist thing even I don't know about?
+ 
+@DonCheadle @billyeichner @richman_joel and party host to up-and-coming (of-age) models.
+ 
+@RogerJStoneJr yeah you seem like a pretty happy person
+ 
+He had such a good speech last week and then he got back from his good speech and there were all these russian ties and he got cranky EAT ME
+ 
+@HippoJuiceShaun ha. I know. That place was pristine. But the scary thing was the looks on all the faces. But I fell asleep to that one
+ 
+@RussellTMuscle @ggreenwald it moderates the reasonable to preemptively indict idiots? Most dems this, most dems that? I'm unmoved.
+ 
+@JohnMaksuta okay now I can finally block you. You're just so fucking dumb
+ 
+Were treated like royalty at @CherokeeWSS. Thank you Lacy and staff there for putting us up. And the TSA at Tulsa airport is puzzlingly nice
+ 
+I love @brianstelter's involuntary grin at 1:19. That's a guy that just thought of a solid closer.@Carpe_DMT @eferbs2268 I used to chide it but I've warmed to it. Sarcasm isn't always higher art and it's not bad to take words seriously
+ 
+@realDonaldTrump hey you're in the news again sir!.@eferbs2268 maybe my tweet contained more irony than the millennial bloodstream can handle. It was in the drinking water when I was your age
+ 
+@BigBotDesign @Harmontown I look PRETTY sober
+ 
+Ain't that the bitch about Russian ambassadors? Meet them here, it's barely news, meet them there, it's a federal case! #WhatACountry.@pattonoswalt @rwn_atc.@pattonoswalt @rwn_atc and I'm blocking you so don't spend time responding. Boycott everything I do and tell your friends.
+ 
+@pattonoswalt @rwn_atc I tweet once about my shows. Then they sell out and I go back to tweeting HOLY SHIT FUCK THIS PRESIDENT.
+ 
+@pattonoswalt @rwn_atc alternate theory: the art of telling people you're doing a show has been...kind of streamlined. Politics not so much?
+ 
+just found out about have been reported for weeks. I'm going to summarize here some
+ 
+@WritCom @JeffBryanDavis come on.
+ 
+@zintradi @adamcarolla literacy rates are an historical metric of societal success! (Holds smile, then) Okay it's pretty fucked up
+ 
+@Thesixler @PandoricaLime here's a clean one:.@Thesixler oh. Dude..@VP the line between defending a wife's privacy and shouting nobody does this to my wife is thin...like the line between anti-gay...and...
+ 
+@ChrisHohnholz @Milerich @AvgAndy @VP @AP where are you moving on to? Where do you go?
+ 
+@ziwe @MrJonCryer that's why he's a hero to baby boomers and gamergaters alike. Well. Was.
+ 
+@adamcarolla @zintradi the person typing that knew there was a high chance of the poverty stricken person being literate. Copper lining!
+ 
+@Thesixler.
+ 
+I hate that TV has gotten so political so that this poor head of NBC programming has to use anonymous accounts to express his real feelings.Oh. I thought our agent said charity.Wil check spelling of ascot if they have wifi
+ 
+The whole souls on board thing? That's more nihilism than I want from anyone in an ascot ever
+ 
+1st class won't buy you leg room or respect now that the airlines are openly price fixing BUT you still get to learn how the sausage crashes
+ 
+And now the plane started moving and the first thing one of them did was go right into the bathroom.
+ 
+Then @JeffBryanDavis asked if he could go pee, they got real somber and said we're in a taxiing [mumbo jumbo] yeah except HEAD COUNT
+ 
+two letters can make the difference between an invitation and an ominous warning.
+ 
+When you say he sounded Presidential tonight what I'm hearing is that you knew he sounded like an illiterate fuckup when you voted for him
+ 
+This is a huge honor to be wasting on loser tourists, we should be sending a super cool winner CC @realDonaldTrump.@Harmontown @RobSchrab @BrandonJohnsn 8pm! 8pm PST!
+ 
+This person means 8pm PST!.
+ 
+Let those who feel beholden to strangers and those who feel at war with strangers go their separate ways and let us see who comes crawling.
+ 
+Let the writers and politicians take separate corners. Let the corrupted, rusty agreements from our imperial reign now wobble and creak.
+ 
+Oops I fucked up my thread. Hold on.
+ 
+That's the third Hank Kingsley level joke @GovMikeHuckabee has failed to land in three days. It gives you more information than any speech.
+ 
+@damashek2 they're drawing it
+ 
+Okay I have to work now, pinching off that John Lennon thread, it could have gone for 20 more tweets.
+ 
+Can you imagine that system. Where we reward experimentation and contribution instead of simply punishing vulnerability and disadvantage
+ 
+I have this weird feeling it will turn out that in order to be valuable, you have to be born - very true - but then also do valuable shit.
+ 
+[And maleness. And being in one hundred percent agreement 24 hours a day with the gender on your birth certificate. Etcetera. Etcetera.]
+ 
+A 44 year old man exercising on an elliptical and then showering.
+ 
+@steveystyles you asked me if twitter had a function allowing for the turning off of replies and I think you should focus more on yourself.
+ 
+Delighted by this promising young fan from the Latino community. He enjoys rap songs and history. You can have a future, @Lin_Manuel!.@steveystyles asking a stranger to tell you how twitter works after using it to comment on how he's using it
+ 
+@UnctiousSC yeah
+ 
+Give this party a chance, It probably only SEEMS like their entire identity is based on oppositional reaction because they haven't won yet!.@danguterman I will be that weight again soon
+ 
+The COMEBACK! With quieter music because the living room speakers don't work.
+ 
+@iqbaltheba I want to know too...looks fake based on skin tone (his hands have pinker power) and I WANT to think this would be bigger story
+ 
+And by hate I mean the Jewish hatred of being rooted out. What's with these people? Strange people. Very strange, very nervous.@ArtieFissio @JeffBryanDavis endgames are overrated. Case in point: bet you thought this conversation would end with you not suckin my balls
+ 
+@susanthesquark As far as I understand it, everything that everyone other than you did in that story was illegal.
+ 
+@benhuge yeah that was my note too
+ 
+@mrbs I won't pretend to know. I don't know, I really don't, and that sucks. For me.
+ 
+I haven't looked at twitter for 3 hours are all the women and unwhites safe if not I'm sorry if yes YOU'RE WELCOME okay like or subscribe
+ 
+@cameronesposito ha that's always how I remember him too
+ 
+These are confusing times to say the least. Most confusing of all is how simple times got. The smart among you are suspicious of simplicity.
+ 
+I guess I have different standards of nuance for war time. how many more sides than two can a war afford. I can only see freedom vs. fascism
+ 
+The reason I have changed my position is pretty simple and hey, maybe Orwellian or spineless: I truly see this as an unlawful coup and a war
+ 
+This is something I have dramatically changed my position on so I accept your view as well. But it also means you can change your mind too
+ 
+I've been around the map on this but am now at: if we see that these parties are too big to fulfill any function beyond fighting the other..
+ 
+I'll assume it's unintentional but analysts vigilant against partisan hypocrisy do more to support it by containing all resistance within it.@RyanIngstad keep in mind there are two out of a thousand response strategies that won't get you blocked, one being shutting the fuck up.
+ 
+@RyanIngstad should I save up my strength by doing whatever the fuck you do?
+ 
+@jasonleo22 don't tell other people what to do
+ 
+@RyanIngstad excuse me?
+ 
+@ginkomortus that was him being ironic while supporting my point, millennial pants
+ 
+@zenxfold @JustinRoiland he... spelled...illiterate... wrong.
+ 
+Corrected. Forgot. Disappointed..@JRibakove oh did you think I was measuring his worth by comparing him to you?
+ 
+These old Trump tweets aren't just great because he's a hypocrite. They're a reminder that he still has only one photo of himself he likes.
+ 
+And yeah i see the irony of incorporating Alex Jones into a conspiracy theory that makes Jones look like Chomsky
+ 
+only reason Alex Jones isn't on Fox tomorrow instead of Limbaugh is...they'd lose more sane sheep than they'd gain violent psychos. K Done
+ 
+Then lots of rumors about firing Spicer. Then Flynn has to go. Snafu. Trump didn't want to fire Flynn. Had to. Because of free fucking press
+ 
+There is no such thing as a totalitarian state with an uncontrolled press. It's like an Oscar Myer commercial being shot in a slaughterhouse
+ 
+Blackout and/or takeover of media is a fascist threshold so fundamental that - thankfully - Trump (Bannon?) is fixated. Something must give.
+ 
+@michelemorrow.
+ 
+Some of my best friends are fucking idiots. A lot of my bosses are. Almost the whole country is dumb. And I love them and respect them.
+ 
+It isn't. Stupidity isn't a crime but it is a crime for the stupid to be proud of their stupidity. That's vile and destructive.
+ 
+I'm sorry but I draw the line at forced cannibalism.
+ 
+It's a rally. For a sitting President. At five o clock. At an airport. And you have to buy tickets.
+ 
+@BrianWCollins I did a LOT of drafts of that tweet.
+ 
+Trump in 2014. ARRIVAL SPOILER.
+ 
+Yaaaaaaaaaaaaay Jesus he's back.Workout: Fancy Hotel Edition without Music, Just Staring at my Dead Healthy Face.Happy Valentine's Day from Professor meundies. I've got two hours before my History of Eye.
+ 
+We hear about families and couples breaking up post-election but I bet a lot of you have also reforged old family bonds. I hope. Get tribal.
+ 
+This has been up to the minute ear to the ground reporting on what I'm overhearing from Rachel Maddow on my sick girlfriend's phone
+ 
+As I understand it...Obama put sanctions on Russia and Flynn immediately went directly to Russia and said don't worry about it. And lied
+ 
+Also...let's get back to this Flynn thing. It's nuts. We are in the process of catching the entire administration lying about it. Treason.
+ 
+@PlacesBetween thank you! Will RT
+ 
+@JohnMaksuta you're dumb.
+ 
+Things like genocide happen AFTER nothing can be done. Comparisons between what you are living in and pre-war Germany are fair fucking game.
+ 
+@JohnMaksuta also aren't you constantly quibbling with me? I only have memories of wanting to puke when I see your name
+ 
+Deeply disagree. I don't think fascism's victims are pumping fists right now saying Come onnnn, restraint! Less is more, gang! Be prudent.@DANKCHAINS you need to read more
+ 
+@Scott_7791 when it takes very little energy to compare someone to Hitler it might not be because they aren't Hitler.
+ 
+@HCB_Recordings up to 17 followers.
+ 
+@abobrow my brand may be but your actual razor sharp mind and death-dealing soul are going to be needed on the right side of history
+ 
+@abobrow you're talented, you don't need people like that in your life. Also I referenced that fire and you're making me self conscious
+ 
+@abobrow it's important to note the 1 for 1 parallels between the Nazi party's coup and this one. BECAUSE it didn't start with camps.
+ 
+@401experiment Ha. Most sincere reaction to anything in a month
+ 
+It's likely been explored that we elected a man for being a man and he declared shopping-war on a rogue store that crossed a line of dresses
+ 
+Since we gave police broader powers can I request that suspicious activity like refusal to share tax returns be probable cause for search
+ 
+@RALaFrance @rachel_norfolk @BeffernieBlack is that true?! wow
+ 
+@rachel_norfolk @BeffernieBlack I hear you but that's not a reason to not get this dude impeached so we can get to facing the real probs
+ 
+Don't respond to me. Don't argue with me. I'm jerking off. You are growing the fuck up and you are calling your fucking congressman tomorrow
+ 
+It is possible to be in favor of fucking freedom - freedom for FUCK'S SAKE, FREEDOM - and disagree on literally everything else.
+ 
+You are not a bad person. You are dumb and you are ugly but you are not a bad person. You are not. People will say you are. Suck it UP.
+ 
+Make no mistake: you are a fucking idiot. I guarantee that. The average IQ is 100. Don't be ashamed of it. But grow the fuck up. Grow. Up.
+ 
+Just because the internet gives you the ability to find a lesbian having a shitty enough day to hate you doesn't mean lesbians hate you.
+ 
+We will get right back to our very crucial mission to save the unborn from transgender welfare moms but those goals aren't worth a 4th reich
+ 
+The revolution will not make you gay, muslim or pro-abortion. You can refuse to be a nazi and still be totally into your own skin tone.
+ 
+You have my personal guarantee that standing with your countrymen against tyranny does not require kissing said countrymen on the mouth
+ 
+@atrubens The Self
+ 
+I'll add to the extremist alarm: I'm sure a majority of the population during fascist takeovers err on the side of non-extreme anti-alarmism.I second this line of thinking. Why is societal chaos always a zero perk sitch.@aishatyler consider this my pre-order for a #DoSheLoveHerself tee shirt
+ 
+I personally agree but posted that article because she mentions that his speaking style is the way to talk when you call your congressfolk.Plugging this movie to support @tomhanks joining the circle of my beard style cc @russellcrowe.
+ 
+There's not going to be a moment when this stops itself. This will continue until it is stopped. Understanding that is our tragic obligation.
+ 
+Death not likely but more possible than other mornings.All right. Late to the elliptcal. This one's gonna hurt.
+ 
+They would have opted to stay out of trouble. All decent humans do. But history hit them like lightning and they became large and loud.
+ 
+We'll get through this and we will have become stronger and smarter because it won't be bows and curtseys that dispersed this evil cloud
+ 
+Feels like we spent a decade using technology to police and refine language while doing nothing to make each other more empowered or equal
+ 
+@Thesixler @michaelwaldron @slevy79 is it true the police won't even go into the Casey Projects
+ 
+Too drunk to log in.
+ 
+24. And to abuse in what way...to withhold empathy. To seal myself and the other person in a room and reveal to them that i never needed air
+ 
+23. I was...so thrilled that he asked me to move my foot. So bored by his bell curve brain and so activated by the excuse to..what? Abuse?
+ 
+20. I explain to him that it's possible for me to understand his needs and immediately comply with them while also not liking them.
+ 
+13. I let him talk forever. There is nothing better to do. So I like it. I like listening to him explain and explain and explain. Forever.
+ 
+8. He can't stand the silence. He is needful of interaction with others. He does not understand that he is transporting a payload of hatred.
+ 
+3. The larger irony to me is that he spent minutes one through eight of our trip essentially lamenting LA's gentrification.
+ 
+2. Among the numerous ironies are the fact that the seat he's protecting from my dirty foot is that of a Honda Accord...NO JUDGMENT YET
+ 
+More of this PLEASE.A measure of wheat for a penny, and three measures of barley for a penny; and see thou hurt not the oil and the wine. Rev 6:6.No fun. Still fat. Still doing it though.@gswope68 @hedgehogkibble @PhilipRucker @GOPHouse @GOPSenate Oy loik thet HET MAYTE
+ 
+@KellyannePolls i wonder if your very ungrateful team understands how much they'd suffer the day you cut them loose. 7 figure book deal.
+ 
+@cosnisca wouldn't that mean I was technically right about all the stuff I'm currently wrong about
+ 
+@nicholecantcook it
+ 
+@nicholecantcook drawing
+ 
+@nicholecantcook they're
+ 
+@nicholecantcook they're drawing it you gigantic asshole
+ 
+@nicholecantcook they're drawing it Dick Stain
+ 
+@Mike_Eagle oh snap yeah
+ 
+Okay but I just read on Facebook the focus group consisted of one deceased Illegal immigrant that gave feedback five million times.
+ 
+What do we want? Better rally timing! When do we want it? Not during the Super Bowl!.Sometimes It Will be Sunday and I Will Not Feel Like Doing This but Still Will Because HERO.
+ 
+@robdelaney My favorite is the idea that Time Magazine could make the administration implode by putting someone other than him on the cover
+ 
+Holy shit. I bet that's it. I love that (in a way that will make me sleep in until Sunday).@GLeitzan @AlainnFocail @ditzkoff @EJKTwit Someone paid me to come ask you guys who George Soros is
+ 
+@CowboysKristine @Sammar_23 @HelenKennedy @realDonaldTrump but your bio says liberals are spreading like zombies, which apocalypse is it
+ 
+@Christine_SD @rolandscahill @realDonaldTrump He's got my vote
+ 
+@javierchirps i believe some are born in situations so far from happiness they'd never get there without help from others
+ 
+It's just called two brothers OH GOD.
+ 
+@McGani @JustinRoiland definitely!
+ 
+29. You wanted no nonsense. You didn't get it. You got a tool. A handy tool. Beat the Clintons. Now he's a danger to you. Toss him. G'night.
+ 
+28. My Dad was born in a trailer park. Started a company. Taught self reliance by example. You wanted that kind of leader. A businessman.
+ 
+27. They would rather impeach than become seat fillers. They just need to know that if they do this for you, you'll let them keep their jobs
+ 
+26. If the Republicans don't move to impeach now..every day...they start flipping. To his new party. A party that will not take your call.
+ 
+25. This would not be a conservative defeat. Dude. Libs are under the pavement. This would be your victory lap. President Pence. Four years.
+ 
+24. I mean let's face it have you ever met a brave politician? It's not even their job. We have to be the conscience so they represent it.
+ 
+16. Congress is still Republican. Not Trumplican or Loyalist or whatever his party will be named now that the Republican role is over.
+ 
+15. They can't sneak new hippy laws past you just because you all agree on ONE thing, in this case, whoa, I think that kid's making TNT.
+ 
+14. Ignore who they are. Maybe they're dirty hippies that want to banish guns and mandate abortions. You don't need to put them in charge
+ 
+13. Try to recognize that the concerns about recent developments...of course the alarms are being rung by your least favorite folks. Yes.
+ 
+9. The problem - and maybe the only solution - is that these are not bright or mature men. Their failure to use this political chemistry set
+ 
+8. And they are deliberately - with an open smugness that should offend us - assembling what they believe will be ideal conditions for them.
+ 
+5. Because the goal isn't profit this time...it's power..which is why we feel disbelief about it...nothing real could be so on the nose..
+ 
+@Sillos @Thesixler end of rant 2
+ 
+@Sillos @Thesixler we are simply afraid of who we might be.
+ 
+@niclake I would get that message to everyone I could. Don't even give me credit. I don't cut the most palatable silhouette
+ 
+@gallegosr @passthehanky @KeithOlbermann the desperation is evident when you defend people that don't need and won't reward your assistance.
+ 
+@kwanzer @GunwildPrime @mizzunky Listen. Kid. You've gotten this far questioning everything but it's less sexy now. Shut up or pitch plans
+ 
+26. End of thread. Shouldn't take very long to put a few words like that together for a prayer breakfast. If you're partially decent.
+ 
+25. We are going to continue to be told that we can achieve good by doing bad things. We will be told that by people taken over by BAD.
+ 
+22. And wouldn't it be easy to tell these poisonous men from men of God...simply from their words and deeds...would God make that difficult
+ 
+15. Is this President behaving like a Christian man. Is he speaking like a Christian man. Do you feel his motivations are Christian.
+ 
+12. But you know I can't drive you. Nor you me. Each of us can only let God drive us or not. And each can only suggest what the other do.
+ 
+11. In other words..there are moments where God is doing the driving and there are moments when we're white knuckling the wheel. So it goes.
+ 
+7. I don't have time or words to explain that this is also how EVERYONE feels..you'll tune me out. Don't blame you. I know how I look to you
+ 
+@itbedave @donttrythis if you're religious and a mythbusters fan you knew Adam was a scientist and a kind soul. Think about where you stand
+ 
+On most important level, as with BHM speech, he's smugly saying no more Frasier talk. Black history is stupid and God doesn't exist.@Bud_Keeferson @OfficialJoshA @snopes I would see it as a real problem if there was actually anything to escalate that wasn't escalating
+ 
+@nickchickown I can't remember your question because it made me start thinking about myself and I couldn't stop
+ 
+@IsaacJimenez199 they're drawing it. The actual date is me and mother. We had a great time. She made the first move. Now fuck off
+ 
+@Christobah @GameGrumps @Harmontown we should definitely do that soon, good call! Cc @slevy79
+ 
+@cswanson86 they're drawing it
+ 
+@Chandra_Carlson @JustinRoiland they're drawing it
+ 
+Damn it.Freedom is a pizza or something.@cori_crider @ggreenwald ... so that we can look at this as a year with a higher number than zero? Does that help?
+ 
+@matthewcpinsent @NoorAjaj Mexican TV
+ 
+@duncantrussell @ChrisBaldwinter hired
+ 
+I think the press secretary said when this happens you're supposed to quit.@duncantrussell so...are you not supposed to do what that guy is doing? Saluting and meowing?
+ 
+Canadians:.
+ 
+@JDMcIntyre @LeahRBoss they certainly haven't flip flopped on THAT issue
+ 
+@notch @JustinRoiland is the outer perimeter lined with a checker pattern of cacti
+ 
+I can't sleep now. I had a nightmare. Or maybe not. Who knows these days. I'll just ask. Did Trump appoint Slenderman to the Supreme Court
+ 
+Worst. Meet. Cute. Ever..
+ 
+/drunk
+ 
+So are we all predicting 1. EO declares open season on gays 2. Street chaos 3. Hey we need more cops 4. But..special cops 5. Reichstag fire?
+ 
+@iantuck it's not a dot I wanted to connect but I'll take it
+ 
+@R3H0L3S it's more dire than that. They have a plan that will not work while media as we know it functions the way it has.
+ 
+@mtgilchrist I know. Why am I policing you. I guess I'm scared our luxury-enabled habit of hate-loving celebs will now serve our dark lords
+ 
+Also what minimum government service in a representative democracy looks like but yeah, adjusting for current market she's fucking Daredevil.@mtgilchrist celebrities don't hold press conferences or write headlines. They do regular shit like you and then it looks dumb as click bait
+ 
+Did 5 hour energy as sub for adderall...then got adderall...both just hit. Logging off before becoming my Rogue Midwestern Pastor character.
+ 
+@Pondersaurusrex I'm a talky-think guy, I use punctuation, mostly, to, denote rhythm..? Aaaaaand..... EMPHASIS!!!!!!!!!!!
+ 
+In the mean time here's an
+ 
+Church finally got into LAX as we were leaving and took some amazing non-partisan photos. GonnaREGISTER FOR THE GALACTIC FEDERATION. YOU LITERALLY HAVE TO..@jaystebbins @ericgarland @politico right but a whole new generation of Europeans will replace that tourism once we're...so fucking classy
+ 
+@AndyKindler What are all these stupid fucking Obama-equivalence rebuttals? So, yes, anti-semitism is bad but Dad said it was okay?
+ 
+@kumailn @JessicaValenti @LP_LaPresse And a lesson to those that spent 6 hours debating what race he'd be when they could have been reading
+ 
+@duncantrussell @MorganSpurlock @codyhe11er ..when the adorable guy is flushing rats out there's a woman that is clearly rethinking the gig
+ 
+@duncantrussell @MorganSpurlock But it also had mine and @codyhe11er's favorite moment in recent documentary history:
+ 
+@timoreilly @MarkLittlewood @amcafee based on this example, I guess the answer is, I'd open the jar from the bottom
+ 
+@pattonoswalt @realDonaldTrump he sounds like a character that didn't make the cut in the second Cocoon movie
+ 
+@markfloyd79 oh wait I got mixed up but you still seem like an asshole, blocked
+ 
+@markfloyd79 blocked by association with your asshat friend
+ 
+@peerpooloza you sound very wise! Bye!
+ 
+People opposed to you following your heart aren't revealing that they're heartless, they're concerned your heart will reveal they're pricks.
+ 
+He didn't. Bannon did. It's a talking point now. And a tactic so directly copied from Nazis it's past sickening all the way to hack..Well, sir, MOST of the people you're yelling at were in kindergarten and the rest remember that you were a democrat prior to impotence..@Arcanis_ @JustinCaffier @realDonaldTrump nice attempt at rationalizing autocracy
+ 
+@m1spike There are no more BATTLES TO PICK wake the fuck up. Or don't. Simply do not like you. You bum me out.
+ 
+@m1spike blocking your ass so I don't have to ruin what will already be a very hard, very fat elliptical ride
+ 
+@m1spike @futbolmonkey I love the idea that suggesting we monitor a senator's voting record is the fucking witch hunt and you're the hero.
+ 
+@timheidecker YOUNG ADULTS AND TINFOIL ARE OFF LIMITS, END OF STORY
+ 
+@m1spike @HeerJeet @jayhipps sounds great. Why are we fighting fascists again?
+ 
+@JakeHarder I'm going to need more plan than this before I shift my current view but I'm not tuning you out
+ 
+Wait until 2030 when he bans girls from the country on New Girl Remembrance Day.@HippoJuiceShaun well aren't you just the smartest guy in the world it must be so lonely!
+ 
+12. @SenFeinstein.

@@ -9,9 +9,11 @@ import random
 tweet = ''
 tweetlength = 0
 
+
 def parseFile(filename):
 	# Checks if a file exists and creates it, if it doesn't
 	record = ""
+	tweetid = 0
 	#Open the file, grab the first record, put it into a variable, remove it from the file, and close the file.
 	try:
 		record_File = open(filename, 'r', encoding='UTF-8')
@@ -26,6 +28,8 @@ def parseFile(filename):
 				tweet = cleanTweet(tweet)
 				tweet = addHashtag(tweet)
 				tweet = cleanTweet(tweet)
+				tweetid += 1
+				tweet = str(tweetid).zfill(6) + " " + tweet
 				fout.write(tweet + '\n')
 			fout.close()
 			
@@ -42,11 +46,7 @@ def fitTweet(tweet):
 	#reduces the current tweet to less than 140 characters, generates new words from last3 sampling until the tweet is a complete sentence.
 	#print('Currently tweet is ' + tweet)
 	i=0
-	tweetlength = len(tweet)
-	
-	
-	############## FIX NOT DETECTING PUNCTUATION OR SENTENCE LENGTH CORRECTLY AND ADD CODE NUMBERING LIKE IN THE OTHER FILE
-	
+	tweetlength = len(tweet)	
 	punctuationadded = False
 	while tweetlength > 120 or tweetlength < 75 or punctuationadded == False:
 		print('NEW TWEET \n \n \nTweet is currently ' + str(len(tweet)) + ' characters long.')
@@ -83,7 +83,7 @@ def fitTweet(tweet):
 			print(tweet[-1:])
 			punctuationadded = True
 			return tweet
-		else:
+		elif lastChar != '?' or lastChar != '!' or lastChar != '.' or lastChar != '"':
 			print('Tweet doesn\'t end with punctuation, creating new ending'.upper())
 			tweetList = tweet.split()
 			last3 = str((tweetList[-3] + " " + tweetList[-2] + " " + tweetList[-1])).rstrip()

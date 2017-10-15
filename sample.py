@@ -1,4 +1,3 @@
-
 import sys
 import subprocess
 import random
@@ -197,6 +196,7 @@ def sample(training_arguments, commandlist):
 	
 	samplestring = result.decode('UTF-8')
 	result, samplelist, numSampleList = denormalize(samplestring)
+	print('Result is ' + result)
 	return result, samplelist, numSampleList
 
 # Denormalize sampled text
@@ -219,6 +219,7 @@ def denormalize(sample):
 		replace(" ! ", "! ").\
 		replace(" ' ", "'").\
 		replace(" , ", ", ").\
+		replace('\"', "").\
 		replace("- -", "--").\
 		replace(" ; ", "; ").\
 		replace('\n\n', '\n').\
@@ -229,10 +230,10 @@ def denormalize(sample):
 	sample_clean = re.sub(r'(?<=\d)\s+(?=\d)', '', sample_clean)
 	sample_clean = sample_clean.replace(" n't", "n't")
 	sample_clean = sample_clean.rstrip()
-	sample_clean = sample_clean.capitalize()
+	#sample_clean = sample_clean.capitalize()
 	samplelist = sample_clean.split('\n')
 	samplelist = list(filter(None, samplelist)) #strip blank entries in samplelist
-	numSampleList = [(str(i).zfill(6) + ' is ' + samplelist[i]) for i in range(len(samplelist))]
+	numSampleList = [(str(i).zfill(6) + ' is ' + samplelist[i].capitalize()) for i in range(len(samplelist))]
 	return sample_clean, samplelist, numSampleList
 
 if __name__ == '__main__':

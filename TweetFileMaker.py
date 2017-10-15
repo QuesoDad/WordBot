@@ -88,7 +88,12 @@ def fitTweet(tweet):
 		elif lastChar != '?' or lastChar != '!' or lastChar != '.' or lastChar != '"':
 			print('Tweet doesn\'t end with punctuation, creating new ending'.upper())
 			tweetList = tweet.split()
-			last3 = str((tweetList[-3] + " " + tweetList[-2] + " " + tweetList[-1])).rstrip()
+			if len(tweetList) >=3:
+				last3 = str((tweetList[-3] + " " + tweetList[-2] + " " + tweetList[-1])).rstrip()
+			elif len(tweetList) == 2:
+				last3 = str((tweetList[-2] + " " + tweetList[-1])).rstrip()
+			elif len(tweetList) == 1:
+				last3 = str(tweetList[-1]).rstrip()
 			tweetlength = len(tweet)
 			print('The last three words are %s'%last3)
 			tweet = tweet + " " + last3Sample(last3).strip()
@@ -105,14 +110,14 @@ def lengthenTweet(tweet, tweetLength):
 	seed = random.randint(0, 200)
 	result = 'placeholder'
 		
-	while tweetLength <= 100:
+	while tweetLength > 120:
 		print('Tweet too long')
 		print('Tweet is ' + tweet + ' and it is ' + str(tweetLength) + ' characters long.')
 		tweet = textwrap.wrap(tweet, 120, break_long_words=False)
 		tweet = tweet[0]
 		lengthTarget = 120 - len(tweet)
 		tweetLength = len(tweet)
-		command = '-model word -temperature 1 -length 1 -wordlevel 1 -seed '+ str(seed) + ' -primetext ' + tweet
+		command = '-model word -temperature 1 -length '+ lengthTarget + ' -wordlevel 1 -seed '+ str(seed) + ' -primetext ' + tweet
 		seed += 1
 		args, arguments = sample.rawParse(command)
 		args, training_arguments = sample.parseArguments(args, arguments)
@@ -145,6 +150,10 @@ def cleanTweet(tweet):
 		replace('\t', '').\
 		replace('\n \n ', "\n").\
 		replace(' # ', " #").\
+		replace(')', "").\
+		replace('(', "").\
+		replace(' - ', "-").\
+		replace('-.', ".").\
 		replace(' 0 ', '0').\
 		strip('\n')
 	return tweet
@@ -188,17 +197,21 @@ def last3Sample(last3):
 	seed = random.randint(0, 200)
 	result = 'placeholder'
 	lastChar = (result.rstrip())[-1]
-	tweetLength = random.randint(3, 9)
+	tweetLength = random.randint(3, 15)
 	
 	while lastChar.isalpha() == True:
-		test = '-model word -wordlevel 1 -temperature 2 -length ' + str(tweetLength) + ' -seed '+ str(seed) + ' -primetext ' + last3
+		test = '-model word -wordlevel 0 -temperature 1 -length ' + str(tweetLength) + ' -seed '+ str(seed) + ' -primetext ' + last3
 		seed += 1
 		args, arguments = sample.rawParse(test)
 		args, training_arguments = sample.parseArguments(args, arguments)
 		commandstring, commandlist = sample.commandLine()
 		result, samplelist, numSampleList = sample.sample(training_arguments, commandlist)
 		result = result.strip()
-		lastChar = (result.rstrip())[-1]
+		try:
+			lastChar = (result.strip())[-1]
+		except:
+			endings = ['.', '?', '!']
+			lastChar = random.choice(endings)
 	return result
 
 if __name__ == '__main__':

@@ -22,6 +22,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /dockerdata
 RUN pip3 install --upgrade pip
 RUN pip3 install twython
+RUN pip3 install --upgrade google-api-python-client
 
 # Torch and luarocks
 WORKDIR /root

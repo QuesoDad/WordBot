@@ -7,7 +7,7 @@ tweetfile maker - picks model and produces a text file for it
 	DONE -enters proper length tweets into file
 	DONE -produces text endings from sampler until the tweet is a complete sentence
 	DONE - loops through entire given file
-	- Corrects capitlization after punctuations and checks for duplicates
+	DONE - Corrects capitlization after punctuations and checks for duplicates
 	DONE - leaves a specific 6 character number next to each tweet for reference
 
 test sample - makes a short sample from a training checkpoint

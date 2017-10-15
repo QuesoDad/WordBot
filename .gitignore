@@ -100,3 +100,13 @@ char-rnn-trained.t7
 word-rnn-trained.t7
 lm_lstm_autosave__epoch167.86_3.4929.t7
 tweetfile.txt_output.txt
+*.t7
+MarkTwainTweets.txt
+MarkTwainTweets.txt_output.txt
+MarkTwainTweets2.txt
+MarkTwainTweets2.txt_output.txt
+MarkTwainTweets2.txt_trim.txt
+tweetfile.txt_output.txt
+tweetfile.txt_trim.txt
+tweetfile.txt_output.txt
+tweetfile.txt_trim.txt

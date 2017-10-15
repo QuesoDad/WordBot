@@ -211,8 +211,11 @@ def denormalize(sample):
 	sample_clean = sample_clean.split("--------------------------")[1]
 	sample_clean = sample_clean.replace(" . . . ", "... ")
 	sample_clean = sample_clean.\
-		replace(" . ", ". ").\
-		replace(" \ ? ", "? ").\
+		replace("  ", " ").\
+		replace(" !", "!").\
+		replace(" .", ".").\
+		replace(" ?", "?").\
+		replace(" ? ", "? ").\
 		replace(" ! ", "! ").\
 		replace(" ' ", "'").\
 		replace(" , ", ", ").\
@@ -226,6 +229,7 @@ def denormalize(sample):
 	sample_clean = re.sub(r'(?<=\d)\s+(?=\d)', '', sample_clean)
 	sample_clean = sample_clean.replace(" n't", "n't")
 	sample_clean = sample_clean.rstrip()
+	sample_clean = sample_clean.capitalize()
 	samplelist = sample_clean.split('\n')
 	samplelist = list(filter(None, samplelist)) #strip blank entries in samplelist
 	numSampleList = [(str(i).zfill(6) + ' is ' + samplelist[i]) for i in range(len(samplelist))]

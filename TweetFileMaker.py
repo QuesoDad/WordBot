@@ -21,19 +21,21 @@ def parseFile(filename):
 		
 		with open(filename, 'r') as fin:
 			data = fin.read().splitlines(True) #open the file and stick it in a list
-					
-		with open(outputfilename, 'a+') as fout: #reopen the file for writing
-			for x in data:
-				tweet = fitTweet(x)
-				tweet = cleanTweet(tweet)
-				tweet = addHashtag(tweet)
-				tweet = cleanTweet(tweet)
-				tweetid += 1
-				tweet = str(tweetid).zfill(6) + " " + tweet
-				fout.write(tweet + '\n')
-			fout.close()
+			data = list(filter(None, data)) #strip blank entries in samplelist
+			fin.close()
 			
-		fin.close()
+		for x in data:
+			with open(outputfilename, 'a+') as fout: #reopen the file for writing
+				if len(x) > 1:
+					tweet = fitTweet(x)
+					tweet = cleanTweet(tweet)
+					tweet = addHashtag(tweet)
+					tweet = cleanTweet(tweet)
+					tweet = str(tweetid).zfill(6) + " " + tweet
+					fout.write(tweet + '\n')
+					tweetid += 1
+			fout.close()
+		
 		if statinfo.st_size == 0:
 			print('%s exists, but it is empty.'%(filename))
 	except IOError:
@@ -110,7 +112,7 @@ def lengthenTweet(tweet, tweetLength):
 		tweet = tweet[0]
 		lengthTarget = 120 - len(tweet)
 		tweetLength = len(tweet)
-		command = '-model word -temperature 1 -length 1 -seed '+ str(seed) + ' -primetext ' + tweet
+		command = '-model word -temperature 1 -length 1 -wordlevel 1 -seed '+ str(seed) + ' -primetext ' + tweet
 		seed += 1
 		args, arguments = sample.rawParse(command)
 		args, training_arguments = sample.parseArguments(args, arguments)
@@ -129,6 +131,21 @@ def cleanTweet(tweet):
 		replace(' : ', ': ').\
 		replace('##', '#').\
 		replace(' _ ', '_').\
+		replace("  ", " ").\
+		replace(" !", "!").\
+		replace(" .", ".").\
+		replace(" ?", "?").\
+		replace(" ? ", "? ").\
+		replace(" ! ", "! ").\
+		replace(" ' ", "'").\
+		replace(" , ", ", ").\
+		replace("- -", "--").\
+		replace(" ; ", "; ").\
+		replace('\n\n', '\n').\
+		replace('\t', '').\
+		replace('\n \n ', "\n").\
+		replace(' # ', " #").\
+		replace(' 0 ', '0').\
 		strip('\n')
 	return tweet
 

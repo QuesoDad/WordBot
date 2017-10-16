@@ -13,7 +13,7 @@ tweetlength = 0
 def parseFile(filename):
 	# Checks if a file exists and creates it, if it doesn't
 	record = ""
-	tweetid = 0
+	tweetid = 0 # SET THIS TO THE LAST RECORD IN THE TWEETFILE IF THE TWEETFILE EXISTS
 	#Open the file, grab the first record, put it into a variable, remove it from the file, and close the file.
 	try:
 		record_File = open(filename, 'r', encoding='UTF-8')
@@ -23,7 +23,7 @@ def parseFile(filename):
 			data = fin.read().splitlines(True) #open the file and stick it in a list
 			data = list(filter(None, data)) #strip blank entries in samplelist
 			fin.close()
-			
+		
 		for x in data:
 			with open(outputfilename, 'a+') as fout: #reopen the file for writing
 				if len(x) > 1:
@@ -60,7 +60,7 @@ def fitTweet(tweet):
 				#print('The following are the separate tokens')
 				#print(cut_Lines)
 				y = 0
-				for i in cut_Lines: #grabs the first line, returns everything else to file
+				for i in cut_Lines: #grabs the first 100 characters, returns everything else to file
 					if (y == 0):
 						tweet = cut_Lines[0]
 						y =+ 1
